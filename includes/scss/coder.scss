@@ -1,0 +1,18 @@
+// =============================================================================
+// Button
+// =============================================================================
+
+.su-coder-button {
+	display: inline-flex !important;
+	align-items: center;
+
+	svg {
+		width: 14px;
+		height: 14px;
+		color: #82878c;
+	}
+
+	svg + span {
+		margin-left: 0.5em;
+	}
+}
