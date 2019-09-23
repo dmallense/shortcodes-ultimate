@@ -4,6 +4,11 @@
 	<!-- Annotated ruleset: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset -->
 	<description>A set of custom rules</description>
 
+	<rule ref="WordPress.Security.EscapeOutput">
+		<!-- <exclude name="WordPress.Security.EscapeOutput.OutputNotEscapedShortEcho"/> -->
+		<!-- <exclude name="WordPress.Security.EscapeOutput.UnsafePrintingFunction"/> -->
+		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped"/>
+	</rule>
 	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
 		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterEnd"/>
 	</rule>
