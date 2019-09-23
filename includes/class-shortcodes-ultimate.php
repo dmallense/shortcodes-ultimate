@@ -82,6 +82,13 @@ class Shortcodes_Ultimate {
 	public $rate_notice;
 
 	/**
+	 * Coder instance.
+	 *
+	 * @since  5.6.0
+	 */
+	public $coder;
+
+	/**
 	 * Get class instance.
 	 *
 	 * @since  5.1.0
@@ -126,6 +133,11 @@ class Shortcodes_Ultimate {
 		 * The class responsible for adding, storing and accessing shortcodes data.
 		 */
 		require_once $this->plugin_path . 'includes/class-shortcodes-ultimate-shortcodes.php';
+
+		/**
+		 * The class responsible for the Coder tool.
+		 */
+		require_once $this->plugin_path . 'includes/class-shortcodes-ultimate-coder.php';
 
 		/**
 		 * The class responsible for plugin upgrades.
@@ -301,6 +313,17 @@ class Shortcodes_Ultimate {
 		 * Disable wptexturize filter for nestable shortcodes.
 		 */
 		add_filter( 'no_texturize_shortcodes', 'su_filter_disable_wptexturize', 10 );
+
+		/**
+		 * Enable Coder.
+		 */
+		$this->coder = new Shortcodes_Ultimate_Coder( $this->plugin_prefix );
+
+		add_action( 'wp_footer', array( $this->coder, 'display_app' ) );
+		add_action( 'admin_footer', array( $this->coder, 'display_app' ) );
+		add_action( 'admin_enqueue_scripts', array( $this->coder, 'enqueue_scripts' ) );
+		add_action( 'media_buttons', array( $this->coder, 'add_classic_editor_button' ), 1000 );
+		add_action( 'enqueue_block_editor_assets', array( $this->coder, 'add_block_editor_button' ) );
 
 		/**
 		 * Enable shortcodes in text widgets and category descriptions.
