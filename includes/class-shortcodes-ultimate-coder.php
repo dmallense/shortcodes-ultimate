@@ -45,7 +45,7 @@ class Shortcodes_Ultimate_Coder {
 			'shortcodes-ultimate-coder',
 			'SUCoderL10n',
 			array(
-				'close'            => __( 'Close', 'shortcodes-ultimate' ),
+				'closeDialog'      => __( 'Close dialog', 'shortcodes-ultimate' ),
 				'searchShortcodes' => __( 'Search shortcodes', 'shortcodes-ultimate' ),
 				'chooseFile'       => __( 'Choose file', 'shortcodes-ultimate' ),
 				'insert'           => __( 'Insert', 'shortcodes-ultimate' ),
