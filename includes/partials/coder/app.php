@@ -1,3 +1,5 @@
 <?php defined( 'ABSPATH' ) || exit; ?>
 
-<div class="su-coder-app"></div>
+<div style="display:none">
+	<div class="su-coder-app"></div>
+</div>
