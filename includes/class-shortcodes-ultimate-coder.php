@@ -23,6 +23,8 @@ class Shortcodes_Ultimate_Coder {
 			return;
 		}
 
+		// TODO: register and enqueue MFP script/styles (1) [!] @js
+
 		wp_enqueue_style(
 			'shortcodes-ultimate-coder',
 			plugins_url( 'css/coder.css', __FILE__ ),
@@ -34,7 +36,7 @@ class Shortcodes_Ultimate_Coder {
 		wp_enqueue_script(
 			'shortcodes-ultimate-coder',
 			plugins_url( 'js/coder/index.js', __FILE__ ),
-			array( 'lodash', 'magnific-popup' ),
+			array( 'jquery', 'magnific-popup' ),
 			filemtime( plugin_dir_path( __FILE__ ) . 'js/coder/index.js' ),
 			true
 		);
@@ -43,13 +45,15 @@ class Shortcodes_Ultimate_Coder {
 			'shortcodes-ultimate-coder',
 			'SUCoderL10n',
 			array(
-				'chooseFile'    => __( 'Choose file', 'shortcodes-ultimate' ),
-				'insert'        => __( 'Insert', 'shortcodes-ultimate' ),
-				'selectImages'  => __( 'Select images', 'shortcodes-ultimate' ),
-				'addSelected'   => __( 'Add selected images', 'shortcodes-ultimate' ),
-				'newPresetName' => __( 'Please enter a name for new preset', 'shortcodes-ultimate' ),
-				'newPreset'     => __( 'New preset', 'shortcodes-ultimate' ),
-				'lastUsed'      => __( 'Last used settings', 'shortcodes-ultimate' ),
+				'close'            => __( 'Close', 'shortcodes-ultimate' ),
+				'searchShortcodes' => __( 'Search shortcodes', 'shortcodes-ultimate' ),
+				'chooseFile'       => __( 'Choose file', 'shortcodes-ultimate' ),
+				'insert'           => __( 'Insert', 'shortcodes-ultimate' ),
+				'selectImages'     => __( 'Select images', 'shortcodes-ultimate' ),
+				'addSelected'      => __( 'Add selected images', 'shortcodes-ultimate' ),
+				'newPresetName'    => __( 'Please enter a name for new preset', 'shortcodes-ultimate' ),
+				'newPreset'        => __( 'New preset', 'shortcodes-ultimate' ),
+				'lastUsed'         => __( 'Last used settings', 'shortcodes-ultimate' ),
 			)
 		);
 
