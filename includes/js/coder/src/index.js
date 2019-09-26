@@ -27,10 +27,14 @@ SUCoder.App = (() => {
 	};
 
 	self.addHeader = function() {
-		var html = `<div class="su-coder-header wp-ui-highlight">
-							<input type="text" value="" placeholder="${SUCoderL10n.searchShortcodes}" />
-							<button class="su-coder-close-btn">${SUCoderL10n.close}</button>
-						</div>`;
+		var html = `
+			<div class="su-coder-header wp-ui-highlight">
+				<input type="text" value="" placeholder="${SUCoderL10n.searchShortcodes}" />
+				<button class="su-coder-close-btn" aria-label="${SUCoderL10n.closeDialog}" title="${SUCoderL10n.closeDialog}">
+					<svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" aria-hidden="true"><path d="M2 30 L30 2 M30 30 L2 2" /></svg>
+				</button>
+			</div>
+		`;
 
 		self.el.app.insertAdjacentHTML('afterbegin', html);
 	};
@@ -40,10 +44,23 @@ SUCoder.App = (() => {
 	};
 
 	self.openPopup = function() {
-		self.MFPOptions = self.MFPOptions || {};
+		self.MFPOptions = {
+			type: 'inline',
+			alignTop: true,
+			closeOnBgClick: false,
+			mainClass: 'su-coder-mfp',
+			items: {
+				src: '.su-coder-app'
+			},
+			callbacks: {}
+		};
+
+		jQuery.magnificPopup.open(self.MFPOptions);
 	};
 
-	self.insertClassic = function(target = '', shortcode = '') {};
+	self.insertClassic = function(target = '', shortcode = '') {
+		self.openPopup();
+	};
 
 	return {
 		init: self.init,
