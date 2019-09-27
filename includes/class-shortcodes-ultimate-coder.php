@@ -41,6 +41,15 @@ class Shortcodes_Ultimate_Coder {
 			true
 		);
 
+		wp_add_inline_script(
+			'shortcodes-ultimate-coder',
+			sprintf(
+				'SUCoderAjaxURL=\'%s\';',
+				admin_url( 'admin-ajax.php' )
+			),
+			'after'
+		);
+
 		wp_localize_script(
 			'shortcodes-ultimate-coder',
 			'SUCoderL10n',
@@ -144,6 +153,16 @@ class Shortcodes_Ultimate_Coder {
 
 		do_action( 'su/coder/button' );
 		do_action( 'su/coder/button/block_editor' );
+
+	}
+
+	public function ajax_get_shortcodes() {
+
+		if ( ! current_user_can( $this->capability ) ) {
+			exit;
+		}
+
+		die( wp_json_encode( array_values( su_get_all_shortcodes() ) ) );
 
 	}
 
