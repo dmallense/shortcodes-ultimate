@@ -15,6 +15,15 @@ SUCoder.App = (() => {
 
 	self.MFPOptions = null;
 
+	self.cache = {
+		shortcodes: null,
+		settings: {}
+	};
+
+	self.state = {
+		shortcodesAdded: false
+	};
+
 	self.init = function() {
 		self.el.app = document.querySelectorAll('.su-coder-app')[0];
 
@@ -30,7 +39,9 @@ SUCoder.App = (() => {
 		var html = `
 			<div class="su-coder-header wp-ui-highlight">
 				<input type="text" value="" placeholder="${SUCoderL10n.searchShortcodes}" />
-				<button class="su-coder-close-btn" aria-label="${SUCoderL10n.closeDialog}" title="${SUCoderL10n.closeDialog}">
+				<button class="su-coder-close-btn" aria-label="${
+					SUCoderL10n.closeDialog
+				}" title="${SUCoderL10n.closeDialog}">
 					<svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" aria-hidden="true"><path d="M2 30 L30 2 M30 30 L2 2" /></svg>
 				</button>
 			</div>
@@ -40,10 +51,25 @@ SUCoder.App = (() => {
 	};
 
 	self.addShortcodes = function() {
-		var groups = [];
+		var html = `<div class="su-coder-shortcodes"></div>`;
+
+		self.el.app.insertAdjacentHTML('beforeend', html);
+	};
+
+	self.loadShortcodes = function() {
+		if (!self.cache.shortcodes) {
+		}
+
+		// self.cache.shortcodes = data;
+
+		return self.cache.shortcodes;
 	};
 
 	self.openPopup = function() {
+		if (!self.cache.shortcodes) {
+			self.fetchShortcodes();
+		}
+
 		self.MFPOptions = {
 			type: 'inline',
 			alignTop: true,
@@ -60,6 +86,46 @@ SUCoder.App = (() => {
 
 	self.insertClassic = function(target = '', shortcode = '') {
 		self.openPopup();
+	};
+
+	self.fetch = function(method, url, params, callback) {
+		var request = new XMLHttpRequest();
+
+		request.open(method, url, true);
+
+		request.setRequestHeader(
+			'Content-type',
+			'application/x-www-form-urlencoded'
+		);
+
+		request.onload = function() {
+			if (200 !== this.status) {
+				return;
+			}
+
+			callback(this.responseText);
+		};
+
+		request.send(self.serialize(params));
+	};
+
+	self.fetchShortcodes = function() {
+		self.fetch(
+			'POST',
+			SUCoderAjaxURL,
+			{ action: 'su_coder_get_shortcodes' },
+			data => {
+				self.cache.shortcode = JSON.parse(data);
+			}
+		);
+	};
+
+	self.serialize = function(obj) {
+		return Object.keys(obj)
+			.map(
+				key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])
+			)
+			.join('&');
 	};
 
 	return {
