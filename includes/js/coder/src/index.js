@@ -15,8 +15,6 @@ window.SUCoder.App = (() => {
     preview: null
   }
 
-  self.MFPOptions = null
-
   self.shortcodes = null
 
   self.state = {
@@ -30,11 +28,11 @@ window.SUCoder.App = (() => {
       return
     }
 
-    self.addHeader()
-    self.addShortcodes()
+    self.appendHeader()
+    self.appendShortcodes()
   }
 
-  self.addHeader = function () {
+  self.appendHeader = function () {
     var html = `
       <div class="su-coder-header wp-ui-highlight">
         <input type="text" value="" placeholder="${SUCoderL10n.searchShortcodes}" />
@@ -47,7 +45,7 @@ window.SUCoder.App = (() => {
     self.el.app.insertAdjacentHTML('afterbegin', html)
   }
 
-  self.addShortcodes = function () {
+  self.appendShortcodes = function () {
     var html = '<div class="su-coder-shortcodes"></div>'
 
     self.el.app.insertAdjacentHTML('beforeend', html)
@@ -106,7 +104,7 @@ window.SUCoder.App = (() => {
 
   self.fetchShortcodes = function () {
     self.fetch(
-      'POST',
+      'GET',
       SUCoderAjaxURL,
       { action: 'su_coder_get_shortcodes' },
       data => {
