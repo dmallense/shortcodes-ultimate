@@ -1,11 +1,7 @@
 /* global jQuery, XMLHttpRequest, SUCoderL10n, SUCoderAjaxURL */
 
-window.SUCoder = window.SUCoder || {}
-
-window.SUCoder.App = (() => {
-  var self = {}
-
-  self.el = {
+const store = {
+  el: {
     app: null,
     search: null,
     closeBtn: null,
@@ -13,27 +9,26 @@ window.SUCoder.App = (() => {
     breadcrumbs: null,
     settings: null,
     preview: null
+  },
+  data: {
+    shortcodes: null,
+    groups: null
+  }
+}
+
+const init = function () {
+  store.el.app = document.querySelector('.su-coder-app')
+
+  if (!store.el.app) {
+    return
   }
 
-  self.shortcodes = null
+  appendHeader()
+  appendShortcodes()
+}
 
-  self.state = {
-    shortcodesAdded: false
-  }
-
-  self.init = function () {
-    self.el.app = document.querySelectorAll('.su-coder-app')[0]
-
-    if (!self.el.app) {
-      return
-    }
-
-    self.appendHeader()
-    self.appendShortcodes()
-  }
-
-  self.appendHeader = function () {
-    var html = `
+const appendHeader = function () {
+  var html = `
       <div class="su-coder-header wp-ui-highlight">
         <input type="text" value="" placeholder="${SUCoderL10n.searchShortcodes}" />
         <button class="su-coder-close-btn" aria-label="${SUCoderL10n.closeDialog}" title="${SUCoderL10n.closeDialog}">
@@ -42,90 +37,77 @@ window.SUCoder.App = (() => {
       </div>
     `
 
-    self.el.app.insertAdjacentHTML('afterbegin', html)
+  store.el.app.insertAdjacentHTML('afterbegin', html)
+}
+
+const appendShortcodes = function () {
+  var html = '<div class="su-coder-shortcodes"></div>'
+
+  store.el.app.insertAdjacentHTML('beforeend', html)
+}
+
+const openPopup = function () {
+  const MFPOptions = {
+    type: 'inline',
+    alignTop: true,
+    closeOnBgClick: false,
+    mainClass: 'su-coder-mfp',
+    items: {
+      src: '.su-coder-app'
+    },
+    callbacks: {}
   }
 
-  self.appendShortcodes = function () {
-    var html = '<div class="su-coder-shortcodes"></div>'
+  jQuery.magnificPopup.open(MFPOptions)
+}
 
-    self.el.app.insertAdjacentHTML('beforeend', html)
-  }
+const fetchJSON = function (method, url, params, callback) {
+  var request = new XMLHttpRequest()
 
-  self.loadShortcodes = function () {
-    if (!self.shortcodes) {
+  request.open(method, url, true)
+
+  request.setRequestHeader(
+    'Content-type',
+    'application/x-www-form-urlencoded'
+  )
+
+  request.onload = function () {
+    if (this.status !== 200) {
+      return
     }
 
-    return self.shortcodes
+    callback(this.responseText)
   }
 
-  self.openPopup = function () {
-    if (!self.shortcodes) {
-      self.fetchShortcodes()
+  request.send(serializeObj(params))
+}
+
+const fetchShortcodes = function () {
+  fetchJSON(
+    'GET',
+    SUCoderAjaxURL,
+    { action: 'su_coder_get_shortcodes' },
+    data => {
+      store.data.shortcodes = JSON.parse(data)
+      console.log(store.data.shortcodes)
     }
+  )
+}
 
-    self.MFPOptions = {
-      type: 'inline',
-      alignTop: true,
-      closeOnBgClick: false,
-      mainClass: 'su-coder-mfp',
-      items: {
-        src: '.su-coder-app'
-      },
-      callbacks: {}
-    }
-
-    jQuery.magnificPopup.open(self.MFPOptions)
-  }
-
-  self.insertClassic = function (target = '', shortcode = '') {
-    self.openPopup()
-  }
-
-  self.fetch = function (method, url, params, callback) {
-    var request = new XMLHttpRequest()
-
-    request.open(method, url, true)
-
-    request.setRequestHeader(
-      'Content-type',
-      'application/x-www-form-urlencoded'
+const serializeObj = function (obj) {
+  return Object.keys(obj)
+    .map(
+      key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])
     )
+    .join('&')
+}
 
-    request.onload = function () {
-      if (this.status !== 200) {
-        return
-      }
+const insertClassic = function (target = '', shortcode = '') {
+  openPopup()
+}
 
-      callback(this.responseText)
-    }
+// Expose API
+window.SUCoder = { init, insertClassic }
 
-    request.send(self.serialize(params))
-  }
-
-  self.fetchShortcodes = function () {
-    self.fetch(
-      'GET',
-      SUCoderAjaxURL,
-      { action: 'su_coder_get_shortcodes' },
-      data => {
-        self.shortcodes = JSON.parse(data)
-        console.log(self.shortcodes)
-      }
-    )
-  }
-
-  self.serialize = function (obj) {
-    return Object.keys(obj)
-      .map(
-        key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])
-      )
-      .join('&')
-  }
-
-  return {
-    init: self.init,
-    insertClassic: self.insertClassic
-  }
-})()
-
-document.addEventListener('DOMContentLoaded', window.SUCoder.App.init)
+// Initialize Coder
+document.addEventListener('DOMContentLoaded', window.SUCoder.init)
