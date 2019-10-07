@@ -32,8 +32,8 @@ function compileSASS () {
 function compileJS () {
   return gulp
     .src([
-      './includes/js/block-editor/src/index.js',
-      './includes/js/generator/src/index.js',
+      './includes/js/coder/src/index.js',
+      './includes/js/coder/src/block-editor.js',
       './includes/js/shortcodes/src/index.js'
     ], { read: false, base: './' })
     .pipe(tap(function (file) {
