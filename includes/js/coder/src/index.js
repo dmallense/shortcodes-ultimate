@@ -3,12 +3,7 @@
 const store = {
   el: {
     app: null,
-    search: null,
-    closeBtn: null,
-    shortcodes: null,
-    breadcrumbs: null,
-    settings: null,
-    preview: null
+    shortcodes: null
   },
   state: {
     popupReady: false
@@ -42,6 +37,10 @@ const init = function () {
 const bindEvents = function () {}
 
 const buildPopup = function () {
+  if (store.state.popupReady) {
+    return
+  }
+
   const html = `
       <div class="su-coder-header wp-ui-highlight">
         <input type="text" value="" placeholder="${SUCoderL10n.searchShortcodes}" />
@@ -53,20 +52,48 @@ const buildPopup = function () {
     `
 
   store.el.app.insertAdjacentHTML('beforeend', html)
+
+  store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
+
+  fetchJSON(
+    'POST',
+    { action: 'su_coder_get_shortcodes' },
+    function (data) {
+      store.data.shortcodes = JSON.parse(data)
+      buildShortcodes()
+    }
+  )
+
+  fetchJSON(
+    'POST',
+    { action: 'su_coder_get_groups' },
+    data => {
+      store.data.groups = JSON.parse(data)
+      buildShortcodes()
+    }
+  )
+
+  store.state.popupReady = true
+}
+
+const buildShortcodes = function () {
+  if (!store.data.shortcodes || !store.data.groups) {
+    return
+  }
+
+  console.log(store.data)
 }
 
 const openPopup = function () {
-  if (!store.state.popupReady) {
-    buildPopup()
-  }
+  buildPopup()
 
   jQuery.magnificPopup.open(store.MFPOptions)
 }
 
-const fetchJSON = function (method, url, params, callback) {
+const fetchJSON = function (method, params, callback) {
   const request = new XMLHttpRequest()
 
-  request.open(method, url, true)
+  request.open(method, SUCoderAjaxURL, true)
 
   request.setRequestHeader(
     'Content-type',
@@ -84,23 +111,9 @@ const fetchJSON = function (method, url, params, callback) {
   request.send(serializeObj(params))
 }
 
-const fetchShortcodes = function () {
-  fetchJSON(
-    'GET',
-    SUCoderAjaxURL,
-    { action: 'su_coder_get_shortcodes' },
-    data => {
-      store.data.shortcodes = JSON.parse(data)
-      console.log(store.data.shortcodes)
-    }
-  )
-}
-
 const serializeObj = function (obj) {
   return Object.keys(obj)
-    .map(
-      key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])
-    )
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]))
     .join('&')
 }
 
