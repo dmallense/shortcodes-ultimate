@@ -43,8 +43,6 @@ const buildPopup = function () {
 
   store.el.app.insertAdjacentHTML('beforeend', html)
 
-  store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
-
   fetchJSON(
     'POST',
     { action: 'su_coder_get_shortcodes' },
@@ -71,7 +69,31 @@ const buildShortcodes = function () {
     return
   }
 
-  console.log(store.data)
+  store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
+
+  const groups = store.data.groups.map(group => group.id)
+
+  Array.prototype.forEach.call(store.data.shortcodes, (shortcode, index) => {
+    const group = shortcode.group.split(' ')[0]
+
+    if (!groups[group]) {
+      return
+    }
+
+    console.log(group)
+
+    // store.el.shortcodes.insertAdjacentHTML(
+    //   'beforeend',
+    //   `<button>${shortcode.name}</button>`
+    // )
+  })
+
+  Array.prototype.forEach.call(store.data.groups, (group, groupIndex) => {
+    // store.el.shortcodes.insertAdjacentHTML(
+    //   'beforeend',
+    //   `<div class="su-coder-shortcodes-group">${group.title}</div>`
+    // )
+  })
 }
 
 const openPopup = function () {
