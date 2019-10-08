@@ -326,6 +326,7 @@ class Shortcodes_Ultimate {
 		add_action( 'media_buttons', array( $this->coder, 'add_classic_editor_button' ), 1000 );
 		add_action( 'enqueue_block_editor_assets', array( $this->coder, 'add_block_editor_button' ) );
 		add_action( 'wp_ajax_su_coder_get_shortcodes', array( $this->coder, 'ajax_get_shortcodes' ) );
+		add_action( 'wp_ajax_su_coder_get_groups', array( $this->coder, 'ajax_get_groups' ) );
 
 		/**
 		 * Enable shortcodes in text widgets and category descriptions.
