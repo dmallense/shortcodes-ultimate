@@ -166,6 +166,28 @@ class Shortcodes_Ultimate_Coder {
 
 	}
 
+	public function ajax_get_groups() {
+
+		if ( ! current_user_can( $this->capability ) ) {
+			exit;
+		}
+
+		$groups = su_get_config( 'groups' );
+		$json   = array();
+
+		foreach ( $groups as $id => $title ) {
+
+			$json[] = array(
+				'id'    => $id,
+				'title' => $title,
+			);
+
+		}
+
+		die( wp_json_encode( $json ) );
+
+	}
+
 	public function get_template( $name = '', $data = array() ) {
 
 		$name_pattern = '/^(?!-)[a-z0-9-_]+(?<!-)(\/(?!-)[a-z0-9-_]+(?<!-))*$/';
