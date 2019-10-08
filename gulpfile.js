@@ -38,7 +38,7 @@ function compileJS () {
     ], { read: false, base: './' })
     .pipe(tap(function (file) {
       file.contents = browserify(file.path, { debug: true })
-        .transform(babelify.configure({ presets: ['@babel/env', '@babel/react'] }))
+        .transform(babelify.configure({ presets: ['@babel/preset-env', '@babel/preset-react'] }))
         .bundle()
     }))
     .pipe(buffer())
