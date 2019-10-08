@@ -11,16 +11,6 @@ const store = {
   data: {
     shortcodes: null,
     groups: null
-  },
-  MFPOptions: {
-    type: 'inline',
-    alignTop: true,
-    closeOnBgClick: false,
-    mainClass: 'su-coder-mfp',
-    items: {
-      src: '.su-coder-app'
-    },
-    callbacks: {}
   }
 }
 
@@ -87,7 +77,16 @@ const buildShortcodes = function () {
 const openPopup = function () {
   buildPopup()
 
-  jQuery.magnificPopup.open(store.MFPOptions)
+  jQuery.magnificPopup.open({
+    type: 'inline',
+    alignTop: true,
+    closeOnBgClick: false,
+    mainClass: 'su-coder-mfp',
+    items: {
+      src: '.su-coder-app'
+    },
+    callbacks: {}
+  })
 }
 
 const fetchJSON = function (method, params, callback) {
