@@ -249,7 +249,7 @@ final class Shortcodes_Ultimate_Admin_Shortcodes extends Shortcodes_Ultimate_Adm
 	 * @since 5.4.0
 	 * @return string Selected group ID.
 	 */
-	protected function get_current_group() {
+	public function get_current_group() {
 
 		$default = 'all';
 
@@ -259,7 +259,7 @@ final class Shortcodes_Ultimate_Admin_Shortcodes extends Shortcodes_Ultimate_Adm
 
 		$group = sanitize_key( $_GET['group'] );
 
-		return in_array( $group, array_keys( su_get_config( 'groups' ) ), true )
+		return in_array( $group, array_keys( $this->get_groups() ), true )
 			? $group
 			: $default;
 
@@ -273,25 +273,22 @@ final class Shortcodes_Ultimate_Admin_Shortcodes extends Shortcodes_Ultimate_Adm
 	 */
 	public function get_groups() {
 
-		$groups        = su_get_config( 'groups' );
-		$groups['all'] = __( 'All shortcodes', 'shortcodes-ultimate' );
+		$config = su_get_config( 'shortcode-groups' );
+		$groups = array(
+			'all' => array(
+				'id'    => 'all',
+				'url'   => $this->get_component_url(),
+				'title' => __( 'All shortcodes', 'shortcodes-ultimate' ),
+			),
+		);
 
-		foreach ( $groups as $id => $title ) {
+		foreach ( $config as $group ) {
 
-			$groups[ $id ] = array(
-				'id'     => $id,
-				'url'    => add_query_arg( 'group', $id, $this->get_component_url() ),
-				'title'  => $title,
-				'active' => false,
+			$groups[ $group['id'] ] = array(
+				'id'    => $group['id'],
+				'url'   => add_query_arg( 'group', $group['id'], $this->get_component_url() ),
+				'title' => $group['title'],
 			);
-
-			if ( 'all' === $id ) {
-				$groups[ $id ]['url'] = $this->get_component_url();
-			}
-
-			if ( $id === $this->get_current_group() ) {
-				$groups[ $id ]['active'] = true;
-			}
 
 		}
 
