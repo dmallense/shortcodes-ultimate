@@ -41,13 +41,13 @@ class Shortcodes_Ultimate_Coder {
 			true
 		);
 
-		wp_add_inline_script(
+		wp_localize_script(
 			'shortcodes-ultimate-coder',
-			sprintf(
-				'SUCoderAjaxURL=\'%s\';',
-				admin_url( 'admin-ajax.php' )
-			),
-			'after'
+			'SUCoderSettings',
+			array(
+				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
+				'hideDeprecated' => get_option( 'su_option_hide_deprecated' ) === 'on',
+			)
 		);
 
 		wp_localize_script(
