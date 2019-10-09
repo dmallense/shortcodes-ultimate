@@ -12,7 +12,7 @@
 
 		<?php foreach( $this->get_groups() as $group ) : ?>
 
-			<?php if ( $group['active'] ) : ?>
+			<?php if ( $group['id'] === $this->get_current_group() ) : ?>
 				<li><a href="<?php echo esc_url( $group['url'] ); ?>" class="current"><?php echo esc_html( $group['title'] ); ?></a></li>
 			<?php else : ?>
 				<li><a href="<?php echo esc_url( $group['url'] ); ?>"><?php echo esc_html( $group['title'] ); ?></a></li>
