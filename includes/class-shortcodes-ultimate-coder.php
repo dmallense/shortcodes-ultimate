@@ -172,19 +172,7 @@ class Shortcodes_Ultimate_Coder {
 			exit;
 		}
 
-		$groups = su_get_config( 'groups' );
-		$json   = array();
-
-		foreach ( $groups as $id => $title ) {
-
-			$json[] = array(
-				'id'    => $id,
-				'title' => $title,
-			);
-
-		}
-
-		die( wp_json_encode( $json ) );
+		die( wp_json_encode( array_values( su_get_config( 'shortcode-groups' ) ) ) );
 
 	}
 
