@@ -4,7 +4,7 @@
 		"js": "gulp js",
 		"sass": "gulp sass",
 		"compile": "gulp compile",
-		"watch": "gulp watch",
+		"watch": "gulp watch --nouglify",
 		"build": "gulp build"
 	},
 	"private": true,
@@ -14,17 +14,20 @@
 		"@babel/preset-react": "^7.0.0",
 		"babelify": "^10.0.0",
 		"browserify": "^16.5.0",
+		"core-js-pure": "^3.2.1",
 		"del": "^4.1.0",
 		"gulp": "^4.0.0",
 		"gulp-autoprefixer": "^6.0.0",
 		"gulp-buffer": "0.0.2",
+		"gulp-if": "^3.0.0",
 		"gulp-rename": "^1.4.0",
 		"gulp-sass": "^4.0.2",
 		"gulp-sass-glob": "^1.1.0",
 		"gulp-sourcemaps": "^2.6.5",
 		"gulp-tap": "^2.0.0",
 		"gulp-uglify": "^3.0.2",
-		"node-sass": "^4.11.0"
+		"node-sass": "^4.11.0",
+		"yargs": "^14.2.0"
 	},
 	"dependencies": {}
 }
