@@ -1,6 +1,6 @@
 /* global jQuery, SUCoderL10n, SUCoderSettings */
 
-import { inArray, ajax } from './utils'
+import { inArray, ajax, live } from './utils'
 
 const store = {
   el: {
@@ -13,7 +13,8 @@ const store = {
   data: {
     shortcodes: null,
     groups: null
-  }
+  },
+  MFPInstance: null
 }
 
 const init = function () {
@@ -26,7 +27,17 @@ const init = function () {
   bindEvents()
 }
 
-const bindEvents = function () {}
+const bindEvents = function () {
+  live('click', store.el.app, '.su-coder-close-btn', closePopup)
+  live('click', store.el.app, '.su-coder-shortcodes-group-shortcodes button', shortcodeClick)
+}
+
+const shortcodeClick = function (event, element) {
+  const id = element.getAttribute('data-id')
+  const shortcode = getShortcode(id)
+
+  alert(shortcode.name + "\n" + shortcode.desc)
+}
 
 const buildPopup = function () {
   if (store.state.popupReady) {
@@ -108,7 +119,8 @@ const buildShortcodes = function () {
 
     groupContentEl.insertAdjacentHTML(
       'beforeend',
-      `<button data-id="${shortcode.id}" title="${shortcode.desc}">${shortcode.name}</button>`
+      // `<button data-id="${shortcode.id}" title="${shortcode.desc}">${shortcode.name}</button>`
+      `<button data-id="${shortcode.id}" title="${shortcode.desc}"><span><strong>${shortcode.id}</strong><em>${shortcode.name}</em></span></button>`
     )
   })
 }
@@ -126,6 +138,16 @@ const openPopup = function () {
     },
     callbacks: {}
   })
+
+  store.MFPInstance = jQuery.magnificPopup.instance
+}
+
+const closePopup = function () {
+  store.MFPInstance.close()
+}
+
+const getShortcode = function (id) {
+  return store.data.shortcodes.filter(shortcode => shortcode.id === id)[0]
 }
 
 const insertClassic = function (target = '', shortcode = '') {
