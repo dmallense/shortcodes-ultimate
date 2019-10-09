@@ -5,6 +5,45 @@
 $size-base: 20px;
 
 // =============================================================================
+// Button
+// =============================================================================
+
+.su-coder-button {
+	display: inline-flex !important;
+	align-items: center;
+
+	svg {
+		width: 14px;
+		height: 14px;
+		color: #82878c;
+	}
+
+	svg + span {
+		margin-left: 0.5em;
+	}
+}
+
+// =============================================================================
+// Magnific Popup
+// =============================================================================
+
+.su-coder-mfp.mfp-bg {
+	z-index: 101000 !important;
+}
+
+.su-coder-mfp.mfp-wrap {
+	z-index: 101001 !important;
+
+	.mfp-container {
+		padding: 0 $size-base;
+	}
+
+	.mfp-close {
+		display: none;
+	}
+}
+
+// =============================================================================
 // Main Window
 // =============================================================================
 
@@ -50,40 +89,17 @@ $size-base: 20px;
 }
 
 // =============================================================================
-// Button
+// Shortcodes & Groups
 // =============================================================================
 
-.su-coder-button {
-	display: inline-flex !important;
-	align-items: center;
-
-	svg {
-		width: 14px;
-		height: 14px;
-		color: #82878c;
-	}
-
-	svg + span {
-		margin-left: 0.5em;
-	}
-}
-
-// =============================================================================
-// Magnific Popup
-// =============================================================================
-
-.su-coder-mfp.mfp-bg {
-	z-index: 101000 !important;
-}
-
-.su-coder-mfp.mfp-wrap {
-	z-index: 101001 !important;
-
-	.mfp-container {
-		padding: 0 $size-base;
-	}
-
-	.mfp-close {
-		display: none;
-	}
+.su-coder-shortcodes-group-shortcodes button {
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	background: #000;
+	color: white;
+	display: inline-block;
+	border: none;
+	margin: 0;
 }
