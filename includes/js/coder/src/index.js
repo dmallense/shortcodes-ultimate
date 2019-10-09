@@ -1,6 +1,6 @@
-/* global jQuery, SUCoderL10n, SUCoderAjaxURL */
+/* global jQuery, SUCoderL10n, SUCoderSettings */
 
-import { inArray, fetchJSON } from './utils'
+import { inArray, ajax } from './utils'
 
 const store = {
   el: {
@@ -45,9 +45,9 @@ const buildPopup = function () {
 
   store.el.app.insertAdjacentHTML('beforeend', html)
 
-  fetchJSON(
+  ajax(
     'POST',
-    SUCoderAjaxURL,
+    SUCoderSettings.ajaxUrl,
     { action: 'su_coder_get_shortcodes' },
     function (data) {
       store.data.shortcodes = JSON.parse(data)
@@ -55,9 +55,9 @@ const buildPopup = function () {
     }
   )
 
-  fetchJSON(
+  ajax(
     'POST',
-    SUCoderAjaxURL,
+    SUCoderSettings.ajaxUrl,
     { action: 'su_coder_get_groups' },
     data => {
       store.data.groups = JSON.parse(data)
@@ -88,21 +88,27 @@ const buildShortcodes = function () {
   const groupIds = store.data.groups.map(group => group.id)
 
   Array.prototype.forEach.call(store.data.shortcodes, (shortcode) => {
+    if (shortcode.deprecated && SUCoderSettings.hideDeprecated) {
+      return
+    }
+
     let group = shortcode.group.split(' ')[0]
 
     if (!inArray(group, groupIds)) {
       group = 'other'
     }
 
-    const groupShortcodes = document.querySelector('.su-coder-shortcodes-group[data-group="' + group + '"] .su-coder-shortcodes-group-shortcodes')
+    const groupContentEl = document.querySelector(
+      '.su-coder-app [data-group="' + group + '"] .su-coder-shortcodes-group-shortcodes'
+    )
 
-    if (!groupShortcodes) {
+    if (!groupContentEl) {
       return
     }
 
-    groupShortcodes.insertAdjacentHTML(
+    groupContentEl.insertAdjacentHTML(
       'beforeend',
-      `<button>${shortcode.name}</button>`
+      `<button data-id="${shortcode.id}" title="${shortcode.desc}">${shortcode.name}</button>`
     )
   })
 }
