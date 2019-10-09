@@ -36,3 +36,36 @@ export function serializeObj (obj) {
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]))
     .join('&')
 }
+
+export function live (eventType, parentElement, elementSelector, callback) {
+  parentElement.addEventListener(eventType, event => {
+    const closestEl = closest(event.target, elementSelector)
+
+    if (closestEl) {
+      callback(event, closestEl)
+    }
+  })
+}
+
+export function matches (element, selector) {
+  const elements = (element.document || element.ownerDocument).querySelectorAll(selector)
+  let index = 0
+
+  while (elements[index] && elements[index] !== element) {
+    ++index
+  }
+
+  return Boolean(elements[index])
+}
+
+export function closest (element, selector) {
+  while (element && element.nodeType === 1) {
+    if (matches(element, selector)) {
+      return element
+    }
+
+    element = element.parentNode
+  }
+
+  return null
+}
