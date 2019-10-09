@@ -1,4 +1,6 @@
-/* global jQuery, XMLHttpRequest, SUCoderL10n, SUCoderAjaxURL */
+/* global jQuery, SUCoderL10n, SUCoderAjaxURL */
+
+import { inArray, fetchJSON } from './utils'
 
 const store = {
   el: {
@@ -45,6 +47,7 @@ const buildPopup = function () {
 
   fetchJSON(
     'POST',
+    SUCoderAjaxURL,
     { action: 'su_coder_get_shortcodes' },
     function (data) {
       store.data.shortcodes = JSON.parse(data)
@@ -54,6 +57,7 @@ const buildPopup = function () {
 
   fetchJSON(
     'POST',
+    SUCoderAjaxURL,
     { action: 'su_coder_get_groups' },
     data => {
       store.data.groups = JSON.parse(data)
@@ -71,28 +75,35 @@ const buildShortcodes = function () {
 
   store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
 
-  const groups = store.data.groups.map(group => group.id)
+  Array.prototype.forEach.call(store.data.groups, (group) => {
+    store.el.shortcodes.insertAdjacentHTML(
+      'beforeend',
+      `<div class="su-coder-shortcodes-group" data-group="${group.id}">
+        <div class="su-coder-shortcodes-group-title">${group.title}</div>
+        <div class="su-coder-shortcodes-group-shortcodes"></div>
+      </div>`
+    )
+  })
 
-  Array.prototype.forEach.call(store.data.shortcodes, (shortcode, index) => {
-    const group = shortcode.group.split(' ')[0]
+  const groupIds = store.data.groups.map(group => group.id)
 
-    if (!groups[group]) {
+  Array.prototype.forEach.call(store.data.shortcodes, (shortcode) => {
+    let group = shortcode.group.split(' ')[0]
+
+    if (!inArray(group, groupIds)) {
+      group = 'other'
+    }
+
+    const groupShortcodes = document.querySelector('.su-coder-shortcodes-group[data-group="' + group + '"] .su-coder-shortcodes-group-shortcodes')
+
+    if (!groupShortcodes) {
       return
     }
 
-    console.log(group)
-
-    // store.el.shortcodes.insertAdjacentHTML(
-    //   'beforeend',
-    //   `<button>${shortcode.name}</button>`
-    // )
-  })
-
-  Array.prototype.forEach.call(store.data.groups, (group, groupIndex) => {
-    // store.el.shortcodes.insertAdjacentHTML(
-    //   'beforeend',
-    //   `<div class="su-coder-shortcodes-group">${group.title}</div>`
-    // )
+    groupShortcodes.insertAdjacentHTML(
+      'beforeend',
+      `<button>${shortcode.name}</button>`
+    )
   })
 }
 
@@ -109,33 +120,6 @@ const openPopup = function () {
     },
     callbacks: {}
   })
-}
-
-const fetchJSON = function (method, params, callback) {
-  const request = new XMLHttpRequest()
-
-  request.open(method, SUCoderAjaxURL, true)
-
-  request.setRequestHeader(
-    'Content-type',
-    'application/x-www-form-urlencoded'
-  )
-
-  request.onload = function () {
-    if (this.status !== 200) {
-      return
-    }
-
-    callback(this.responseText)
-  }
-
-  request.send(serializeObj(params))
-}
-
-const serializeObj = function (obj) {
-  return Object.keys(obj)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]))
-    .join('&')
 }
 
 const insertClassic = function (target = '', shortcode = '') {
