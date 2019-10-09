@@ -27,5 +27,13 @@ return apply_filters(
 			'id'    => 'other',
 			'title' => __( 'Other', 'shortcodes-ultimate' ),
 		),
+		array(
+			'id'    => 'extra',
+			'title' => __( 'Extra Shortcodes', 'shortcodes-ultimate' ),
+		),
+		array(
+			'id'    => 'shortcode-creator',
+			'title' => __( 'Custom Shortcodes', 'shortcodes-ultimate' ),
+		),
 	)
 );
