@@ -10,7 +10,7 @@ export function inArray (needle, haystack) {
   return false
 }
 
-export function fetchJSON (method, url, params, callback) {
+export function ajax (method, url, params, callback) {
   const request = new XMLHttpRequest()
 
   request.open(method, url, true)
