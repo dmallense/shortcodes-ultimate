@@ -54,15 +54,16 @@ class Shortcodes_Ultimate_Coder {
 			'shortcodes-ultimate-coder',
 			'SUCoderL10n',
 			array(
-				'closeDialog'      => __( 'Close dialog', 'shortcodes-ultimate' ),
-				'searchShortcodes' => __( 'Search shortcodes', 'shortcodes-ultimate' ),
-				'chooseFile'       => __( 'Choose file', 'shortcodes-ultimate' ),
-				'insert'           => __( 'Insert', 'shortcodes-ultimate' ),
-				'selectImages'     => __( 'Select images', 'shortcodes-ultimate' ),
-				'addSelected'      => __( 'Add selected images', 'shortcodes-ultimate' ),
-				'newPresetName'    => __( 'Please enter a name for new preset', 'shortcodes-ultimate' ),
-				'newPreset'        => __( 'New preset', 'shortcodes-ultimate' ),
-				'lastUsed'         => __( 'Last used settings', 'shortcodes-ultimate' ),
+				'loadingPleaseWait' => __( 'Loading, please wait', 'shortcodes-ultimate' ),
+				'closeDialog'       => __( 'Close dialog', 'shortcodes-ultimate' ),
+				'searchShortcodes'  => __( 'Search shortcodes', 'shortcodes-ultimate' ),
+				'chooseFile'        => __( 'Choose file', 'shortcodes-ultimate' ),
+				'insert'            => __( 'Insert', 'shortcodes-ultimate' ),
+				'selectImages'      => __( 'Select images', 'shortcodes-ultimate' ),
+				'addSelected'       => __( 'Add selected images', 'shortcodes-ultimate' ),
+				'newPresetName'     => __( 'Please enter a name for new preset', 'shortcodes-ultimate' ),
+				'newPreset'         => __( 'New preset', 'shortcodes-ultimate' ),
+				'lastUsed'          => __( 'Last used settings', 'shortcodes-ultimate' ),
 			)
 		);
 
@@ -161,6 +162,8 @@ class Shortcodes_Ultimate_Coder {
 		if ( ! current_user_can( $this->capability ) ) {
 			exit;
 		}
+
+		sleep( 5 ); // TODO: remove (1) [!]
 
 		die( wp_json_encode( array_values( su_get_all_shortcodes() ) ) );
 
