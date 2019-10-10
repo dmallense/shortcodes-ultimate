@@ -1,6 +1,12 @@
 /* global jQuery, SUCoderL10n, SUCoderSettings */
 
 import { inArray, ajax, live } from './utils'
+import {
+  templatePopup,
+  templateShortcode,
+  templateLoading,
+  templateGroup
+} from './templates/popup'
 
 const store = {
   el: {
@@ -13,6 +19,9 @@ const store = {
   data: {
     shortcodes: null,
     groups: null
+  },
+  timers: {
+    popupLoading: null
   },
   MFPInstance: null
 }
@@ -36,7 +45,7 @@ const shortcodeClick = function (event, element) {
   const id = element.getAttribute('data-id')
   const shortcode = getShortcode(id)
 
-  alert(shortcode.name + "\n" + shortcode.desc)
+  console.log(shortcode)
 }
 
 const buildPopup = function () {
@@ -44,17 +53,12 @@ const buildPopup = function () {
     return
   }
 
-  const html = `
-      <div class="su-coder-header wp-ui-highlight">
-        <input type="text" value="" placeholder="${SUCoderL10n.searchShortcodes}" />
-        <button class="su-coder-close-btn" aria-label="${SUCoderL10n.closeDialog}" title="${SUCoderL10n.closeDialog}">
-        <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" aria-hidden="true"><path d="M2 30 L30 2 M30 30 L2 2" /></svg>
-        </button>
-      </div>
-      <div class="su-coder-shortcodes"></div>
-    `
+  store.el.app.insertAdjacentHTML('beforeend', templatePopup({
+    searchShortcodes: SUCoderL10n.searchShortcodes,
+    closeDialog: SUCoderL10n.closeDialog
+  }))
 
-  store.el.app.insertAdjacentHTML('beforeend', html)
+  store.timers.popupLoading = setTimeout(addPopupLoading, 1000)
 
   ajax(
     'POST',
@@ -62,7 +66,11 @@ const buildPopup = function () {
     { action: 'su_coder_get_shortcodes' },
     function (data) {
       store.data.shortcodes = JSON.parse(data)
-      buildShortcodes()
+
+      if (isPopupDataLoaded()) {
+        removePopupLoading()
+        buildShortcodes()
+      }
     }
   )
 
@@ -72,28 +80,42 @@ const buildPopup = function () {
     { action: 'su_coder_get_groups' },
     data => {
       store.data.groups = JSON.parse(data)
-      buildShortcodes()
+
+      if (isPopupDataLoaded()) {
+        removePopupLoading()
+        buildShortcodes()
+      }
     }
   )
 
   store.state.popupReady = true
 }
 
-const buildShortcodes = function () {
-  if (!store.data.shortcodes || !store.data.groups) {
-    return
-  }
+const isPopupDataLoaded = function () {
+  return !!store.data.shortcodes && !!store.data.groups
+}
 
+const addPopupLoading = function () {
+  store.el.app.insertAdjacentHTML('beforeend', templateLoading({
+    loadingPleaseWait: SUCoderL10n.loadingPleaseWait
+  }))
+}
+
+const removePopupLoading = function () {
+  clearTimeout(store.timers.popupLoading)
+
+  const el = store.el.app.querySelector('.su-coder-popup-loading')
+
+  if (el) {
+    el.parentNode.removeChild(el)
+  }
+}
+
+const buildShortcodes = function () {
   store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
 
   Array.prototype.forEach.call(store.data.groups, (group) => {
-    store.el.shortcodes.insertAdjacentHTML(
-      'beforeend',
-      `<div class="su-coder-shortcodes-group" data-group="${group.id}">
-        <div class="su-coder-shortcodes-group-title">${group.title}</div>
-        <div class="su-coder-shortcodes-group-shortcodes"></div>
-      </div>`
-    )
+    store.el.shortcodes.insertAdjacentHTML('beforeend', templateGroup(group))
   })
 
   const groupIds = store.data.groups.map(group => group.id)
@@ -110,18 +132,15 @@ const buildShortcodes = function () {
     }
 
     const groupContentEl = document.querySelector(
-      '.su-coder-app [data-group="' + group + '"] .su-coder-shortcodes-group-shortcodes'
+      '.su-coder-app [data-group="' + group + '"]' +
+      ' > .su-coder-shortcodes-group-shortcodes'
     )
 
     if (!groupContentEl) {
       return
     }
 
-    groupContentEl.insertAdjacentHTML(
-      'beforeend',
-      // `<button data-id="${shortcode.id}" title="${shortcode.desc}">${shortcode.name}</button>`
-      `<button data-id="${shortcode.id}" title="${shortcode.desc}"><span><strong>${shortcode.id}</strong><em>${shortcode.name}</em></span></button>`
-    )
+    groupContentEl.insertAdjacentHTML('beforeend', templateShortcode(shortcode))
   })
 }
 
