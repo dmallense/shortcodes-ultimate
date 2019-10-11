@@ -10,8 +10,8 @@ export function app (args) {
             </button>
           </div>
         </div>
-        <div class="su-coder-picker"></div>
-        <div class="su-coder-inserter"></div>
+        <div class="su-coder-shortcodes"></div>
+        <div class="su-coder-settings"></div>
       </div>
     </div>
   `
