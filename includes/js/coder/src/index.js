@@ -1,64 +1,88 @@
 /* global jQuery, SUCoderL10n, SUCoderSettings */
 
 import { inArray, ajax, live } from './utils'
-import {
-  templatePopup,
-  templateShortcode,
-  templateLoading,
-  templateGroup
-} from './templates/popup'
+import * as templates from './templates'
 
 const store = {
   el: {
     app: null,
-    shortcodes: null
+    picker: null
   },
   state: {
-    popupReady: false
+    pickerBuilt: false
   },
   data: {
     shortcodes: null,
     groups: null
   },
   timers: {
-    popupLoading: null
+    dataLoading: null
   },
   MFPInstance: null
 }
 
-const init = function () {
-  store.el.app = document.querySelector('.su-coder-app')
-
-  if (!store.el.app) {
-    return
-  }
-
+function init () {
+  buildApp()
   bindEvents()
 }
 
-const bindEvents = function () {
-  live('click', store.el.app, '.su-coder-close-btn', closePopup)
-  live('click', store.el.app, '.su-coder-shortcodes-group-shortcodes button', shortcodeClick)
+function buildApp () {
+  document.body.insertAdjacentHTML('beforeend', templates.app(SUCoderL10n))
+
+  store.el.app = document.querySelector('.su-coder-app')
 }
 
-const shortcodeClick = function (event, element) {
+function bindEvents () {
+  // Close Button
+  live('click', store.el.app, '.su-coder-close-btn', closeBtnClick)
+
+  // Picker Shortcodes
+  live(
+    'click',
+    store.el.app,
+    '.su-coder-shortcodes-group-shortcodes button',
+    shortcodeClick
+  )
+}
+
+function shortcodeClick (event, element) {
   const id = element.getAttribute('data-id')
   const shortcode = getShortcode(id)
 
   console.log(shortcode)
 }
 
-const buildPopup = function () {
-  if (store.state.popupReady) {
+function closeBtnClick () {
+  closePopup()
+}
+
+function isDataLoaded () {
+  return !!store.data.shortcodes && !!store.data.groups
+}
+
+function addDataLoading () {
+  store.el.app.insertAdjacentHTML(
+    'beforeend',
+    templates.dataLoading(SUCoderL10n)
+  )
+}
+
+function removeDataLoading () {
+  clearTimeout(store.timers.dataLoading)
+
+  const el = store.el.app.querySelector('.su-coder-data-loading')
+
+  if (el) {
+    el.parentNode.removeChild(el)
+  }
+}
+
+function buildPicker () {
+  if (store.state.pickerBuilt) {
     return
   }
 
-  store.el.app.insertAdjacentHTML('beforeend', templatePopup({
-    searchShortcodes: SUCoderL10n.searchShortcodes,
-    closeDialog: SUCoderL10n.closeDialog
-  }))
-
-  store.timers.popupLoading = setTimeout(addPopupLoading, 1000)
+  store.timers.dataLoading = setTimeout(addDataLoading, 2000)
 
   ajax(
     'POST',
@@ -67,9 +91,9 @@ const buildPopup = function () {
     function (data) {
       store.data.shortcodes = JSON.parse(data)
 
-      if (isPopupDataLoaded()) {
-        removePopupLoading()
-        buildShortcodes()
+      if (isDataLoaded()) {
+        removeDataLoading()
+        buildPickerShortcodes()
       }
     }
   )
@@ -81,41 +105,21 @@ const buildPopup = function () {
     data => {
       store.data.groups = JSON.parse(data)
 
-      if (isPopupDataLoaded()) {
-        removePopupLoading()
-        buildShortcodes()
+      if (isDataLoaded()) {
+        removeDataLoading()
+        buildPickerShortcodes()
       }
     }
   )
 
-  store.state.popupReady = true
+  store.state.pickerBuilt = true
 }
 
-const isPopupDataLoaded = function () {
-  return !!store.data.shortcodes && !!store.data.groups
-}
-
-const addPopupLoading = function () {
-  store.el.app.insertAdjacentHTML('beforeend', templateLoading({
-    loadingPleaseWait: SUCoderL10n.loadingPleaseWait
-  }))
-}
-
-const removePopupLoading = function () {
-  clearTimeout(store.timers.popupLoading)
-
-  const el = store.el.app.querySelector('.su-coder-popup-loading')
-
-  if (el) {
-    el.parentNode.removeChild(el)
-  }
-}
-
-const buildShortcodes = function () {
-  store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
+function buildPickerShortcodes () {
+  store.el.picker = document.querySelector('.su-coder-picker')
 
   Array.prototype.forEach.call(store.data.groups, (group) => {
-    store.el.shortcodes.insertAdjacentHTML('beforeend', templateGroup(group))
+    store.el.picker.insertAdjacentHTML('beforeend', templates.group(group))
   })
 
   const groupIds = store.data.groups.map(group => group.id)
@@ -140,12 +144,15 @@ const buildShortcodes = function () {
       return
     }
 
-    groupContentEl.insertAdjacentHTML('beforeend', templateShortcode(shortcode))
+    groupContentEl.insertAdjacentHTML(
+      'beforeend',
+      templates.shortcode(shortcode)
+    )
   })
 }
 
-const openPopup = function () {
-  buildPopup()
+function openPopup () {
+  buildPicker()
 
   jQuery.magnificPopup.open({
     type: 'inline',
@@ -161,15 +168,15 @@ const openPopup = function () {
   store.MFPInstance = jQuery.magnificPopup.instance
 }
 
-const closePopup = function () {
+function closePopup () {
   store.MFPInstance.close()
 }
 
-const getShortcode = function (id) {
+function getShortcode (id) {
   return store.data.shortcodes.filter(shortcode => shortcode.id === id)[0]
 }
 
-const insertClassic = function (target = '', shortcode = '') {
+function insertClassic (target = '', shortcode = '') {
   openPopup()
 }
 
