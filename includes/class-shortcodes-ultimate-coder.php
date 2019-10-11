@@ -23,12 +23,40 @@ class Shortcodes_Ultimate_Coder {
 			return;
 		}
 
-		// TODO: register and enqueue MFP script/styles (1) [!] @js
+		wp_enqueue_style(
+			'magnific-popup',
+			plugins_url(
+				'vendor/magnific-popup/magnific-popup.css',
+				dirname( __FILE__ )
+			),
+			array(),
+			'1.1.0',
+			'all'
+		);
+
+		wp_enqueue_script(
+			'magnific-popup',
+			plugins_url(
+				'vendor/magnific-popup/magnific-popup.js',
+				dirname( __FILE__ )
+			),
+			array( 'jquery' ),
+			'1.1.0',
+			true
+		);
+
+		wp_enqueue_style(
+			'shortcodes-ultimate-icons',
+			plugins_url( 'css/icons.css', __FILE__ ),
+			array(),
+			filemtime( plugin_dir_path( __FILE__ ) . 'css/icons.css' ),
+			'all'
+		);
 
 		wp_enqueue_style(
 			'shortcodes-ultimate-coder',
 			plugins_url( 'css/coder.css', __FILE__ ),
-			array( 'magnific-popup', 'su-icons' ),
+			array(),
 			filemtime( plugin_dir_path( __FILE__ ) . 'css/coder.css' ),
 			'all'
 		);
@@ -66,16 +94,6 @@ class Shortcodes_Ultimate_Coder {
 				'lastUsed'          => __( 'Last used settings', 'shortcodes-ultimate' ),
 			)
 		);
-
-	}
-
-	public function display_app() {
-
-		if ( ! did_action( 'su/coder/enqueue' ) && ! is_admin() ) {
-			return;
-		}
-
-		echo $this->get_template( 'app' );
 
 	}
 
@@ -174,6 +192,8 @@ class Shortcodes_Ultimate_Coder {
 		if ( ! current_user_can( $this->capability ) ) {
 			exit;
 		}
+
+		sleep( 5 ); // TODO: remove (1) [!]
 
 		die( wp_json_encode( array_values( su_get_config( 'shortcode-groups' ) ) ) );
 
