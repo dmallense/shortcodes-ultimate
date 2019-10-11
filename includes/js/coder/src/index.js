@@ -1,13 +1,21 @@
 /* global jQuery, SUCoderL10n, SUCoderSettings */
 
-import { hide, show, remove, inArray, ajax, live } from './utils'
 import * as templates from './templates'
+import {
+  hide,
+  show,
+  remove,
+  inArray,
+  forEach,
+  ajax,
+  on
+} from './utils'
 
 const store = {
   el: {
     app: null,
     shortcodes: null,
-    settings: []
+    settings: null
   },
   data: {
     shortcodes: null,
@@ -28,12 +36,14 @@ function appendApp () {
   document.body.insertAdjacentHTML('beforeend', templates.app(SUCoderL10n))
 
   store.el.app = document.querySelector('.su-coder-app')
+  store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
+  store.el.settings = document.querySelector('.su-coder-settings')
 }
 
 function bindEvents () {
-  live('click', store.el.app, '.su-coder-close-btn', closeBtnClick)
+  on('click', store.el.app, '.su-coder-close-btn', closeBtnClick)
 
-  live(
+  on(
     'click',
     store.el.app,
     '.su-coder-shortcodes-group-shortcodes button',
@@ -66,7 +76,7 @@ function removeDataLoading () {
   const el = store.el.app.querySelector('.su-coder-data-loading')
 
   if (el) {
-    el.parentNode.removeChild(el)
+    remove(el)
   }
 }
 
@@ -107,15 +117,13 @@ function loadShortcodes () {
 }
 
 function appendShortcodes () {
-  store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
-
-  Array.prototype.forEach.call(store.data.groups, (group) => {
+  forEach(store.data.groups, group => {
     store.el.shortcodes.insertAdjacentHTML('beforeend', templates.group(group))
   })
 
   const groupIds = store.data.groups.map(group => group.id)
 
-  Array.prototype.forEach.call(store.data.shortcodes, (shortcode) => {
+  forEach(store.data.shortcodes, shortcode => {
     if (shortcode.deprecated && SUCoderSettings.hideDeprecated) {
       return
     }
@@ -153,7 +161,12 @@ function openPopup () {
     items: {
       src: '.su-coder-app'
     },
-    callbacks: {}
+    callbacks: {
+      close: function () {
+        hide(store.el.settings)
+        show(store.el.shortcodes)
+      }
+    }
   })
 
   store.MFPInstance = jQuery.magnificPopup.instance
@@ -164,9 +177,20 @@ function closePopup () {
 }
 
 function openSettings (id) {
-  const shortcode = getShortcode(id)
+  store.el.settings.innerHTML = ''
 
   hide(store.el.shortcodes)
+  show(store.el.settings)
+
+  appendSettings(id)
+}
+
+function appendSettings (id) {
+  const shortcode = getShortcode(id)
+
+  for (const optionId in shortcode.atts) {
+    store.el.settings.insertAdjacentHTML('beforeend', `<em>${shortcode.atts[optionId].name}</em><hr>`)
+  }
 }
 
 function getShortcode (id) {
