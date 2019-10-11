@@ -8,7 +8,7 @@ class Shortcodes_Ultimate_Coder {
 
 		$this->plugin_prefix = $plugin_prefix;
 
-		// TODO: change `su_option_generator_access` to `su_option_coder_access`
+		// TODO: change `su_option_generator_access` to `su_option_coder_access` (1)
 		// must be added on plugin activation and replaced during plugin update
 		$this->capability = get_option(
 			'su_option_generator_access',
