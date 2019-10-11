@@ -320,8 +320,6 @@ class Shortcodes_Ultimate {
 		 */
 		$this->coder = new Shortcodes_Ultimate_Coder( $this->plugin_prefix );
 
-		add_action( 'wp_footer', array( $this->coder, 'display_app' ) );
-		add_action( 'admin_footer', array( $this->coder, 'display_app' ) );
 		add_action( 'admin_enqueue_scripts', array( $this->coder, 'enqueue_scripts' ) );
 		add_action( 'media_buttons', array( $this->coder, 'add_classic_editor_button' ), 1000 );
 		add_action( 'enqueue_block_editor_assets', array( $this->coder, 'add_block_editor_button' ) );
