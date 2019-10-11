@@ -6,6 +6,28 @@ $size-base: 20px;
 $color-wp-ui-highlight: #1e8cbe;
 
 // =============================================================================
+// Animations
+// =============================================================================
+
+@keyframes loading {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0.2;
+	}
+}
+
+// =============================================================================
+// Utilities
+// =============================================================================
+
+.su-coder-hidden {
+	display: none;
+}
+
+// =============================================================================
 // Button
 // =============================================================================
 
@@ -112,4 +134,15 @@ $color-wp-ui-highlight: #1e8cbe;
 // Loading indicator
 // =============================================================================
 
-.su-coder-data-loading {}
+.su-coder-data-loading {
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: $color-wp-ui-highlight;
+	text-align: center;
+}
+.su-coder-data-loading span {
+	animation: loading 1s infinite;
+}
