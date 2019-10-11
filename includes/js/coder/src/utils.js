@@ -37,7 +37,7 @@ export function serializeObj (obj) {
     .join('&')
 }
 
-export function live (eventType, parentElement, elementSelector, callback) {
+export function on (eventType, parentElement, elementSelector, callback) {
   parentElement.addEventListener(eventType, event => {
     const closestEl = closest(event.target, elementSelector)
 
@@ -80,4 +80,8 @@ export function hide (element) {
 
 export function show (element) {
   element.classList.remove('su-coder-hidden')
+}
+
+export function forEach (items, callback) {
+  return Array.prototype.forEach.call(items, callback)
 }
