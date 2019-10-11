@@ -1,15 +1,13 @@
 /* global jQuery, SUCoderL10n, SUCoderSettings */
 
-import { inArray, ajax, live } from './utils'
+import { hide, show, remove, inArray, ajax, live } from './utils'
 import * as templates from './templates'
 
 const store = {
   el: {
     app: null,
-    picker: null
-  },
-  state: {
-    pickerBuilt: false
+    shortcodes: null,
+    settings: []
   },
   data: {
     shortcodes: null,
@@ -22,21 +20,19 @@ const store = {
 }
 
 function init () {
-  buildApp()
+  appendApp()
   bindEvents()
 }
 
-function buildApp () {
+function appendApp () {
   document.body.insertAdjacentHTML('beforeend', templates.app(SUCoderL10n))
 
   store.el.app = document.querySelector('.su-coder-app')
 }
 
 function bindEvents () {
-  // Close Button
   live('click', store.el.app, '.su-coder-close-btn', closeBtnClick)
 
-  // Picker Shortcodes
   live(
     'click',
     store.el.app,
@@ -46,10 +42,7 @@ function bindEvents () {
 }
 
 function shortcodeClick (event, element) {
-  const id = element.getAttribute('data-id')
-  const shortcode = getShortcode(id)
-
-  console.log(shortcode)
+  openSettings(element.getAttribute('data-id'))
 }
 
 function closeBtnClick () {
@@ -60,7 +53,7 @@ function isDataLoaded () {
   return !!store.data.shortcodes && !!store.data.groups
 }
 
-function addDataLoading () {
+function appendDataLoading () {
   store.el.app.insertAdjacentHTML(
     'beforeend',
     templates.dataLoading(SUCoderL10n)
@@ -77,12 +70,12 @@ function removeDataLoading () {
   }
 }
 
-function buildPicker () {
-  if (store.state.pickerBuilt) {
+function loadShortcodes () {
+  if (isDataLoaded()) {
     return
   }
 
-  store.timers.dataLoading = setTimeout(addDataLoading, 2000)
+  store.timers.dataLoading = setTimeout(appendDataLoading, 2000)
 
   ajax(
     'POST',
@@ -93,7 +86,7 @@ function buildPicker () {
 
       if (isDataLoaded()) {
         removeDataLoading()
-        buildPickerShortcodes()
+        appendShortcodes()
       }
     }
   )
@@ -107,19 +100,17 @@ function buildPicker () {
 
       if (isDataLoaded()) {
         removeDataLoading()
-        buildPickerShortcodes()
+        appendShortcodes()
       }
     }
   )
-
-  store.state.pickerBuilt = true
 }
 
-function buildPickerShortcodes () {
-  store.el.picker = document.querySelector('.su-coder-picker')
+function appendShortcodes () {
+  store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
 
   Array.prototype.forEach.call(store.data.groups, (group) => {
-    store.el.picker.insertAdjacentHTML('beforeend', templates.group(group))
+    store.el.shortcodes.insertAdjacentHTML('beforeend', templates.group(group))
   })
 
   const groupIds = store.data.groups.map(group => group.id)
@@ -152,7 +143,7 @@ function buildPickerShortcodes () {
 }
 
 function openPopup () {
-  buildPicker()
+  loadShortcodes()
 
   jQuery.magnificPopup.open({
     type: 'inline',
@@ -170,6 +161,12 @@ function openPopup () {
 
 function closePopup () {
   store.MFPInstance.close()
+}
+
+function openSettings (id) {
+  const shortcode = getShortcode(id)
+
+  hide(store.el.shortcodes)
 }
 
 function getShortcode (id) {
