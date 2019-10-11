@@ -69,3 +69,15 @@ export function closest (element, selector) {
 
   return null
 }
+
+export function remove (element) {
+  element.parentNode.removeChild(element)
+}
+
+export function hide (element) {
+  element.classList.add('su-coder-hidden')
+}
+
+export function show (element) {
+  element.classList.remove('su-coder-hidden')
+}
