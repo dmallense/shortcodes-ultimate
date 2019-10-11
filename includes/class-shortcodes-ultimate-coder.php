@@ -181,8 +181,6 @@ class Shortcodes_Ultimate_Coder {
 			exit;
 		}
 
-		sleep( 3 ); // TODO: remove (1) [!]
-
 		die( wp_json_encode( array_values( su_get_all_shortcodes() ) ) );
 
 	}
@@ -192,8 +190,6 @@ class Shortcodes_Ultimate_Coder {
 		if ( ! current_user_can( $this->capability ) ) {
 			exit;
 		}
-
-		sleep( 3 ); // TODO: remove (1) [!]
 
 		die( wp_json_encode( array_values( su_get_config( 'shortcode-groups' ) ) ) );
 
