@@ -39,6 +39,11 @@ export function serializeObj (obj) {
 
 export function on (eventType, parentElement, elementSelector, callback) {
   parentElement.addEventListener(eventType, event => {
+    if (!elementSelector) {
+      callback(event)
+      return
+    }
+
     const closestEl = closest(event.target, elementSelector)
 
     if (closestEl) {
