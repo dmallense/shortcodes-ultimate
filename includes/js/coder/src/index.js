@@ -14,8 +14,12 @@ import {
 const store = {
   el: {
     app: null,
+    lightboxBg: null,
+    lightbox: null,
     shortcodes: null,
-    settings: null
+    shortcode: null,
+    settings: null,
+    preview: null
   },
   data: {
     shortcodes: null,
