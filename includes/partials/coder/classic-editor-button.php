@@ -2,7 +2,7 @@
 
 <button
 type="button"
-class="su-coder-button <?php echo esc_attr( $data['class'] ); ?>"
+class="su-coder-classic-editor-button <?php echo esc_attr( $data['class'] ); ?>"
 title="<?php echo esc_attr( $data['title'] ); ?>"
 onclick='window.SUCoder.insertClassic( "<?php echo esc_js( $data['editor'] ); ?>" );'
 >
