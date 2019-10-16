@@ -24,28 +24,6 @@ class Shortcodes_Ultimate_Coder {
 		}
 
 		wp_enqueue_style(
-			'magnific-popup',
-			plugins_url(
-				'vendor/magnific-popup/magnific-popup.css',
-				dirname( __FILE__ )
-			),
-			array(),
-			'1.1.0',
-			'all'
-		);
-
-		wp_enqueue_script(
-			'magnific-popup',
-			plugins_url(
-				'vendor/magnific-popup/magnific-popup.js',
-				dirname( __FILE__ )
-			),
-			array( 'jquery' ),
-			'1.1.0',
-			true
-		);
-
-		wp_enqueue_style(
 			'shortcodes-ultimate-icons',
 			plugins_url( 'css/icons.css', __FILE__ ),
 			array(),
@@ -64,7 +42,7 @@ class Shortcodes_Ultimate_Coder {
 		wp_enqueue_script(
 			'shortcodes-ultimate-coder',
 			plugins_url( 'js/coder/index.js', __FILE__ ),
-			array( 'jquery', 'magnific-popup' ),
+			array(),
 			filemtime( plugin_dir_path( __FILE__ ) . 'js/coder/index.js' ),
 			true
 		);
