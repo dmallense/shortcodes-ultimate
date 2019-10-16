@@ -1,80 +1,23 @@
 // =============================================================================
-// Variables
+// Imports
 // =============================================================================
 
-$size-base: 20px;
-$color-wp-ui-highlight: #1e8cbe;
+@import 'coder/variables';
+@import 'coder/animations';
+@import 'coder/utils';
 
 // =============================================================================
-// Animations
-// =============================================================================
-
-@keyframes loading {
-	0%,
-	100% {
-		opacity: 1;
-	}
-	40% {
-		opacity: 0.2;
-	}
-}
-
-// =============================================================================
-// Utilities
-// =============================================================================
-
-.su-coder-hidden {
-	display: none;
-}
-
-// =============================================================================
-// Button
-// =============================================================================
-
-.su-coder-button {
-	display: inline-flex !important;
-	align-items: center;
-
-	svg {
-		width: 14px;
-		height: 14px;
-		color: #82878c;
-	}
-
-	svg + span {
-		margin-left: 0.5em;
-	}
-}
-
-// =============================================================================
-// Magnific Popup
-// =============================================================================
-
-.su-coder-mfp.mfp-bg {
-	z-index: 101000 !important;
-}
-
-.su-coder-mfp.mfp-wrap {
-	z-index: 101001 !important;
-
-	.mfp-container {
-		padding: 0 $size-base;
-	}
-
-	.mfp-close {
-		display: none;
-	}
-}
-
-// =============================================================================
-// Main Window
+// Main Pane
 // =============================================================================
 
 .su-coder-app {
 	position: relative;
 	margin: $size-base auto;
 	max-width: 1200px;
+	border-radius: $radius;
 	background: white;
+	box-shadow: 0 4px 4px rgba(black, 0.15), 0 8px 8px rgba(black, 0.15),
+		0 16px 16px rgba(black, 0.15);
 }
 
 // =============================================================================
@@ -88,6 +31,15 @@ $color-wp-ui-highlight: #1e8cbe;
 	position: relative;
 	padding: $size-base * 0.5 $size-base;
 }
+.su-coder-header,
+.su-coder-header-inner {
+	border-top-left-radius: $radius;
+	border-top-right-radius: $radius;
+}
+
+// -----------------------------------------------------------------------------
+// Close Btn
+// -----------------------------------------------------------------------------
 
 .su-coder-close-btn {
 	position: absolute;
@@ -102,47 +54,155 @@ $color-wp-ui-highlight: #1e8cbe;
 	background: transparent;
 	color: white;
 	cursor: pointer;
-
-	svg {
-		width: 14px;
-		height: 14px;
-	}
-
-	&:hover svg,
-	&:focus svg {
-		opacity: 0.7;
-	}
+}
+.su-coder-close-btn svg {
+	width: 14px;
+	height: 14px;
+}
+.su-coder-close-btn:hover,
+.su-coder-close-btn:focus {
+	opacity: 0.7;
 }
 
 // =============================================================================
 // Shortcodes & Groups
 // =============================================================================
 
-.su-coder-shortcodes-group-shortcodes button {
-	width: 100px;
-	height: 30px;
-	line-height: 30px;
-	overflow: hidden;
+.su-coder-shortcodes {
+	display: flex;
+	flex-wrap: wrap;
+	padding: $size-base * 0.5;
+}
+
+.su-coder-group {
+	flex: 0 0 50%;
+	box-sizing: border-box;
+	padding: $size-base * 0.5;
+}
+
+.su-coder-group-content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.su-coder-group-content button {
+	flex: 0 0 23%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 5px 10px;
+	border: none;
 	background: lightgray;
 	color: black;
-	display: inline-block;
-	border: none;
-	margin: 0;
 }
+
+// =============================================================================
+// Shortcode
+// =============================================================================
+
+.su-coder-shortcode {
+	display: flex;
+	height: calc(100vh - 100px);
+}
+
+// -----------------------------------------------------------------------------
+// Settings Pane
+// -----------------------------------------------------------------------------
+
+.su-coder-settings {
+	overflow-y: auto;
+	background: $color-wp-bg;
+	flex: 0 0 440px;
+	transform: translateZ(0);
+	padding: $size-base;
+	box-sizing: border-box;
+	border-right: 1px solid $color-wp-border;
+
+	backface-visibility: hidden;
+}
+
+// -----------------------------------------------------------------------------
+// Preview Pane
+// -----------------------------------------------------------------------------
+
+.su-coder-preview {}
 
 // =============================================================================
 // Loading indicator
 // =============================================================================
 
 .su-coder-data-loading {
-	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-weight: bold;
+	height: 100px;
 	color: $color-wp-ui-highlight;
 	text-align: center;
+	font-weight: bold;
 }
 .su-coder-data-loading span {
 	animation: loading 1s infinite;
+}
+
+// =============================================================================
+// Lightbox
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Body class
+// -----------------------------------------------------------------------------
+
+body.su-coder-lightbox-opened {
+	overflow: hidden;
+}
+
+// -----------------------------------------------------------------------------
+// Lightbox Background
+// -----------------------------------------------------------------------------
+
+.su-coder-lightbox-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 101000;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0.8;
+}
+
+// -----------------------------------------------------------------------------
+// The Lightbox
+// -----------------------------------------------------------------------------
+
+.su-coder-lightbox {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 102000;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100%;
+	height: 100%;
+	outline: none !important;
+	transform: translateZ(0);
+
+	backface-visibility: hidden;
+}
+
+// =============================================================================
+// Classic Editor Button
+// =============================================================================
+
+.su-coder-classic-editor-button {
+	display: inline-flex !important;
+	align-items: center;
+}
+.su-coder-classic-editor-button svg {
+	width: 14px;
+	height: 14px;
+	color: #82878c;
+}
+.su-coder-classic-editor-button svg + span {
+	margin-left: 0.5em;
 }
