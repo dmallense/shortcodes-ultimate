@@ -1,4 +1,4 @@
-/* global jQuery, SUCoderL10n, SUCoderSettings */
+/* global SUCoderL10n, SUCoderSettings */
 
 import * as templates from './templates'
 import {
@@ -23,8 +23,7 @@ const store = {
   },
   timers: {
     dataLoading: null
-  },
-  MFPInstance: null
+  }
 }
 
 function init () {
@@ -36,27 +35,39 @@ function appendApp () {
   document.body.insertAdjacentHTML('beforeend', templates.app(SUCoderL10n))
 
   store.el.app = document.querySelector('.su-coder-app')
+  store.el.lightboxBg = document.querySelector('.su-coder-lightbox-bg')
+  store.el.lightbox = document.querySelector('.su-coder-lightbox')
   store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
+  store.el.shortcode = document.querySelector('.su-coder-shortcode')
   store.el.settings = document.querySelector('.su-coder-settings')
+  store.el.preview = document.querySelector('.su-coder-preview')
 }
 
 function bindEvents () {
-  on('click', store.el.app, '.su-coder-close-btn', closeBtnClick)
+  on('click', store.el.app, '.su-coder-close-btn', onCloseBtnClick)
 
   on(
     'click',
     store.el.app,
-    '.su-coder-shortcodes-group-shortcodes button',
-    shortcodeClick
+    '.su-coder-group-content button',
+    onShortcodeClick
   )
+
+  on('keyup', document, null, onDocumentKeyup)
 }
 
-function shortcodeClick (event, element) {
-  openSettings(element.getAttribute('data-id'))
+function onShortcodeClick (event, element) {
+  openShortcode(element.getAttribute('data-id'))
 }
 
-function closeBtnClick () {
+function onCloseBtnClick () {
   closePopup()
+}
+
+function onDocumentKeyup (event) {
+  if (event.keyCode && event.keyCode === 27) {
+    closePopup()
+  }
 }
 
 function isDataLoaded () {
@@ -136,7 +147,7 @@ function appendShortcodes () {
 
     const groupContentEl = document.querySelector(
       '.su-coder-app [data-group="' + group + '"]' +
-      ' > .su-coder-shortcodes-group-shortcodes'
+      ' > .su-coder-group-content'
     )
 
     if (!groupContentEl) {
@@ -153,34 +164,31 @@ function appendShortcodes () {
 function openPopup () {
   loadShortcodes()
 
-  jQuery.magnificPopup.open({
-    type: 'inline',
-    alignTop: true,
-    closeOnBgClick: false,
-    mainClass: 'su-coder-mfp',
-    items: {
-      src: '.su-coder-app'
-    },
-    callbacks: {
-      close: function () {
-        hide(store.el.settings)
-        show(store.el.shortcodes)
-      }
-    }
-  })
+  show(store.el.shortcodes)
+  hide(store.el.shortcode)
 
-  store.MFPInstance = jQuery.magnificPopup.instance
+  document.body.classList.add('su-coder-lightbox-opened')
+
+  show(store.el.lightboxBg)
+  show(store.el.lightbox)
 }
 
 function closePopup () {
-  store.MFPInstance.close()
+  show(store.el.shortcodes)
+  hide(store.el.shortcode)
+
+  document.body.classList.remove('su-coder-lightbox-opened')
+
+  hide(store.el.lightboxBg)
+  hide(store.el.lightbox)
 }
 
-function openSettings (id) {
+function openShortcode (id) {
   store.el.settings.innerHTML = ''
+  store.el.preview.innerHTML = ''
 
   hide(store.el.shortcodes)
-  show(store.el.settings)
+  show(store.el.shortcode)
 
   appendSettings(id)
 }
@@ -189,7 +197,9 @@ function appendSettings (id) {
   const shortcode = getShortcode(id)
 
   for (const optionId in shortcode.atts) {
-    store.el.settings.insertAdjacentHTML('beforeend', `<em>${shortcode.atts[optionId].name}</em><hr>`)
+    const { name, desc } = shortcode.atts[optionId]
+
+    store.el.settings.insertAdjacentHTML('beforeend', `<em>${name}</em><br><p>${desc}</p><hr>`)
   }
 }
 
