@@ -110,12 +110,12 @@
 
 .su-coder-settings {
 	overflow-y: auto;
-	background: $color-wp-bg;
 	flex: 0 0 440px;
-	transform: translateZ(0);
-	padding: $size-base;
 	box-sizing: border-box;
+	padding: $size-base;
 	border-right: 1px solid $color-wp-border;
+	background: $color-wp-bg;
+	transform: translateZ(0);
 
 	backface-visibility: hidden;
 }
