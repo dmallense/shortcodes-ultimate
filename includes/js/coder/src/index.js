@@ -220,3 +220,6 @@ window.SUCoder = { init, insertClassic }
 
 // Initialize Coder
 document.addEventListener('DOMContentLoaded', window.SUCoder.init)
+
+// TODO: remove (1) [!]
+document.addEventListener('DOMContentLoaded', window.SUCoder.insertClassic)
