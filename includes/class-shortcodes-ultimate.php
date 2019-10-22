@@ -89,6 +89,13 @@ class Shortcodes_Ultimate {
 	public $coder;
 
 	/**
+	 * Admin Extra Shortcodes instance.
+	 *
+	 * @since  5.6.0
+	 */
+	public $admin_extra_shortcodes;
+
+	/**
 	 * Get class instance.
 	 *
 	 * @since  5.1.0
@@ -158,6 +165,11 @@ class Shortcodes_Ultimate {
 		 */
 		require_once $this->plugin_path . 'admin/class-shortcodes-ultimate-notice.php';
 		require_once $this->plugin_path . 'admin/class-shortcodes-ultimate-notice-rate.php';
+
+		/**
+		 * Add Extra Shortcodes
+		 */
+		require_once $this->plugin_path . 'admin/class-shortcodes-ultimate-admin-extra-shortcodes.php';
 
 		/**
 		 * Filters.
@@ -293,6 +305,14 @@ class Shortcodes_Ultimate {
 		 */
 		add_filter( 'attachment_fields_to_edit', 'su_slide_link_input', 10, 2 );
 		add_filter( 'attachment_fields_to_save', 'su_slide_link_save', 10, 2 );
+
+		/**
+		 * Add Extra Shortcodes
+		 */
+		$this->admin_extra_shortcodes = new Shortcodes_Ultimate_Admin_Extra_Shortcodes();
+
+		add_action( 'admin_init', array( $this->admin_extra_shortcodes, 'register_shortcodes' ) );
+		add_filter( 'su/data/groups', array( $this->admin_extra_shortcodes, 'register_group' ) );
 
 	}
 

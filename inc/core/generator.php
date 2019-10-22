@@ -179,7 +179,7 @@ class Su_Generator {
 
 		// Add add-ons links
 		if ( ! self::is_addons_active() ) {
-			$tools[] = '<a href="' . admin_url( 'admin.php?page=shortcodes-ultimate-addons' ) . '" target="_blank" title="' . __( 'Add-ons', 'shortcodes-ultimate' ) . '" class="su-add-ons">' . __( 'Add-ons', 'shortcodes-ultimate' ) . '</a>';
+			$tools[] = '<a href="' . admin_url( 'admin.php?page=shortcodes-ultimate-addons' ) . '" target="_blank" title="' . __( 'Add-ons', 'shortcodes-ultimate' ) . '" class="su-add-ons">&#9733; ' . __( 'Premium Add-ons', 'shortcodes-ultimate' ) . '</a>';
 		}
 ?>
 	<div id="su-generator-wrap" style="display:none">
@@ -196,9 +196,14 @@ class Su_Generator {
 					<?php
 		// Choices loop
 		foreach ( self::get_shortcodes() as $name => $shortcode ) {
-			$icon = ( isset( $shortcode['icon'] ) ) ? $shortcode['icon'] : 'puzzle-piece';
+			if ( ! isset( $shortcode['icon'] ) ) {
+				$shortcode['icon'] = 'puzzle-piece';
+			}
+			if ( strpos( $shortcode['icon'], '/' ) === false ) {
+				$shortcode['icon'] = 'icon:' . $shortcode['icon'];
+			}
 			$shortcode['name'] = ( isset( $shortcode['name'] ) ) ? $shortcode['name'] : $name;
-			echo '<span data-name="' . $shortcode['name'] . '" data-shortcode="' . $name . '" title="' . esc_attr( $shortcode['desc'] ) . '" data-desc="' . esc_attr( $shortcode['desc'] ) . '" data-group="' . $shortcode['group'] . '">' . su_html_icon( 'icon:' . $icon ) . $shortcode['name'] . '</span>' . "\n";
+			echo '<span data-name="' . $shortcode['name'] . '" data-shortcode="' . $name . '" title="' . esc_attr( $shortcode['desc'] ) . '" data-desc="' . esc_attr( $shortcode['desc'] ) . '" data-group="' . $shortcode['group'] . '">' . su_html_icon( $shortcode['icon'] ) . $shortcode['name'] . '</span>' . "\n";
 		}
 ?>
 				</div>
@@ -222,6 +227,14 @@ class Su_Generator {
 		if ( empty( $_REQUEST['shortcode'] ) ) wp_die( __( 'Shortcode not specified', 'shortcodes-ultimate' ) );
 		// Request queried shortcode
 		$shortcode = su_get_shortcode( sanitize_key( $_REQUEST['shortcode'] ) );
+		// Call custom callback
+		if (
+			isset( $shortcode['generator_callback'] ) &&
+			is_callable( $shortcode['generator_callback'] )
+		) {
+			call_user_func( $shortcode['generator_callback'], $shortcode );
+			exit;
+		}
 		// Prepare skip-if-default option
 		$skip = ( get_option( 'su_option_skip' ) === 'on' ) ? ' su-generator-skip' : '';
 		// Prepare actions
