@@ -66,3 +66,5 @@ run_shortcodes_ultimate();
 function shortcodes_ultimate() {
 	return Shortcodes_Ultimate::get_instance();
 }
+
+// coder
