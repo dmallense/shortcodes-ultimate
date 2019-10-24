@@ -65,34 +65,60 @@
 }
 
 // =============================================================================
-// Shortcodes & Groups
+// Shortcodes
 // =============================================================================
 
+$shortcodes-grid-item-width: 90px;
+$shortcodes-grid-gap: 5px;
+
 .su-coder-shortcodes {
-	display: flex;
-	flex-wrap: wrap;
 	padding: $size-base * 0.5;
 }
-
-.su-coder-group {
-	flex: 0 0 50%;
-	box-sizing: border-box;
-	padding: $size-base * 0.5;
+.su-coder-shortcodes::after {
+	display: table;
+	clear: both;
+	content: '';
 }
-
-.su-coder-group-content {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-.su-coder-group-content button {
-	flex: 0 0 23%;
+.su-coder-shortcodes a {
+	display: block;
+	float: left;
 	box-sizing: border-box;
-	margin: 0;
-	padding: 5px 10px;
-	border: none;
-	background: lightgray;
+	margin: ($shortcodes-grid-gap / 2);
+	width: $shortcodes-grid-item-width;
+	height: 100px;
 	color: black;
+	text-align: center;
+	text-decoration: none;
+	background: #f5f5f5;
+}
+.su-coder-shortcodes a img {
+	width: 60px;
+	height: 60px;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+}
+.su-coder-shortcodes a span {
+	display: block;
+	height: 26px;
+	line-height: 13px;
+	font-size: 13px;
+	text-align: center;
+	overflow: hidden;
+}
+
+@supports (grid-area: auto) {
+	.su-coder-shortcodes {
+		display: grid;
+
+		grid-template-columns: repeat(auto-fit, minmax($shortcodes-grid-item-width, 1fr));
+		grid-gap: $shortcodes-grid-gap;
+	}
+	.su-coder-shortcodes a {
+		float: none;
+		width: 100%;
+		height: auto;
+		margin: 0;
+	}
 }
 
 // =============================================================================
@@ -124,7 +150,8 @@
 // Preview Pane
 // -----------------------------------------------------------------------------
 
-.su-coder-preview {}
+.su-coder-preview {
+}
 
 // =============================================================================
 // Loading indicator
