@@ -44,6 +44,7 @@ function appendApp () {
   store.el.shortcode = document.querySelector('.su-coder-shortcode')
   store.el.settings = document.querySelector('.su-coder-settings')
   store.el.preview = document.querySelector('.su-coder-preview')
+  store.el.search = document.querySelector('.su-coder-search')
 }
 
 function bindEvents () {
@@ -52,7 +53,7 @@ function bindEvents () {
   on(
     'click',
     store.el.app,
-    '.su-coder-shortcodes button',
+    '.su-coder-shortcodes a',
     onShortcodeClick
   )
 
@@ -141,8 +142,6 @@ function appendShortcodes () {
         return
       }
 
-      console.log(shortcode)
-
       store.el.shortcodes.insertAdjacentHTML('beforeend', templates.shortcode(shortcode))
     })
   })
@@ -158,6 +157,8 @@ function openPopup () {
 
   show(store.el.lightboxBg)
   show(store.el.lightbox)
+
+  store.el.search.focus()
 }
 
 function closePopup () {
