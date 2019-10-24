@@ -5,7 +5,6 @@ import {
   hide,
   show,
   remove,
-  inArray,
   forEach,
   ajax,
   on
@@ -53,7 +52,7 @@ function bindEvents () {
   on(
     'click',
     store.el.app,
-    '.su-coder-group-content button',
+    '.su-coder-shortcodes button',
     onShortcodeClick
   )
 
@@ -133,35 +132,19 @@ function loadShortcodes () {
 
 function appendShortcodes () {
   forEach(store.data.groups, group => {
-    store.el.shortcodes.insertAdjacentHTML('beforeend', templates.group(group))
-  })
+    forEach(store.data.shortcodes, shortcode => {
+      if (shortcode.deprecated && SUCoderSettings.hideDeprecated) {
+        return
+      }
 
-  const groupIds = store.data.groups.map(group => group.id)
+      if (group.id !== shortcode.group.split(' ')[0]) {
+        return
+      }
 
-  forEach(store.data.shortcodes, shortcode => {
-    if (shortcode.deprecated && SUCoderSettings.hideDeprecated) {
-      return
-    }
+      console.log(shortcode)
 
-    let group = shortcode.group.split(' ')[0]
-
-    if (!inArray(group, groupIds)) {
-      group = 'other'
-    }
-
-    const groupContentEl = document.querySelector(
-      '.su-coder-app [data-group="' + group + '"]' +
-      ' > .su-coder-group-content'
-    )
-
-    if (!groupContentEl) {
-      return
-    }
-
-    groupContentEl.insertAdjacentHTML(
-      'beforeend',
-      templates.shortcode(shortcode)
-    )
+      store.el.shortcodes.insertAdjacentHTML('beforeend', templates.shortcode(shortcode))
+    })
   })
 }
 
