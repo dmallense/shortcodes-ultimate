@@ -86,7 +86,7 @@
 	color: black;
 	text-align: center;
 	text-decoration: none;
-	background: #f5f5f5;
+	// background: #f5f5f5;
 }
 .su-coder-shortcodes a i,
 .su-coder-shortcodes a img {
@@ -95,6 +95,13 @@
 	font-size: $shortcodes-grid-icon-size;
 	vertical-align: bottom;
 	margin-bottom: 10px;
+}
+// TODO: remove (1)
+.su-coder-shortcodes a img {
+	background: yellow;
+}
+.su-coder-shortcodes a i {
+	background: cyan;
 }
 .su-coder-shortcodes a span {
 	display: block;
