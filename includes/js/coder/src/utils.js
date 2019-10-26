@@ -90,3 +90,15 @@ export function show (element) {
 export function forEach (items, callback) {
   return Array.prototype.forEach.call(items, callback)
 }
+
+export function getIcon (value) {
+  if (typeof value !== 'string') {
+    return ''
+  }
+
+  if (value.indexOf('/') > -1) {
+    return `<img src="${value}" aria-hidden="true">`
+  }
+
+  return `<i class="sui sui-${value}" aria-hidden="true"></i>`
+}
