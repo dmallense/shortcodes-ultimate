@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'pullquote',
 		'callback' => 'su_shortcode_pullquote',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/pullquote.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/pullquote.svg',
 		'name' => __( 'Pullquote', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'box',
@@ -26,7 +26,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'Pullquote', 'shortcodes-ultimate' ),
 		'desc' => __( 'Pullquote', 'shortcodes-ultimate' ),
-		'icon' => 'quote-left',
 	) );
 
 function su_shortcode_pullquote( $atts = null, $content = null ) {
