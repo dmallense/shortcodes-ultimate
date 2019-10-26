@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'row',
 		'callback' => 'su_shortcode_row',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/row.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/row.svg',
 		'name' => __( 'Columns', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'box',
@@ -22,7 +22,6 @@ su_add_shortcode( array(
 			'number' => 2,
 		),
 		'desc' => __( 'Row for flexible columns', 'shortcodes-ultimate' ),
-		'icon' => 'columns',
 	) );
 
 function su_shortcode_row( $atts = null, $content = null ) {

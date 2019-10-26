@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'vimeo',
 		'callback' => 'su_shortcode_vimeo',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/vimeo.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/vimeo.svg',
 		'name'     => __( 'Vimeo', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'media',
@@ -75,7 +75,6 @@ su_add_shortcode(
 		),
 		'desc'     => __( 'Vimeo video', 'shortcodes-ultimate' ),
 		'example'  => 'media',
-		'icon'     => 'youtube-play',
 	)
 );
 

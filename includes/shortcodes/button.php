@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'button',
 		'callback' => 'su_shortcode_button',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/button.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/button.svg',
 		'name'     => __( 'Button', 'shortcodes-ultimate' ),
 		'type'     => 'wrap',
 		'group'    => 'content',
@@ -149,7 +149,6 @@ su_add_shortcode(
 		'content'  => __( 'Button text', 'shortcodes-ultimate' ),
 		'desc'     => __( 'Styled button', 'shortcodes-ultimate' ),
 		'example'  => 'buttons',
-		'icon'     => 'heart',
 	)
 );
 

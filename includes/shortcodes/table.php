@@ -8,8 +8,7 @@ su_add_shortcode(
 		'name'     => __( 'Table', 'shortcodes-ultimate' ),
 		'desc'     => __( 'Styled table', 'shortcodes-ultimate' ),
 		'group'    => 'content',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/table.svg',
-		'icon'     => 'table',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/table.svg',
 		'atts'     => array(
 			'responsive' => array(
 				'type'    => 'bool',

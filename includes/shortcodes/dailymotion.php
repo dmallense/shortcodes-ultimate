@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'dailymotion',
 		'callback' => 'su_shortcode_dailymotion',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/dailymotion.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/dailymotion.svg',
 		'name'     => __( 'Dailymotion', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'media',
@@ -106,7 +106,6 @@ su_add_shortcode(
 			),
 		),
 		'desc'     => __( 'Dailymotion video', 'shortcodes-ultimate' ),
-		'icon'     => 'youtube-play',
 	)
 );
 

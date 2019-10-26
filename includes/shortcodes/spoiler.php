@@ -7,6 +7,7 @@ su_add_shortcode(
 		'name'     => __( 'Spoiler', 'shortcodes-ultimate' ),
 		'type'     => 'wrap',
 		'group'    => 'box',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/spoiler.svg',
 		'atts'     => array(
 			'title'  => array(
 				'default' => __( 'Spoiler title', 'shortcodes-ultimate' ),
@@ -67,8 +68,6 @@ su_add_shortcode(
 		'desc'     => __( 'Spoiler with hidden content', 'shortcodes-ultimate' ),
 		'note'     => __( 'Did you know that you can wrap multiple spoilers with [accordion] shortcode to create accordion effect?', 'shortcodes-ultimate' ),
 		'example'  => 'spoilers',
-		'icon'     => 'list-ul',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/spoiler.svg',
 	)
 );
 

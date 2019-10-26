@@ -3,10 +3,10 @@
 su_add_shortcode( array(
 		'id' => 'divider',
 		'callback' => 'su_shortcode_divider',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/divider.svg',
-		'name' => __( 'Divider', 'shortcodes-ultimate' ),
+		'name' => __( 'Divider', 'shortcodes-ultimate' ), // TODO: rename to separator (10)
 		'type' => 'single',
 		'group' => 'content',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/divider.svg',
 		'atts' => array(
 			'top' => array(
 				'type' => 'bool',
@@ -71,7 +71,6 @@ su_add_shortcode( array(
 			),
 		),
 		'desc' => __( 'Content divider with optional TOP link', 'shortcodes-ultimate' ),
-		'icon' => 'ellipsis-h',
 	) );
 
 function su_shortcode_divider( $atts = null, $content = null ) {

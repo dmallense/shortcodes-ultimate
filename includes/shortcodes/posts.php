@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'posts',
 		'callback' => 'su_shortcode_posts',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/posts.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/posts.svg',
 		'name'     => __( 'Posts', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'other',
@@ -195,7 +195,6 @@ su_add_shortcode(
 			'Custom posts query with customizable template',
 			'shortcodes-ultimate'
 		),
-		'icon'     => 'th-list',
 	)
 );
 

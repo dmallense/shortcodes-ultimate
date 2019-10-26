@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'label',
 		'callback' => 'su_shortcode_label',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/label.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/label.svg',
 		'name' => __( 'Label', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'content',
@@ -31,7 +31,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'Label', 'shortcodes-ultimate' ),
 		'desc' => __( 'Styled label', 'shortcodes-ultimate' ),
-		'icon' => 'tag',
 	) );
 
 function su_shortcode_label( $atts = null, $content = null ) {

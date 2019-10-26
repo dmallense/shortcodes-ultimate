@@ -9,8 +9,7 @@ su_add_shortcode(
 		'group'          => 'box',
 		'required_child' => 'tab',
 		'desc'           => __( 'Tabs container', 'shortcodes-ultimate' ),
-		'icon'           => 'list-alt',
-		'image'          => su_get_plugin_url() . 'admin/images/shortcodes/tabs.svg',
+		'icon'           => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/tabs.svg',
 		'atts'           => array(
 			'style'    => array(
 				'type'    => 'select',
@@ -72,8 +71,7 @@ su_add_shortcode(
 		'content'         => __( 'Tab content', 'shortcodes-ultimate' ),
 		'desc'            => __( 'Single tab', 'shortcodes-ultimate' ),
 		'note'            => __( 'Did you know that you need to wrap single tabs with [tabs] shortcode?', 'shortcodes-ultimate' ),
-		'icon'            => 'list-alt',
-		'image'           => su_get_plugin_url() . 'admin/images/shortcodes/tab.svg',
+		'icon'            => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/tab.svg',
 		'atts'            => array(
 			'title'    => array(
 				'default' => __( 'Tab name', 'shortcodes-ultimate' ),

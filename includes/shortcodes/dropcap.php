@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'dropcap',
 		'callback' => 'su_shortcode_dropcap',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/dropcap.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/dropcap.svg',
 		'name' => __( 'Dropcap', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'content',
@@ -37,7 +37,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'D', 'shortcodes-ultimate' ),
 		'desc' => __( 'Dropcap', 'shortcodes-ultimate' ),
-		'icon' => 'bold',
 	) );
 
 function su_shortcode_dropcap( $atts = null, $content = null ) {

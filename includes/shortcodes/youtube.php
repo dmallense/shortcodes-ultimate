@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'youtube',
 		'callback' => 'su_shortcode_youtube',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/youtube.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/youtube.svg',
 		'name'     => __( 'YouTube', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'media',
@@ -64,7 +64,6 @@ su_add_shortcode(
 		),
 		'desc'     => __( 'YouTube video', 'shortcodes-ultimate' ),
 		'example'  => 'media',
-		'icon'     => 'youtube-play',
 	)
 );
 

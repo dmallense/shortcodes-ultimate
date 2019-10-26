@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'qrcode',
 		'callback' => 'su_shortcode_qrcode',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/qrcode.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/qrcode.svg',
 		'name'     => __( 'QR code', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'content',
@@ -84,7 +84,6 @@ su_add_shortcode(
 			),
 		),
 		'desc'     => __( 'Advanced QR code generator', 'shortcodes-ultimate' ),
-		'icon'     => 'qrcode',
 	)
 );
 

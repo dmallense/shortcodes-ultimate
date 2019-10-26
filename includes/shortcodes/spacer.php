@@ -3,10 +3,10 @@
 su_add_shortcode( array(
 		'id' => 'spacer',
 		'callback' => 'su_shortcode_spacer',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/spacer.svg',
 		'name' => __( 'Spacer', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'content other',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/spacer.svg',
 		'atts' => array(
 			'size' => array(
 				'type' => 'slider',
@@ -25,7 +25,6 @@ su_add_shortcode( array(
 			),
 		),
 		'desc' => __( 'Empty space with adjustable height', 'shortcodes-ultimate' ),
-		'icon' => 'arrows-v',
 	) );
 
 function su_shortcode_spacer( $atts = null, $content = null ) {

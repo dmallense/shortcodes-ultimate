@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'dummy_text',
 		'callback' => 'su_shortcode_dummy_text',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/dummy_text.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/dummy_text.svg',
 		'name'     => __( 'Dummy text', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'content',
@@ -49,7 +49,6 @@ su_add_shortcode(
 			),
 		),
 		'desc'     => __( 'Text placeholder', 'shortcodes-ultimate' ),
-		'icon'     => 'text-height',
 	)
 );
 

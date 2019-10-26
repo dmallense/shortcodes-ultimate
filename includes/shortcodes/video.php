@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'video',
 		'callback' => 'su_shortcode_video',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/video.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/video.svg',
 		'name' => __( 'Video', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'media',
@@ -71,7 +71,6 @@ su_add_shortcode( array(
 		),
 		'desc' => __( 'Custom video player', 'shortcodes-ultimate' ),
 		'example' => 'media',
-		'icon' => 'play-circle',
 	) );
 
 function su_shortcode_video( $atts = null, $content = null ) {

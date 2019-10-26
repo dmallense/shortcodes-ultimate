@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'list',
 		'callback' => 'su_shortcode_list',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/list.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/list.svg',
 		'name'     => __( 'List', 'shortcodes-ultimate' ),
 		'type'     => 'wrap',
 		'group'    => 'content',
@@ -39,7 +39,6 @@ su_add_shortcode(
 		),
 		'content'  => __( "<ul>\n<li>List item</li>\n<li>List item</li>\n<li>List item</li>\n</ul>", 'shortcodes-ultimate' ),
 		'desc'     => __( 'Styled unordered list', 'shortcodes-ultimate' ),
-		'icon'     => 'list-ol',
 	)
 );
 

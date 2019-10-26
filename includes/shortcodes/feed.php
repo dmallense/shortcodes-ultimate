@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'feed',
 		'callback' => 'su_shortcode_feed',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/feed.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/feed.svg',
 		'name' => __( 'RSS feed', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'content other',
@@ -30,7 +30,6 @@ su_add_shortcode( array(
 			),
 		),
 		'desc' => __( 'Feed grabber', 'shortcodes-ultimate' ),
-		'icon' => 'rss',
 	) );
 
 function su_shortcode_feed( $atts = null, $content = null ) {

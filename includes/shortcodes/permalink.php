@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'permalink',
 		'callback' => 'su_shortcode_permalink',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/permalink.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/permalink.svg',
 		'name' => __( 'Permalink', 'shortcodes-ultimate' ),
 		'type' => 'mixed',
 		'group' => 'content other',
@@ -42,7 +42,6 @@ su_add_shortcode( array(
 		),
 		'content' => '',
 		'desc' => __( 'Permalink to specified post/page', 'shortcodes-ultimate' ),
-		'icon' => 'link',
 	) );
 
 function su_shortcode_permalink( $atts = null, $content = null ) {

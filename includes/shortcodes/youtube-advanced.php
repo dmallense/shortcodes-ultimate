@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'youtube_advanced',
 		'callback' => 'su_shortcode_youtube_advanced',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/youtube_advanced.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/youtube_advanced.svg',
 		'name'     => __( 'YouTube advanced', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'media',
@@ -138,7 +138,6 @@ su_add_shortcode(
 		),
 		'desc'     => __( 'YouTube video player with advanced settings', 'shortcodes-ultimate' ),
 		'example'  => 'media',
-		'icon'     => 'youtube-play',
 	)
 );
 

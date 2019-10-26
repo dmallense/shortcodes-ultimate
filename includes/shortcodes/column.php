@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'column',
 		'callback' => 'su_shortcode_column',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/column.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/column.svg',
 		'name' => __( 'Column', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'box',
@@ -46,7 +46,6 @@ su_add_shortcode( array(
 		'desc' => __( 'Flexible and responsive columns', 'shortcodes-ultimate' ),
 		'note' => __( 'Did you know that you need to wrap columns with [row] shortcode?', 'shortcodes-ultimate' ),
 		'example' => 'columns',
-		'icon' => 'columns',
 	) );
 
 function su_shortcode_column( $atts = null, $content = null ) {

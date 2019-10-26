@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'dummy_image',
 		'callback' => 'su_shortcode_dummy_image',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/dummy_image.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/dummy_image.svg',
 		'name' => __( 'Dummy image', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'content',
@@ -56,7 +56,6 @@ su_add_shortcode( array(
 			),
 		),
 		'desc' => __( 'Image placeholder with random image', 'shortcodes-ultimate' ),
-		'icon' => 'picture-o',
 	) );
 
 function su_shortcode_dummy_image( $atts = null, $content = null ) {

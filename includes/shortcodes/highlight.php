@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'highlight',
 		'callback' => 'su_shortcode_highlight',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/highlight.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/highlight.svg',
 		'name' => __( 'Highlight', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'content',
@@ -30,7 +30,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'Highlighted text', 'shortcodes-ultimate' ),
 		'desc' => __( 'Highlighted text', 'shortcodes-ultimate' ),
-		'icon' => 'pencil',
 	) );
 
 function su_shortcode_highlight( $atts = null, $content = null ) {

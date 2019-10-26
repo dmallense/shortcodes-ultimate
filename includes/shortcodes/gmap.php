@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'gmap',
 		'callback' => 'su_shortcode_gmap',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/gmap.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/gmap.svg',
 		'name'     => __( 'Google map', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'media',
@@ -61,7 +61,6 @@ su_add_shortcode(
 			),
 		),
 		'desc'     => __( 'Maps by Google', 'shortcodes-ultimate' ),
-		'icon'     => 'globe',
 	)
 );
 

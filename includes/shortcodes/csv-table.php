@@ -8,8 +8,7 @@ su_add_shortcode(
 		'name'     => __( 'CSV Table', 'shortcodes-ultimate' ),
 		'desc'     => __( 'Styled table from CSV file', 'shortcodes-ultimate' ),
 		'group'    => 'content',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/table.svg',
-		'icon'     => 'table',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/csv_table.svg',
 		'atts'     => array(
 			'url'        => array(
 				'type'    => 'upload',

@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'audio',
 		'callback' => 'su_shortcode_audio',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/audio.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/audio.svg',
 		'name' => __( 'Audio', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'media',
@@ -41,7 +41,6 @@ su_add_shortcode( array(
 		),
 		'desc' => __( 'Custom audio player', 'shortcodes-ultimate' ),
 		'example' => 'media',
-		'icon' => 'play-circle',
 	) );
 
 function su_shortcode_audio( $atts = null, $content = null ) {

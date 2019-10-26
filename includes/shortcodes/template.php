@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'template',
 		'callback' => 'su_shortcode_template',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/template.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/template.svg',
 		'name'     => __( 'Template', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'other',
@@ -17,7 +17,6 @@ su_add_shortcode(
 			),
 		),
 		'desc'     => __( 'Theme template', 'shortcodes-ultimate' ),
-		'icon'     => 'puzzle-piece',
 	)
 );
 

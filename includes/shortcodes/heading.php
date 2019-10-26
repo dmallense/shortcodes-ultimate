@@ -7,6 +7,7 @@ su_add_shortcode(
 		'name'     => __( 'Heading', 'shortcodes-ultimate' ),
 		'type'     => 'wrap',
 		'group'    => 'content',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/heading.svg',
 		'atts'     => array(
 			'style'  => array(
 				'type'    => 'select',
@@ -60,8 +61,6 @@ su_add_shortcode(
 		),
 		'content'  => __( 'Heading text', 'shortcodes-ultimate' ),
 		'desc'     => __( 'Styled heading', 'shortcodes-ultimate' ),
-		'icon'     => 'h-square',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/heading.svg',
 	)
 );
 
