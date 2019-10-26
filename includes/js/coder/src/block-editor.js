@@ -20,7 +20,8 @@ const withInsertShortcodeButton = BlockEdit => {
             /* eslint-disable react/jsx-pascal-case */
             title: SUBlockEditorL10n.insertShortcode,
             onClick: () => {
-              window.SUG.App.insert('block', { props: props })
+              window.SUCoder.insertBlockEditor()
+              // window.SUG.App.insert('block', { props: props })
             }
           }
         ]}
