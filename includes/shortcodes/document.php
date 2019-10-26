@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'document',
 		'callback' => 'su_shortcode_document',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/document.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/document.svg',
 		'name'     => __( 'Document', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'media',
@@ -52,7 +52,6 @@ su_add_shortcode(
 			),
 		),
 		'desc'     => __( 'Document viewer by Google', 'shortcodes-ultimate' ),
-		'icon'     => 'file-text',
 	)
 );
 
