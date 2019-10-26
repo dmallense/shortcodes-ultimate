@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'quote',
 		'callback' => 'su_shortcode_quote',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/quote.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/quote.svg',
 		'name' => __( 'Quote', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'box',
@@ -37,7 +37,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'Quote', 'shortcodes-ultimate' ),
 		'desc' => __( 'Blockquote alternative', 'shortcodes-ultimate' ),
-		'icon' => 'quote-right',
 	) );
 
 function su_shortcode_quote( $atts = null, $content = null ) {
