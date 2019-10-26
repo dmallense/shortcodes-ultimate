@@ -195,15 +195,19 @@ function getShortcode (id) {
   return store.data.shortcodes.filter(shortcode => shortcode.id === id)[0]
 }
 
-function insertClassic (target = '', shortcode = '') {
+function insertClassicEditor (target = '', shortcode = '') {
+  openPopup()
+}
+
+function insertBlockEditor (target = '', shortcode = '') {
   openPopup()
 }
 
 // Expose API
-window.SUCoder = { init, insertClassic }
+window.SUCoder = { init, insertClassicEditor, insertBlockEditor }
 
 // Initialize Coder
 document.addEventListener('DOMContentLoaded', window.SUCoder.init)
 
 // TODO: remove (1) [!]
-document.addEventListener('DOMContentLoaded', window.SUCoder.insertClassic)
+document.addEventListener('DOMContentLoaded', window.SUCoder.insertClassicEditor)
