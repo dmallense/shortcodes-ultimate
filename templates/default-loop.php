@@ -19,9 +19,10 @@
 				<div class="su-post-excerpt">
 					<?php the_excerpt(); ?>
 				</div>
-				<?php if ( comments_open() ) : ?>
-				<a href="<?php comments_link(); ?>" class="su-post-comments-link"><?php comments_number( __( '0 comments', 'shortcodes-ultimate' ), __( '1 comment', 'shortcodes-ultimate' ), '% comments' ); ?></a>
-			<?php endif; ?>
+
+				<?php if ( have_comments() || comments_open() ) : ?>
+					<a href="<?php comments_link(); ?>" class="su-post-comments-link"><?php comments_number( __( '0 comments', 'shortcodes-ultimate' ), __( '1 comment', 'shortcodes-ultimate' ), '% comments' ); ?></a>
+				<?php endif; ?>
 
 			</div>
 
