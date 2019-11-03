@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'expand',
 		'callback' => 'su_shortcode_expand',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/expand.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/expand.svg',
 		'name' => __( 'Expand', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'box',
@@ -92,7 +92,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'This text block can be expanded', 'shortcodes-ultimate' ),
 		'desc' => __( 'Expandable text block', 'shortcodes-ultimate' ),
-		'icon' => 'sort-amount-asc',
 	) );
 
 function su_shortcode_expand( $atts = null, $content = null ) {
