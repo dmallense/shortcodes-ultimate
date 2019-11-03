@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'note',
 		'callback' => 'su_shortcode_note',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/note.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/note.svg',
 		'name'     => __( 'Note', 'shortcodes-ultimate' ),
 		'type'     => 'wrap',
 		'group'    => 'box',
@@ -41,7 +41,6 @@ su_add_shortcode(
 		),
 		'content'  => __( 'Note text', 'shortcodes-ultimate' ),
 		'desc'     => __( 'Colored box', 'shortcodes-ultimate' ),
-		'icon'     => 'list-alt',
 	)
 );
 
