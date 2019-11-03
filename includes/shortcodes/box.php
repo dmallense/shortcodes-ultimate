@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'box',
 		'callback' => 'su_shortcode_box',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/box.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/box.svg',
 		'name' => __( 'Box', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'box',
@@ -57,7 +57,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'Box content', 'shortcodes-ultimate' ),
 		'desc' => __( 'Colored box with caption', 'shortcodes-ultimate' ),
-		'icon' => 'list-alt',
 	) );
 
 function su_shortcode_box( $atts = null, $content = null ) {
