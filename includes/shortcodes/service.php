@@ -4,10 +4,12 @@ su_add_shortcode(
 	array(
 		'id'       => 'service',
 		'callback' => 'su_shortcode_service',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/service.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/service.svg',
 		'name'     => __( 'Service', 'shortcodes-ultimate' ),
 		'type'     => 'wrap',
 		'group'    => 'box',
+		'content'  => __( 'Service description', 'shortcodes-ultimate' ),
+		'desc'     => __( 'Service box with title', 'shortcodes-ultimate' ),
 		'atts'     => array(
 			'title'      => array(
 				'values'  => array(),
@@ -43,9 +45,6 @@ su_add_shortcode(
 				'default' => '',
 			),
 		),
-		'content'  => __( 'Service description', 'shortcodes-ultimate' ),
-		'desc'     => __( 'Service box with title', 'shortcodes-ultimate' ),
-		'icon'     => 'check-square-o',
 	)
 );
 
