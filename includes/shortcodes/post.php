@@ -5,8 +5,7 @@ su_add_shortcode( array(
 		'type'     => 'single',
 		'group'    => 'data',
 		'callback' => 'su_shortcode_post',
-		'icon'     => 'info-circle',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/post.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/post.svg',
 		'name'     => __( 'Post data', 'shortcodes-ultimate' ),
 		'desc'     => __( 'The utility shortcode to display various post data, like post title, status or excerpt', 'shortcodes-ultimate' ),
 		'atts' => array(
