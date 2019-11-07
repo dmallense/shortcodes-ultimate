@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'private',
 		'callback' => 'su_shortcode_private',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/private.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/private.svg',
 		'name' => __( 'Private', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'other',
@@ -17,7 +17,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'Private note text', 'shortcodes-ultimate' ),
 		'desc' => __( 'Private note for post authors. Any content wrapped with this shortcode will only be visible to post authors (users with publish_posts capability).', 'shortcodes-ultimate' ),
-		'icon' => 'lock',
 	) );
 
 function su_shortcode_private( $atts = null, $content = null ) {
