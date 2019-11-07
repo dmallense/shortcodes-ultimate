@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'               => 'lightbox',
 		'callback'         => 'su_shortcode_lightbox',
-		'image'            => su_get_plugin_url() . 'admin/images/shortcodes/lightbox.svg',
+		'icon'             => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/lightbox.svg',
 		'name'             => __( 'Lightbox', 'shortcodes-ultimate' ),
 		'type'             => 'wrap',
 		'group'            => 'gallery',
@@ -42,7 +42,6 @@ su_add_shortcode(
 		),
 		'content'          => __( 'Click here to open lightbox', 'shortcodes-ultimate' ),
 		'desc'             => __( 'Lightbox window with custom content', 'shortcodes-ultimate' ),
-		'icon'             => 'external-link',
 	)
 );
 
