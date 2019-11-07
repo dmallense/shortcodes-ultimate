@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'lightbox_content',
 		'callback' => 'su_shortcode_lightbox_content',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/lightbox_content.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/lightbox_content.svg',
 		'name' => __( 'Lightbox content', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'gallery',
@@ -82,7 +82,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'Inline content', 'shortcodes-ultimate' ),
 		'desc' => __( 'Inline content for lightbox', 'shortcodes-ultimate' ),
-		'icon' => 'external-link',
 	) );
 
 function su_shortcode_lightbox_content( $atts = null, $content = null ) {
