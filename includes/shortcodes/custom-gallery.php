@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'custom_gallery',
 		'callback' => 'su_shortcode_custom_gallery',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/custom_gallery.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/custom_gallery.svg',
 		'name'     => __( 'Gallery', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'gallery',
@@ -85,7 +85,6 @@ su_add_shortcode(
 			),
 		),
 		'desc'     => __( 'Customizable image gallery', 'shortcodes-ultimate' ),
-		'icon'     => 'picture-o',
 	)
 );
 
