@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'meta',
 		'callback' => 'su_shortcode_meta',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/meta.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/meta.svg',
 		'name' => __( 'Meta data', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'data',
@@ -40,7 +40,6 @@ su_add_shortcode( array(
 			)
 		),
 		'desc' => __( 'Post meta', 'shortcodes-ultimate' ),
-		'icon' => 'info-circle',
 	) );
 
 function su_shortcode_meta( $atts = null, $content = null ) {
