@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'carousel',
 		'callback' => 'su_shortcode_carousel',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/carousel.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/carousel.svg',
 		'name' => __( 'Carousel', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'gallery',
@@ -144,7 +144,6 @@ su_add_shortcode( array(
 			),
 		),
 		'desc' => __( 'Customizable image carousel', 'shortcodes-ultimate' ),
-		'icon' => 'picture-o',
 	) );
 
 function su_shortcode_carousel( $atts = null, $content = null ) {
