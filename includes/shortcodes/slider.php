@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'slider',
 		'callback' => 'su_shortcode_slider',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/slider.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/slider.svg',
 		'name' => __( 'Slider', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'gallery',
@@ -125,7 +125,6 @@ su_add_shortcode( array(
 			),
 		),
 		'desc' => __( 'Customizable image slider', 'shortcodes-ultimate' ),
-		'icon' => 'picture-o',
 	) );
 
 function su_shortcode_slider( $atts = null, $content = null ) {
