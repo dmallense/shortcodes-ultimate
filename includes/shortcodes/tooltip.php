@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'tooltip',
 		'callback' => 'su_shortcode_tooltip',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/tooltip.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/tooltip.svg',
 		'name' => __( 'Tooltip', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'other',
@@ -103,7 +103,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'Hover me to open tooltip', 'shortcodes-ultimate' ),
 		'desc' => __( 'Tooltip window with custom content', 'shortcodes-ultimate' ),
-		'icon' => 'comment-o',
 	) );
 
 function su_shortcode_tooltip( $atts = null, $content = null ) {
