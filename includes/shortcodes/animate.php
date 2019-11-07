@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'animate',
 		'callback' => 'su_shortcode_animate',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/animate.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/animate.svg',
 		'name' => __( 'Animation', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'other',
@@ -49,7 +49,6 @@ su_add_shortcode( array(
 		'content' => __( 'Animated content', 'shortcodes-ultimate' ),
 		'desc' => __( 'Wrapper for animation. Any nested element will be animated', 'shortcodes-ultimate' ),
 		'example' => 'animations',
-		'icon' => 'bolt',
 	) );
 
 function su_shortcode_animate( $atts = null, $content = null ) {
