@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'siblings',
 		'callback' => 'su_shortcode_siblings',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/siblings.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/siblings.svg',
 		'name' => __( 'Siblings', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'other',
@@ -22,7 +22,6 @@ su_add_shortcode( array(
 			),
 		),
 		'desc' => __( 'List of cureent page siblings', 'shortcodes-ultimate' ),
-		'icon' => 'bars',
 	) );
 
 function su_shortcode_siblings( $atts = null, $content = null ) {
