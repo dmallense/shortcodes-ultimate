@@ -4,12 +4,11 @@ su_add_shortcode(
 	array(
 		'id'       => 'image_carousel',
 		'callback' => 'su_shortcode_image_carousel',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/image_carousel.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/image_carousel.svg',
 		'name'     => __( 'Image carousel', 'shortcodes-ultimate' ),
 		'desc'     => __( 'Customizable image gallery (slider and carousel)', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'gallery',
-		'icon'     => 'picture-o',
 		'atts'     => array(
 			'source'         => array(
 				'type'          => 'image_source',
