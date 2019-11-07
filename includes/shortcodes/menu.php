@@ -3,10 +3,11 @@
 su_add_shortcode( array(
 		'id' => 'menu',
 		'callback' => 'su_shortcode_menu',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/menu.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/menu.svg',
 		'name' => __( 'Menu', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'other',
+		'desc' => __( 'Custom menu by name', 'shortcodes-ultimate' ),
 		'atts' => array(
 			'name' => array(
 				'values' => array( ),
@@ -20,8 +21,6 @@ su_add_shortcode( array(
 				'default' => '',
 			),
 		),
-		'desc' => __( 'Custom menu by name', 'shortcodes-ultimate' ),
-		'icon' => 'bars',
 	) );
 
 function su_shortcode_menu( $atts = null, $content = null ) {
