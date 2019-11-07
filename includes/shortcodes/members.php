@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'members',
 		'callback' => 'su_shortcode_members',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/members.svg',
+		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/members.svg',
 		'name'     => __( 'Members', 'shortcodes-ultimate' ),
 		'type'     => 'wrap',
 		'group'    => 'other',
@@ -39,7 +39,6 @@ su_add_shortcode(
 		),
 		'content'  => __( 'Content for logged members', 'shortcodes-ultimate' ),
 		'desc'     => __( 'Content for logged in members only', 'shortcodes-ultimate' ),
-		'icon'     => 'lock',
 	)
 );
 
