@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'subpages',
 		'callback' => 'su_shortcode_subpages',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/subpages.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/subpages.svg',
 		'name' => __( 'Sub pages', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'other',
@@ -28,7 +28,6 @@ su_add_shortcode( array(
 			),
 		),
 		'desc' => __( 'List of sub pages', 'shortcodes-ultimate' ),
-		'icon' => 'bars',
 	) );
 
 function su_shortcode_subpages( $atts = null, $content = null ) {
