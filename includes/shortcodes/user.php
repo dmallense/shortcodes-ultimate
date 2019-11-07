@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'user',
 		'callback' => 'su_shortcode_user',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/user.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/user.svg',
 		'name' => __( 'User data', 'shortcodes-ultimate' ),
 		'type' => 'single',
 		'group' => 'data',
@@ -52,7 +52,6 @@ su_add_shortcode( array(
 			)
 		),
 		'desc' => __( 'User data', 'shortcodes-ultimate' ),
-		'icon' => 'info-circle',
 	) );
 
 function su_shortcode_user( $atts = null, $content = null ) {
