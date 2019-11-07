@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id' => 'guests',
 		'callback' => 'su_shortcode_guests',
-		'image' => su_get_plugin_url() . 'admin/images/shortcodes/guests.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/guests.svg',
 		'name' => __( 'Guests', 'shortcodes-ultimate' ),
 		'type' => 'wrap',
 		'group' => 'other',
@@ -17,7 +17,6 @@ su_add_shortcode( array(
 		),
 		'content' => __( 'This content will be available only for non-logged visitors', 'shortcodes-ultimate' ),
 		'desc' => __( 'Content for guests only', 'shortcodes-ultimate' ),
-		'icon' => 'user',
 	) );
 
 function su_shortcode_guests( $atts = null, $content = null ) {
