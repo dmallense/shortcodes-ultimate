@@ -138,7 +138,9 @@ function appendShortcodes () {
         return
       }
 
-      if (group.id !== shortcode.group.split(' ')[0]) {
+      shortcode.primaryGroup = shortcode.group.split(' ')[0]
+
+      if (group.id !== shortcode.primaryGroup) {
         return
       }
 
