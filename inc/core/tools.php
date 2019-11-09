@@ -32,8 +32,8 @@ function su_image_resize( $url, $width = null, $height = null, $crop = true, $re
 			$file_path    = str_replace( $blog_details->path . 'files/', '/wp-content/blogs.dir/' . $blog_id . '/files/', $file_path );
 		}
 		// Destination width and height variables
-		$dest_width  = $width * $retina;
-		$dest_height = $height * $retina;
+		$dest_width  = intval( $width ) * intval( $retina );
+		$dest_height = intval( $height ) * intval( $retina );
 		// File name suffix (appended to original file name)
 		$suffix = "{$dest_width}x{$dest_height}";
 		// Some additional info about the image
