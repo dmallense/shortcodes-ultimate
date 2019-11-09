@@ -151,6 +151,17 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 == Changelog ==
 
+= 5.6.1 =
+
+**What's new**
+
+- Comments in the `[su_posts]` shortcode can now be disabled from post editing screen or, using the Disable Comments plugin. Thanks to [Jörn Lund](https://github.com/vanokhin/shortcodes-ultimate/pull/98).
+
+**Fixes**
+
+- Fixed `Warning: A non-numeric value encountered` in `[su_slider]`, `[su_carousel]`, and `[su_custom_gallery]`
+
+
 = 5.6.0 =
 
 **What's new**
