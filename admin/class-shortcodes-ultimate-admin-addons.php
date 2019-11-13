@@ -103,4 +103,18 @@ final class Shortcodes_Ultimate_Admin_Addons extends Shortcodes_Ultimate_Admin {
 
 	}
 
+	public function get_addon_permalink( $addon ) {
+
+		$utm = array( 'admin-menu', 'add-ons', 'wp-dashboard' );
+
+		// phpcs:disable
+		if ( isset( $_GET['from-generator'] ) ) {
+			$utm[0] = 'generator';
+		}
+		// phpcs:enable
+
+		return su_get_utm_link( $addon['permalink'], $utm );
+
+	}
+
 }
