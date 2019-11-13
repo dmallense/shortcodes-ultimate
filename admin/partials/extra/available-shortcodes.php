@@ -6,7 +6,7 @@
 	<h2 class="su-admin-shortcodes-extra-title"><?php esc_html_e( 'Extra Shortcodes', 'shortcodes-ultimate' ); ?></h2>
 	<p class="su-admin-shortcodes-extra-description"><?php esc_html_e( 'This add-on extends Shortcodes Ultimate with 15 new shortcodes. Parallax sections, responsive content slider, pricing tables and more', 'shortcodes-ultimate' ); ?></p>
 	<p class="su-admin-shortcodes-extra-action">
-		<a href="https://getshortcodes.com/add-ons/extra-shortcodes/?utm_source=wp-dash&amp;utm_medium=available-shortcodes&amp;utm_campaign=extra-shortcode" target="_blank" class="button button-primary"><?php esc_html_e( 'Details & Pricing', 'shortcodes-ultimate' ); ?> &rarr;</a>
+		<a href="<?php echo esc_attr( su_get_utm_link( 'https://getshortcodes.com/add-ons/extra-shortcodes/', array( 'available-shortcodes', 'extra-shortcode', 'wp-dashboard' ) ) ); ?>" target="_blank" class="button button-primary"><?php esc_html_e( 'Details & Pricing', 'shortcodes-ultimate' ); ?> &rarr;</a>
 	</p>
 	<div class="su-admin-shortcodes-extra-screenshot">
 		<img src="<?php echo esc_attr( $this->get_image_url( 'screenshots/' . $data['id'] . '.png' ) ); ?>">
