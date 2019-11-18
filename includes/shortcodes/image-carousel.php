@@ -194,7 +194,11 @@ su_add_shortcode(
 
 function su_shortcode_image_carousel( $atts = null, $content = null ) {
 
-	$atts = su_parse_shortcode_atts( 'image_carousel', $atts );
+	$atts = su_parse_shortcode_atts(
+		'image_carousel',
+		$atts,
+		array( 'prefer_caption' => 'no' )
+	);
 
 	$atts['columns']        = intval( $atts['columns'] );
 	$atts['autoplay']       = floatval( str_replace( ',', '.', $atts['autoplay'] ) );
@@ -210,8 +214,9 @@ function su_shortcode_image_carousel( $atts = null, $content = null ) {
 	$slides           = su_get_gallery_slides(
 		$atts['source'],
 		array(
-			'limit' => $atts['limit'],
-			'link'  => $atts['link'],
+			'limit'          => $atts['limit'],
+			'link'           => $atts['link'],
+			'prefer_caption' => $atts['prefer_caption'],
 		)
 	);
 	$link_target_attr = 'blank' === $atts['target']
