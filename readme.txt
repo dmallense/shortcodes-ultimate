@@ -156,6 +156,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 **What's new**
 
 - Comments in the `[su_posts]` shortcode can now be disabled from post editing screen or, using the Disable Comments plugin. Thanks to [Jörn Lund](https://github.com/vanokhin/shortcodes-ultimate/pull/98).
+- `[su_image_carousel]` will now display post titles instead of image captions, where applicable. [Details & How to disable it](https://getshortcodes.com/docs/display-image-captions-instead-of-post-titles-in-the-image-carousel-shortcode/).
 
 **Fixes**
 
