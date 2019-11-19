@@ -40,10 +40,12 @@ function appendApp () {
   store.el.app = document.querySelector('.su-coder-app')
   store.el.lightboxBg = document.querySelector('.su-coder-lightbox-bg')
   store.el.lightbox = document.querySelector('.su-coder-lightbox')
-  store.el.shortcodes = document.querySelector('.su-coder-shortcodes')
+  store.el.main = document.querySelector('.su-coder-main')
+  store.el.sidebar = document.querySelector('.su-coder-main-sidebar')
+  store.el.shortcodes = document.querySelector('.su-coder-main-shortcodes')
   store.el.shortcode = document.querySelector('.su-coder-shortcode')
-  store.el.settings = document.querySelector('.su-coder-settings')
-  store.el.preview = document.querySelector('.su-coder-preview')
+  store.el.settings = document.querySelector('.su-coder-shortcode-settings')
+  store.el.preview = document.querySelector('.su-coder-shortcode-preview')
   store.el.search = document.querySelector('.su-coder-search')
 }
 
@@ -53,7 +55,7 @@ function bindEvents () {
   on(
     'click',
     store.el.app,
-    '.su-coder-shortcodes a',
+    '.su-coder-main-shortcodes a',
     onShortcodeClick
   )
 
@@ -133,6 +135,7 @@ function loadShortcodes () {
 
 function appendShortcodes () {
   forEach(store.data.groups, group => {
+    store.el.sidebar.insertAdjacentHTML('beforeend', '<a href="">' + group.title + '</a>')
     forEach(store.data.shortcodes, shortcode => {
       if (shortcode.deprecated && SUCoderSettings.hideDeprecated) {
         return
@@ -152,7 +155,7 @@ function appendShortcodes () {
 function openPopup () {
   loadShortcodes()
 
-  show(store.el.shortcodes)
+  show(store.el.main)
   hide(store.el.shortcode)
 
   document.body.classList.add('su-coder-lightbox-opened')
@@ -177,7 +180,7 @@ function openShortcode (id) {
   store.el.settings.innerHTML = ''
   store.el.preview.innerHTML = ''
 
-  hide(store.el.shortcodes)
+  hide(store.el.main)
   show(store.el.shortcode)
 
   appendSettings(id)
