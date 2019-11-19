@@ -11,10 +11,13 @@ export function app ({ searchShortcodes, closeDialog }) {
             </button>
           </div>
         </div>
-        <div class="su-coder-shortcodes"></div>
+        <div class="su-coder-main">
+          <div class="su-coder-main-sidebar"></div>
+          <div class="su-coder-main-shortcodes"></div>
+        </div>
         <div class="su-coder-shortcode">
-          <div class="su-coder-settings"></div>
-          <div class="su-coder-preview"></div>
+          <div class="su-coder-shortcode-settings"></div>
+          <div class="su-coder-shortcode-preview"></div>
         </div>
       </div>
     </div>
