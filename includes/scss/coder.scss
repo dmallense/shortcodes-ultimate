@@ -13,7 +13,7 @@
 .su-coder-app {
 	position: relative;
 	margin: $size-base auto;
-	max-width: 1200px;
+	max-width: 1240px;
 	border-radius: $radius;
 	background: white;
 	box-shadow: 0 4px 4px rgba(black, 0.15), 0 8px 8px rgba(black, 0.15),
@@ -103,33 +103,39 @@
 	content: '';
 }
 .su-coder-main-shortcodes a {
-	display: block;
+	display: flex;
+	align-items: center;
 	float: left;
 	box-sizing: border-box;
 	margin: ($shortcodes-grid-gap / 2);
+	padding: $shortcodes-grid-gap * .5 0 $shortcodes-grid-gap * .5 5px;
 	width: $shortcodes-grid-item-width;
-	height: 100px;
-	border-bottom: 1px solid rgba(black, 0.1);
+	border: 1px solid white;
+	border-bottom-color: rgba(black, 0.1);
 	color: black;
-	// text-align: center;
 	text-decoration: none;
+	opacity: 0.8;
+	transition: opacity .2s ease, transform .2s ease;
+}
+.su-coder-main-shortcodes a:hover,
+.su-coder-main-shortcodes a:focus {
+	opacity: 1;
+	border-color: $color-wp-ui-highlight;
+	background: rgba($color-wp-ui-highlight, 0.05);
 }
 .su-coder-main-shortcodes a i,
 .su-coder-main-shortcodes a img {
-	margin-bottom: 5px;
+	margin-right: 6px;
 	width: $shortcodes-grid-icon-size;
 	height: $shortcodes-grid-icon-size;
 	vertical-align: middle;
 	font-size: $shortcodes-grid-icon-size;
 }
 .su-coder-main-shortcodes a span {
-	// display: block;
 	overflow: hidden;
-	height: 28px;
-	text-align: center;
 	text-transform: capitalize;
 	font-size: 12px;
-	line-height: 14px;
+	white-space: nowrap;
 }
 
 @supports (grid-area: auto) {
@@ -140,7 +146,7 @@
 			auto-fit,
 			minmax($shortcodes-grid-item-width, 1fr)
 		);
-		grid-gap: $shortcodes-grid-gap;
+		grid-column-gap: $shortcodes-grid-gap;
 	}
 	.su-coder-main-shortcodes a {
 		float: none;
