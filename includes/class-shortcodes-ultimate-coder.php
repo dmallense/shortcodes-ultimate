@@ -60,6 +60,7 @@ class Shortcodes_Ultimate_Coder {
 			'shortcodes-ultimate-coder',
 			'SUCoderL10n',
 			array(
+				'allShortcodes'    => __( 'All shortcodes', 'shortcodes-ultimate' ),
 				'loading'          => __( 'Loading shortcodes', 'shortcodes-ultimate' ),
 				'closeDialog'      => __( 'Close dialog', 'shortcodes-ultimate' ),
 				'searchShortcodes' => __( 'Search shortcodes', 'shortcodes-ultimate' ),
