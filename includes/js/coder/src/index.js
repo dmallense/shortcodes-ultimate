@@ -134,8 +134,13 @@ function loadShortcodes () {
 }
 
 function appendShortcodes () {
+  store.el.sidebar.insertAdjacentHTML('beforeend', templates.group({
+    id: 'all',
+    title: SUCoderL10n.allShortcodes,
+    class: 'su-coder-main-sidebar-selected'
+  }))
   forEach(store.data.groups, group => {
-    store.el.sidebar.insertAdjacentHTML('beforeend', '<a href="">' + group.title + '</a>')
+    store.el.sidebar.insertAdjacentHTML('beforeend', templates.group(group))
     forEach(store.data.shortcodes, shortcode => {
       if (shortcode.deprecated && SUCoderSettings.hideDeprecated) {
         return
