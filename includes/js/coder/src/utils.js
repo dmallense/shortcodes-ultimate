@@ -37,18 +37,20 @@ export function serializeObj (obj) {
     .join('&')
 }
 
-export function on (eventType, parentElement, elementSelector, callback) {
-  parentElement.addEventListener(eventType, event => {
-    if (!elementSelector) {
-      callback(event)
-      return
-    }
+export function on (eventTypes, parentElement, elementSelector, callback) {
+  forEach(eventTypes.split(' '), eventType => {
+    parentElement.addEventListener(eventType, event => {
+      if (!elementSelector) {
+        callback(event)
+        return
+      }
 
-    const closestEl = closest(event.target, elementSelector)
+      const closestEl = closest(event.target, elementSelector)
 
-    if (closestEl) {
-      callback(event, closestEl)
-    }
+      if (closestEl) {
+        callback(event, closestEl)
+      }
+    })
   })
 }
 
