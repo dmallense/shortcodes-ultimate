@@ -3,7 +3,7 @@
 su_add_shortcode( array(
 		'id'       => 'post',
 		'type'     => 'single',
-		'group'    => 'data',
+		'group'    => 'developer',
 		'callback' => 'su_shortcode_post',
 		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/post.svg',
 		'name'     => __( 'Post data', 'shortcodes-ultimate' ),
