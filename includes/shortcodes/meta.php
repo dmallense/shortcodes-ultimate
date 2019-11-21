@@ -6,7 +6,7 @@ su_add_shortcode( array(
 		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/meta.svg',
 		'name' => __( 'Meta data', 'shortcodes-ultimate' ),
 		'type' => 'single',
-		'group' => 'data',
+		'group' => 'developer',
 		'atts' => array(
 			'key' => array(
 				'default' => '',
