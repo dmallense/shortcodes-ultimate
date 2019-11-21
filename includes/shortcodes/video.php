@@ -6,7 +6,7 @@ su_add_shortcode( array(
 		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/video.svg',
 		'name' => __( 'Video', 'shortcodes-ultimate' ),
 		'type' => 'single',
-		'group' => 'media',
+		'group' => 'embed',
 		'atts' => array(
 			'url' => array(
 				'type' => 'upload',
