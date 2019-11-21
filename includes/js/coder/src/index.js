@@ -59,11 +59,23 @@ function bindEvents () {
     onShortcodeClick
   )
 
+  on(
+    'mouseover click',
+    store.el.app,
+    '.su-coder-main-sidebar a',
+    onGroupClick
+  )
+
   on('keyup', document, null, onDocumentKeyup)
 }
 
 function onShortcodeClick (event, element) {
   openShortcode(element.getAttribute('data-id'))
+}
+
+function onGroupClick (event, element) {
+  event.preventDefault()
+  openGroup(element.getAttribute('data-group'))
 }
 
 function onCloseBtnClick () {
@@ -189,6 +201,30 @@ function openShortcode (id) {
   show(store.el.shortcode)
 
   appendSettings(id)
+}
+
+function openGroup (id) {
+  forEach(store.el.sidebar.querySelectorAll('a'), group => {
+    if (id === group.getAttribute('data-group')) {
+      group.classList.add('su-coder-main-sidebar-selected')
+      return
+    }
+
+    group.classList.remove('su-coder-main-sidebar-selected')
+  })
+
+  forEach(store.el.shortcodes.querySelectorAll('a'), shortcode => {
+    if (id === 'all') {
+      shortcode.classList.remove('su-coder-main-shortcodes-item-hidden')
+      return
+    }
+
+    shortcode.classList.add('su-coder-main-shortcodes-item-hidden')
+
+    if (id === shortcode.getAttribute('data-primary-group')) {
+      shortcode.classList.remove('su-coder-main-shortcodes-item-hidden')
+    }
+  })
 }
 
 function appendSettings (id) {
