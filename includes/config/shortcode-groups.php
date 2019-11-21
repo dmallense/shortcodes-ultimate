@@ -12,16 +12,16 @@ return apply_filters(
 			'title' => __( 'Box', 'shortcodes-ultimate' ),
 		),
 		array(
-			'id'    => 'media',
-			'title' => __( 'Media', 'shortcodes-ultimate' ),
+			'id'    => 'embed',
+			'title' => __( 'Embed', 'shortcodes-ultimate' ),
 		),
 		array(
 			'id'    => 'gallery',
 			'title' => __( 'Gallery', 'shortcodes-ultimate' ),
 		),
 		array(
-			'id'    => 'data',
-			'title' => __( 'Data', 'shortcodes-ultimate' ),
+			'id'    => 'developer',
+			'title' => __( 'Developer', 'shortcodes-ultimate' ),
 		),
 		array(
 			'id'    => 'other',
