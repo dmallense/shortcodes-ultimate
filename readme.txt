@@ -161,6 +161,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 **Fixes**
 
 - Fixed `Warning: A non-numeric value encountered` in `[su_slider]`, `[su_carousel]`, and `[su_custom_gallery]`
+- Fixed `download` attribute of the `[su_button]` shortcode
 
 
 = 5.6.0 =
