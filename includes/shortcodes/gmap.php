@@ -7,7 +7,7 @@ su_add_shortcode(
 		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/gmap.svg',
 		'name'     => __( 'Google map', 'shortcodes-ultimate' ),
 		'type'     => 'single',
-		'group'    => 'media',
+		'group'    => 'embed',
 		'atts'     => array(
 			'width'      => array(
 				'type'    => 'slider',
