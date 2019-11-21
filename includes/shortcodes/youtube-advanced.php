@@ -7,7 +7,7 @@ su_add_shortcode(
 		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/youtube_advanced.svg',
 		'name'     => __( 'YouTube advanced', 'shortcodes-ultimate' ),
 		'type'     => 'single',
-		'group'    => 'media',
+		'group'    => 'embed',
 		'atts'     => array(
 			'url'            => array(
 				'values'  => array(),
