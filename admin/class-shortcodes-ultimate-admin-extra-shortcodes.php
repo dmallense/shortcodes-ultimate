@@ -18,7 +18,7 @@ class Shortcodes_Ultimate_Admin_Extra_Shortcodes {
 					array(
 						'group'              => 'extra',
 						'image'              => $this->get_image_url( 'icon-available-shortcodes.png' ),
-						'icon'               => $this->get_image_url( 'icon-generator.png' ),
+						'icon'               => $this->get_image_url( 'icon-generator.svg' ),
 						'desc'               => '',
 						'callback'           => '__return_empty_string',
 						'atts'               => array(),
