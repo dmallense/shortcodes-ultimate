@@ -7,7 +7,7 @@ su_add_shortcode(
 		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/document.svg',
 		'name'     => __( 'Document', 'shortcodes-ultimate' ),
 		'type'     => 'single',
-		'group'    => 'media',
+		'group'    => 'embed',
 		'atts'     => array(
 			'url'        => array(
 				'type'    => 'upload',
