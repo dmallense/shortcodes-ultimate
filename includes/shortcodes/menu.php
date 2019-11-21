@@ -6,7 +6,7 @@ su_add_shortcode( array(
 		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/menu.svg',
 		'name' => __( 'Menu', 'shortcodes-ultimate' ),
 		'type' => 'single',
-		'group' => 'other',
+		'group' => 'developer',
 		'desc' => __( 'Custom menu by name', 'shortcodes-ultimate' ),
 		'atts' => array(
 			'name' => array(
