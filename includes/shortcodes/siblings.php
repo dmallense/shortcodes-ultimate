@@ -6,7 +6,7 @@ su_add_shortcode( array(
 		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/siblings.svg',
 		'name' => __( 'Siblings', 'shortcodes-ultimate' ),
 		'type' => 'single',
-		'group' => 'other',
+		'group' => 'developer',
 		'atts' => array(
 			'depth' => array(
 				'type' => 'select',
