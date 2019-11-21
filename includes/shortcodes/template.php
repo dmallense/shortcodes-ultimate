@@ -7,7 +7,7 @@ su_add_shortcode(
 		'icon'     => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/template.svg',
 		'name'     => __( 'Template', 'shortcodes-ultimate' ),
 		'type'     => 'single',
-		'group'    => 'other',
+		'group'    => 'developer',
 		'atts'     => array(
 			'name' => array(
 				'default' => '',
