@@ -117,6 +117,7 @@
 	display: flex;
 	float: left;
 	align-items: center;
+	justify-content: flex-start;
 	box-sizing: border-box;
 	margin: ($shortcodes-grid-gap / 2);
 	padding: $shortcodes-grid-gap * 0.5 0 $shortcodes-grid-gap * 0.5 5px;
@@ -142,6 +143,7 @@
 	margin-right: 8px;
 	width: $shortcodes-grid-icon-size;
 	height: $shortcodes-grid-icon-size;
+	flex: 0 0 $shortcodes-grid-icon-size;
 	vertical-align: middle;
 	font-size: $shortcodes-grid-icon-size;
 	opacity: 0.8;
@@ -200,8 +202,7 @@
 // - Preview
 // -----------------------------------------------------------------------------
 
-.su-coder-preview {
-}
+.su-coder-preview {}
 
 // =============================================================================
 // Loading indicator
