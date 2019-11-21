@@ -6,7 +6,7 @@ su_add_shortcode( array(
 		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/user.svg',
 		'name' => __( 'User data', 'shortcodes-ultimate' ),
 		'type' => 'single',
-		'group' => 'data',
+		'group' => 'developer',
 		'atts' => array(
 			'field' => array(
 				'type' => 'select',
