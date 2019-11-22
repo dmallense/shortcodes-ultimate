@@ -60,7 +60,7 @@ function bindEvents () {
   )
 
   on(
-    'mouseover click',
+    'click',
     store.el.app,
     '.su-coder-main-sidebar a',
     onGroupClick
