@@ -162,6 +162,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 - Fixed `Warning: A non-numeric value encountered` in `[su_slider]`, `[su_carousel]`, and `[su_custom_gallery]`
 - Fixed `download` attribute of the `[su_button]` shortcode
+- Fixed issue with `[su_spoiler]` where nested `[su_youtube]` remains clickable if spoiler is closed
 
 
 = 5.6.0 =
