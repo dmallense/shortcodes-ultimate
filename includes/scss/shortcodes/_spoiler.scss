@@ -49,6 +49,9 @@
 	border: none;
 	opacity: 0;
 }
+.su-spoiler.su-spoiler-closed > .su-spoiler-content iframe {
+	display: none;
+}
 .su-spoiler-icon-plus .su-spoiler-icon:before {
 	content: '\f068';
 }
