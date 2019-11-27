@@ -17,8 +17,6 @@ var gulpif = require('gulp-if')
 var livereload = require('gulp-livereload')
 var wpPot = require('gulp-wp-pot')
 
-const buildFolder = './build'
-
 function compileSASS () {
   sass.compiler = nodeSass
 
@@ -82,7 +80,7 @@ function watchFiles () {
 
 function makePot () {
   return gulp
-    .src(['**/*.php', '!' + buildFolder + '/**', ...getBuildIgnore()])
+    .src(['**/*.php', `!${getBuildDir()}/**`, ...getBuildIgnore()])
     .pipe(
       wpPot({
         domain: 'shortcodes-ultimate',
@@ -93,11 +91,23 @@ function makePot () {
 }
 
 function createBuild () {
-  del.sync([buildFolder])
+  del.sync([getBuildDir()])
 
   return gulp
-    .src(['./**/*', '!' + buildFolder + '/**', ...getBuildIgnore()])
-    .pipe(gulp.dest(buildFolder))
+    .src(['./**/*', `!${getBuildDir()}/**`, ...getBuildIgnore()])
+    .pipe(gulp.dest(getBuildDir()))
+}
+
+function createShortcodesFull () {
+  sass.compiler = nodeSass
+
+  return gulp
+    .src('./includes/scss/shortcodes.scss')
+    .pipe(sassGlob())
+    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(autoprefixer({ cascade: false }))
+    .pipe(rename('shortcodes.full.css'))
+    .pipe(gulp.dest('./includes/css/'))
 }
 
 function getBuildIgnore () {
@@ -112,16 +122,8 @@ function getBuildIgnore () {
     .map(item => '!' + item)
 }
 
-function createShortcodesFull () {
-  sass.compiler = nodeSass
-
-  return gulp
-    .src('./includes/scss/shortcodes.scss')
-    .pipe(sassGlob())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
-    .pipe(autoprefixer({ cascade: false }))
-    .pipe(rename('shortcodes.full.css'))
-    .pipe(gulp.dest('./includes/css/'))
+function getBuildDir () {
+  return './build'
 }
 
 exports.sass = compileSASS
