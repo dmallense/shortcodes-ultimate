@@ -17,6 +17,8 @@ var gulpif = require('gulp-if')
 var livereload = require('gulp-livereload')
 var wpPot = require('gulp-wp-pot')
 
+const buildFolder = './build'
+
 function compileSASS () {
   sass.compiler = nodeSass
 
@@ -80,7 +82,7 @@ function watchFiles () {
 
 function makePot () {
   return gulp
-    .src('**/*.php')
+    .src(['**/*.php', '!' + buildFolder + '/**', ...getBuildIgnore()])
     .pipe(
       wpPot({
         domain: 'shortcodes-ultimate',
@@ -91,7 +93,15 @@ function makePot () {
 }
 
 function createBuild () {
-  const ignored = fs
+  del.sync([buildFolder])
+
+  return gulp
+    .src(['./**/*', '!' + buildFolder + '/**', ...getBuildIgnore()])
+    .pipe(gulp.dest(buildFolder))
+}
+
+function getBuildIgnore () {
+  return fs
     .readFileSync('.buildignore', 'utf8')
     .split(/\r\n|\n|\r/)
     .filter(item => {
@@ -100,14 +110,6 @@ function createBuild () {
       }
     })
     .map(item => '!' + item)
-
-  const buildFolder = './build'
-
-  del.sync([buildFolder])
-
-  return gulp
-    .src(['./**/*', '!' + buildFolder + '/**', ...ignored])
-    .pipe(gulp.dest(buildFolder))
 }
 
 function createShortcodesFull () {
