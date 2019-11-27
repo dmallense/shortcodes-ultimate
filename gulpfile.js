@@ -15,6 +15,7 @@ var buffer = require('gulp-buffer')
 var yargv = require('yargs').argv
 var gulpif = require('gulp-if')
 var livereload = require('gulp-livereload')
+var wpPot = require('gulp-wp-pot')
 
 function compileSASS () {
   sass.compiler = nodeSass
@@ -35,18 +36,31 @@ function compileSASS () {
 
 function compileJS () {
   return gulp
-    .src([
-      './includes/js/block-editor/src/index.js',
-      './includes/js/generator/src/index.js',
-      './includes/js/shortcodes/src/index.js'
-    ], { read: false, base: './' })
-    .pipe(tap(function (file) {
-      file.contents = browserify(file.path, { debug: true })
-        .transform(babelify.configure({ presets: ['@babel/env', '@babel/react'] }))
-        .bundle()
-    }))
+    .src(
+      [
+        './includes/js/block-editor/src/index.js',
+        './includes/js/generator/src/index.js',
+        './includes/js/shortcodes/src/index.js'
+      ],
+      { read: false, base: './' }
+    )
+    .pipe(
+      tap(function (file) {
+        file.contents = browserify(file.path, { debug: true })
+          .transform(
+            babelify.configure({
+              presets: ['@babel/env', '@babel/react']
+            })
+          )
+          .bundle()
+      })
+    )
     .pipe(buffer())
-    .pipe(rename(path => { path.dirname += '/../' }))
+    .pipe(
+      rename(path => {
+        path.dirname += '/../'
+      })
+    )
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(gulpif(!yargv.nouglify, uglify()))
     .pipe(sourcemaps.write('./'))
@@ -62,6 +76,18 @@ function watchFiles () {
   })
   gulp.watch('./*/scss/**/*.scss', compileSASS)
   gulp.watch('./*/js/*/src/**/*.js', compileJS)
+}
+
+function makePot () {
+  return gulp
+    .src('src/*.php')
+    .pipe(
+      wpPot({
+        domain: 'shortcodes-ultimate',
+        package: 'Shortcodes Ultimate'
+      })
+    )
+    .pipe(gulp.dest('./languages/shortcodes-ultimate.pot'))
 }
 
 function createBuild () {
@@ -102,5 +128,6 @@ exports.watch = watchFiles
 exports.compile = gulp.parallel(compileSASS, compileJS, createShortcodesFull)
 exports.build = gulp.series(
   gulp.parallel(compileSASS, compileJS, createShortcodesFull),
+  makePot,
   createBuild
 )
