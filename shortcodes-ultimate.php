@@ -7,7 +7,7 @@
  * Author URI: https://vanokhin.com/
  * Description: A comprehensive collection of visual components for WordPress
  * Text Domain: shortcodes-ultimate
- * Domain Path: /languages
+ * Domain Path: /languages/
  * License: GPLv3
  */
 
