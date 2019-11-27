@@ -80,7 +80,7 @@ function watchFiles () {
 
 function makePot () {
   return gulp
-    .src('src/*.php')
+    .src('**/*.php')
     .pipe(
       wpPot({
         domain: 'shortcodes-ultimate',
