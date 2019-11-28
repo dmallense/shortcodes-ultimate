@@ -256,4 +256,4 @@ window.SUCoder = { init, insertClassicEditor, insertBlockEditor }
 document.addEventListener('DOMContentLoaded', window.SUCoder.init)
 
 // TODO: remove (1) [!]
-document.addEventListener('DOMContentLoaded', window.SUCoder.insertClassicEditor)
+// document.addEventListener('DOMContentLoaded', window.SUCoder.insertClassicEditor)
