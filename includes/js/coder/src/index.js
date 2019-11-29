@@ -11,22 +11,9 @@ import {
 } from './utils'
 
 const store = {
-  el: {
-    app: null,
-    lightboxBg: null,
-    lightbox: null,
-    shortcodes: null,
-    shortcode: null,
-    settings: null,
-    preview: null
-  },
-  data: {
-    shortcodes: null,
-    groups: null
-  },
-  timers: {
-    dataLoading: null
-  }
+  el: {},
+  data: {},
+  timers: {}
 }
 
 function init () {
@@ -41,7 +28,6 @@ function appendApp () {
   store.el.lightboxBg = document.querySelector('.su-coder-lightbox-bg')
   store.el.lightbox = document.querySelector('.su-coder-lightbox')
   store.el.main = document.querySelector('.su-coder-main')
-  store.el.nav = document.querySelector('.su-coder-main-nav')
   store.el.groupsList = document.querySelector('.su-coder-main-nav-groups-list')
   store.el.groupsDropdown = document.querySelector('.su-coder-main-nav-groups-dropdown')
   store.el.shortcodes = document.querySelector('.su-coder-main-shortcodes')
