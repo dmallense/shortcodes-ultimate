@@ -41,7 +41,9 @@ function appendApp () {
   store.el.lightboxBg = document.querySelector('.su-coder-lightbox-bg')
   store.el.lightbox = document.querySelector('.su-coder-lightbox')
   store.el.main = document.querySelector('.su-coder-main')
-  store.el.sidebar = document.querySelector('.su-coder-main-sidebar')
+  store.el.nav = document.querySelector('.su-coder-main-nav')
+  store.el.groupsList = document.querySelector('.su-coder-main-nav-groups-list')
+  store.el.groupsDropdown = document.querySelector('.su-coder-main-nav-groups-dropdown')
   store.el.shortcodes = document.querySelector('.su-coder-main-shortcodes')
   store.el.shortcode = document.querySelector('.su-coder-shortcode')
   store.el.settings = document.querySelector('.su-coder-shortcode-settings')
@@ -62,8 +64,15 @@ function bindEvents () {
   on(
     'click',
     store.el.app,
-    '.su-coder-main-sidebar a',
+    '.su-coder-main-nav-groups-list a',
     onGroupClick
+  )
+
+  on(
+    'change',
+    store.el.app,
+    '.su-coder-main-nav-groups-dropdown',
+    onGroupChange
   )
 
   on('keyup', document, null, onDocumentKeyup)
@@ -76,6 +85,10 @@ function onShortcodeClick (event, element) {
 function onGroupClick (event, element) {
   event.preventDefault()
   openGroup(element.getAttribute('data-group'))
+}
+
+function onGroupChange (event, element) {
+  openGroup(element.options[element.selectedIndex].value)
 }
 
 function onCloseBtnClick () {
@@ -146,13 +159,21 @@ function loadShortcodes () {
 }
 
 function appendShortcodes () {
-  store.el.sidebar.insertAdjacentHTML('beforeend', templates.group({
+  store.el.groupsList.insertAdjacentHTML('beforeend', templates.groupList({
     id: 'all',
     title: SUCoderL10n.allShortcodes,
-    class: 'su-coder-main-sidebar-selected'
+    class: 'su-coder-main-nav-selected'
   }))
+  store.el.groupsDropdown.insertAdjacentHTML('beforeend', templates.groupDropdown({
+    id: 'all',
+    title: SUCoderL10n.allShortcodes,
+    selected: true
+  }))
+
   forEach(store.data.groups, group => {
-    store.el.sidebar.insertAdjacentHTML('beforeend', templates.group(group))
+    store.el.groupsList.insertAdjacentHTML('beforeend', templates.groupList(group))
+    store.el.groupsDropdown.insertAdjacentHTML('beforeend', templates.groupDropdown(group))
+
     forEach(store.data.shortcodes, shortcode => {
       if (shortcode.deprecated && SUCoderSettings.hideDeprecated) {
         return
@@ -204,13 +225,19 @@ function openShortcode (id) {
 }
 
 function openGroup (id) {
-  forEach(store.el.sidebar.querySelectorAll('a'), group => {
+  forEach(store.el.groupsList.querySelectorAll('a'), group => {
     if (id === group.getAttribute('data-group')) {
-      group.classList.add('su-coder-main-sidebar-selected')
+      group.classList.add('su-coder-main-nav-selected')
       return
     }
 
-    group.classList.remove('su-coder-main-sidebar-selected')
+    group.classList.remove('su-coder-main-nav-selected')
+  })
+
+  forEach(store.el.groupsDropdown.querySelectorAll('option'), (group, groupIndex) => {
+    if (id === group.value) {
+      store.el.groupsDropdown.selectedIndex = groupIndex
+    }
   })
 
   forEach(store.el.shortcodes.querySelectorAll('a'), shortcode => {
@@ -256,4 +283,4 @@ window.SUCoder = { init, insertClassicEditor, insertBlockEditor }
 document.addEventListener('DOMContentLoaded', window.SUCoder.init)
 
 // TODO: remove (1) [!]
-// document.addEventListener('DOMContentLoaded', window.SUCoder.insertClassicEditor)
+document.addEventListener('DOMContentLoaded', window.SUCoder.insertClassicEditor)
