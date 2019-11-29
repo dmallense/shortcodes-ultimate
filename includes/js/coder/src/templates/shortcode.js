@@ -1,4 +1,4 @@
-import { getIcon } from '../utils'
+import { getIcon } from '../_utils'
 
 export function shortcode (args) {
   return `
