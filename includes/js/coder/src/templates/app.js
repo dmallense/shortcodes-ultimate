@@ -12,7 +12,10 @@ export function app ({ searchShortcodes, closeDialog }) {
           </div>
         </div>
         <div class="su-coder-main">
-          <div class="su-coder-main-sidebar"></div>
+          <div class="su-coder-main-nav">
+            <select class="su-coder-main-nav-groups-dropdown" aria-hidden="true"></select>
+            <ul class="su-coder-main-nav-groups-list"></ul>
+          </div>
           <div class="su-coder-main-shortcodes"></div>
         </div>
         <div class="su-coder-shortcode">
