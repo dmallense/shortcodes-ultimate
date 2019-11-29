@@ -4,7 +4,7 @@
 		"js": "gulp js",
 		"sass": "gulp sass",
 		"compile": "gulp compile",
-		"watch": "gulp watch",
+		"watch": "gulp watch --nouglify",
 		"build": "gulp build"
 	},
 	"private": true,
