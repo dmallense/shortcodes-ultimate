@@ -67,37 +67,67 @@
 
 .su-coder-main {
 	display: flex;
+	flex-direction: column;
+}
+
+@media (min-width: 680px) {
+	.su-coder-main {
+		flex-direction: row;
+	}
 }
 
 // -----------------------------------------------------------------------------
-// - Sidebar
+// - Nav
 // -----------------------------------------------------------------------------
 
-.su-coder-main-sidebar {
+.su-coder-main-nav {
+	position: relative;
 	overflow: hidden;
-	padding: $size-base 0;
+	padding: $size-base;
 	background: $color-wp-bg;
-	background: linear-gradient(
-		to right,
-		$color-wp-bg,
-		$color-wp-bg 90%,
-		mix(black, $color-wp-bg, 3)
-	);
+	text-align: center;
 }
-.su-coder-main-sidebar a {
+.su-coder-main-nav-groups-list {
+	display: none;
+	margin: 0 (-$size-base);
+}
+.su-coder-main-nav-groups-dropdown {
+	width: 100%;
+	box-sizing: border-box;
+}
+.su-coder-main-nav a {
 	display: block;
 	padding: 8px $size-base * 1.5 8px $size-base;
 	color: #555;
 	text-decoration: none;
 	transition: none;
 }
-.su-coder-main-sidebar a:hover {
+.su-coder-main-nav a:hover {
+	background: rgba(white, 0.5);
 	color: #111;
 }
-.su-coder-main-sidebar a.su-coder-main-sidebar-selected {
+.su-coder-main-nav a.su-coder-main-nav-selected {
 	background: white;
 	box-shadow: 5px 0 7px rgba(black, 0.1);
 	color: #111;
+}
+
+@media (min-width: 680px) {
+	.su-coder-main-nav {
+		text-align: left;
+		background: linear-gradient(
+			to right,
+			$color-wp-bg,
+			$color-wp-bg 90%,
+			mix(black, $color-wp-bg, 3)
+		);
+	}
+	.su-coder-main-nav-groups-list {
+		display: block;
+	}
+	.su-coder-main-nav-groups-dropdown {
+		display: none;
+	}
 }
 
 // -----------------------------------------------------------------------------
@@ -140,10 +170,10 @@
 }
 .su-coder-main-shortcodes a i,
 .su-coder-main-shortcodes a img {
+	flex: 0 0 $shortcodes-grid-icon-size;
 	margin-right: 8px;
 	width: $shortcodes-grid-icon-size;
 	height: $shortcodes-grid-icon-size;
-	flex: 0 0 $shortcodes-grid-icon-size;
 	vertical-align: middle;
 	font-size: $shortcodes-grid-icon-size;
 	opacity: 0.8;
@@ -202,7 +232,8 @@
 // - Preview
 // -----------------------------------------------------------------------------
 
-.su-coder-preview {}
+.su-coder-preview {
+}
 
 // =============================================================================
 // Loading indicator
