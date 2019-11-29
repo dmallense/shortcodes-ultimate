@@ -17,36 +17,34 @@ var gulpif = require('gulp-if')
 var livereload = require('gulp-livereload')
 var wpPot = require('gulp-wp-pot')
 var groupMQ = require('gulp-group-css-media-queries')
+var cleanCSS = require('gulp-clean-css')
 
 function compileSASS () {
   sass.compiler = nodeSass
-
-  return gulp
-    .src('./*/scss/*.scss', { base: './' })
-    .pipe(sassGlob())
-    .pipe(gulpif(!yargv.nouglify, sass({ outputStyle: 'compressed' }).on('error', sass.logError)))
-    .pipe(gulpif(!!yargv.nouglify, sass({ outputStyle: 'expanded' }).on('error', sass.logError)))
-    .pipe(autoprefixer({ cascade: false }))
-    .pipe(
-      rename(function (path) {
-        path.dirname = path.dirname.replace('/scss', '/css')
-      })
-    )
-    .pipe(groupMQ())
-    .pipe(gulp.dest('./'))
-    .pipe(livereload())
+  return (
+    gulp
+      .src('./*/scss/*.scss', { base: './' })
+      .pipe(sassGlob())
+      .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+      .pipe(autoprefixer({ cascade: false }))
+      .pipe(
+        rename(function (path) {
+          path.dirname = path.dirname.replace('/scss', '/css')
+        })
+      )
+      .pipe(groupMQ())
+      .pipe(gulpif(!yargv.nouglify, cleanCSS({ compatibility: 'ie10' })))
+      .pipe(gulp.dest('./'))
+      .pipe(livereload())
+  )
 }
 
 function compileJS () {
   return gulp
-    .src(
-      [
-        './includes/js/block-editor/src/index.js',
-        './includes/js/generator/src/index.js',
-        './includes/js/shortcodes/src/index.js'
-      ],
-      { read: false, base: './' }
-    )
+    .src(['./*/js/*/src/*.js', '!./*/js/*/src/*.js'], {
+      read: false,
+      base: './'
+    })
     .pipe(
       tap(function (file) {
         file.contents = browserify(file.path, { debug: true })
