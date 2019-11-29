@@ -3,7 +3,7 @@ Contributors: gn_themes
 License: GPLv3
 Donate link: https://paypal.me/anovladimir
 Tags: shortcode, toggle, columns, button, slider, video, map, visual, responsive, shortcodes, youtube, vimeo, audio, mp3, tabs, jquery, box, accordion, toggle, pullquote, list, image, gallery, navigation, permalink, feed, rss, members, membership, guests, carousel, icons, rtl, multilingual
-Requires at least: 4.5
+Requires at least: 4.6
 Requires PHP: 5.3
 Tested up to: 5.3
 Stable tag: 5.6.1

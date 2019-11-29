@@ -16,6 +16,7 @@ var yargv = require('yargs').argv
 var gulpif = require('gulp-if')
 var livereload = require('gulp-livereload')
 var wpPot = require('gulp-wp-pot')
+var groupMQ = require('gulp-group-css-media-queries')
 
 function compileSASS () {
   sass.compiler = nodeSass
@@ -31,6 +32,7 @@ function compileSASS () {
         path.dirname = path.dirname.replace('/scss', '/css')
       })
     )
+    .pipe(groupMQ())
     .pipe(gulp.dest('./'))
     .pipe(livereload())
 }
