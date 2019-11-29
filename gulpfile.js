@@ -41,7 +41,7 @@ function compileSASS () {
 
 function compileJS () {
   return gulp
-    .src(['./*/js/*/src/*.js', '!./*/js/*/src/*.js'], {
+    .src(['./*/js/*/src/*.js', '!./*/js/*/src/_*.js'], {
       read: false,
       base: './'
     })
