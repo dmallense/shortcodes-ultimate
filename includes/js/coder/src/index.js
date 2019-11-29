@@ -8,7 +8,7 @@ import {
   forEach,
   ajax,
   on
-} from './utils'
+} from './_utils'
 
 const store = {
   el: {},
