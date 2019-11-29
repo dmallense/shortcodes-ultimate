@@ -24,7 +24,8 @@ function compileSASS () {
   return gulp
     .src('./*/scss/*.scss', { base: './' })
     .pipe(sassGlob())
-    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+    .pipe(gulpif(!yargv.nouglify, sass({ outputStyle: 'compressed' }).on('error', sass.logError)))
+    .pipe(gulpif(!!yargv.nouglify, sass({ outputStyle: 'expanded' }).on('error', sass.logError)))
     .pipe(autoprefixer({ cascade: false }))
     .pipe(
       rename(function (path) {
