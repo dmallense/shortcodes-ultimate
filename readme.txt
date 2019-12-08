@@ -151,6 +151,13 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 == Changelog ==
 
+= 5.6.2 =
+
+**Fixes**
+
+- Fixed YouTube autoplay in Chrome within the `[su_lightbox]` shortcode
+
+
 = 5.6.1 =
 
 **What's new**
