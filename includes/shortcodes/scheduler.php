@@ -4,7 +4,7 @@ su_add_shortcode(
 	array(
 		'id'       => 'scheduler',
 		'callback' => 'su_shortcode_scheduler',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/scheduler.svg',
+		'icon' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/coder/shortcodes/scheduler.svg',
 		'name'     => __( 'Scheduler', 'shortcodes-ultimate' ),
 		'type'     => 'wrap',
 		'group'    => 'other',
@@ -43,7 +43,6 @@ su_add_shortcode(
 		'content'  => __( 'Scheduled content', 'shortcodes-ultimate' ),
 		'desc'     => __( 'Allows to show the content only at the specified time period', 'shortcodes-ultimate' ),
 		'note'     => __( 'This shortcode allows you to show content only at the specified time.', 'shortcodes-ultimate' ) . '<br><br>' . __( 'Please pay special attention to the descriptions, which are located below each text field. It will save you a lot of time', 'shortcodes-ultimate' ) . '<br><br>' . __( 'By default, the content of this shortcode will be visible all the time. By using fields below, you can add some limitations. For example, if you type 1-5 in the Days of the week field, content will be only shown from Monday to Friday. Using the same principles, you can limit content visibility from years to seconds.', 'shortcodes-ultimate' ),
-		'icon'     => 'clock-o',
 	)
 );
 
