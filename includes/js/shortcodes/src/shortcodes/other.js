@@ -132,6 +132,12 @@ export default function SUOtherShortcodes () {
           },
           ajax: {
             tError: SUShortcodesL10n.magnificPopup.error
+          },
+          iframe: {
+            markup: '<div class="mfp-iframe-scaler">' +
+              '<div class="mfp-close"></div>' +
+              '<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>' +
+            '</div>'
           }
         })
         .magnificPopup('open')
