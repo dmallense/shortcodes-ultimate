@@ -218,6 +218,8 @@ $shortcodes-grid-icon-size: 24px;
 }
 .su-coder-main-shortcodes a span {
 	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
 	text-transform: capitalize;
 	white-space: nowrap;
 	font-size: 12px;
