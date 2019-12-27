@@ -6,7 +6,7 @@ Tags: shortcode, toggle, columns, button, slider, video, map, visual, responsive
 Requires at least: 4.6
 Requires PHP: 5.3
 Tested up to: 5.3
-Stable tag: 5.6.1
+Stable tag: 5.6.2
 
 A comprehensive collection of visual components for your site
 
