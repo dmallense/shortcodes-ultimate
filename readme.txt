@@ -157,6 +157,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 - Fixed YouTube autoplay in Chrome within the `[su_lightbox]` shortcode
 - Fixed issue when hidden content (like YouTube embed) within spoiler remains clickable
+- Other minor issues
 
 
 = 5.6.1 =
