@@ -151,6 +151,13 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 == Changelog ==
 
+= 5.7.0 =
+
+**What's new**
+
+- The `[su_quote]` shortcode now supports nesting
+
+
 = 5.6.2 =
 
 **Fixes**
