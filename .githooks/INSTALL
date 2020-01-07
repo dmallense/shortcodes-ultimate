@@ -1,8 +1,0 @@
-# 1. CD into project root
-# 2. Run `.githooks/INSTALL`
-
-for f in $(ls -d .githooks/*);
-	do ln -sf $f .git/hooks;
-done
-
-rm .git/hooks/INSTALL
