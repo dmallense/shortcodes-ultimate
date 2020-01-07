@@ -6,7 +6,7 @@ Tags: shortcode, toggle, columns, button, slider, video, map, visual, responsive
 Requires at least: 4.6
 Requires PHP: 5.3
 Tested up to: 5.3
-Stable tag: 5.6.1
+Stable tag: 5.6.2
 
 A comprehensive collection of visual components for your site
 
@@ -151,11 +151,20 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 == Changelog ==
 
+= 5.7.0 =
+
+**What's new**
+
+- The `[su_quote]` shortcode now supports nesting
+
+
 = 5.6.2 =
 
 **Fixes**
 
 - Fixed YouTube autoplay in Chrome within the `[su_lightbox]` shortcode
+- Fixed issue when hidden content (like YouTube embed) within spoiler remains clickable
+- Other minor issues
 
 
 = 5.6.1 =

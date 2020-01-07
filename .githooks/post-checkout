@@ -1,0 +1,1 @@
+git clean -ndx -e "node_modules" && npm install

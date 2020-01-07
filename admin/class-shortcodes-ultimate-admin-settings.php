@@ -134,7 +134,9 @@ final class Shortcodes_Ultimate_Admin_Settings extends Shortcodes_Ultimate_Admin
 			return;
 		}
 
-		wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
+		if ( function_exists( 'wp_enqueue_code_editor' ) ) {
+			wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
+		}
 
 		wp_enqueue_style(
 			'shortcodes-ultimate-admin-settings',
