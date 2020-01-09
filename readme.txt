@@ -6,7 +6,7 @@ Tags: shortcode, toggle, columns, button, slider, video, map, visual, responsive
 Requires at least: 4.6
 Requires PHP: 5.3
 Tested up to: 5.3
-Stable tag: 5.6.2
+Stable tag: 5.7.0
 
 A comprehensive collection of visual components for your site
 
@@ -156,6 +156,11 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 **What's new**
 
 - The `[su_quote]` shortcode now supports nesting
+
+
+**Fixes**
+
+- Fixed compatibility issue with WP 4.5 (white screen at settings screen)
 
 
 = 5.6.2 =

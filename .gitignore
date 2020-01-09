@@ -5,9 +5,12 @@ node_modules/
 build/
 
 # Generated assets
-/*/css/
+/*/css/*
 /*/js/*/*.js
 *.js.map
+
+# Exclude shortcodes.full.css
+!includes/css/shortcodes.full.css
 
 # Local languages
 /languages/*.po
