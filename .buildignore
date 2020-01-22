@@ -2,8 +2,8 @@
 ./*/scss/**
 ./*/js/*/src/**
 node_modules/**
+vendor/fork-awesome/**
 package.json
 package-lock.json
 gulpfile.js
 readme.md
-graphics/**

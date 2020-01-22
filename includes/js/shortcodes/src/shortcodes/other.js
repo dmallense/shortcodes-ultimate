@@ -1,13 +1,25 @@
+/* global jQuery, SUShortcodesL10n */
+
 export default function SUOtherShortcodes () {
   jQuery(document).ready(function ($) {
-  // Spoiler
+    function scrollIn ($el) {
+      if (
+        $(window).scrollTop() + $('body').offset().top > $el.offset().top ||
+        $(window).scrollTop() + $(window).height() < $el.offset().top
+      ) {
+        $(window).scrollTop(
+          $el.offset().top -
+            $('body').offset().top -
+            $el.data('scroll-offset')
+        )
+      }
+    }
+    // Spoiler
     $('body:not(.su-other-shortcodes-loaded)').on(
       'click keypress',
       '.su-spoiler-title',
       function (e) {
-        var $title = $(this)
-        var $spoiler = $title.parent()
-        var bar = $('#wpadminbar').length > 0 ? 28 : 0
+        var $spoiler = $(this).parent()
         // Open/close spoiler
         $spoiler.toggleClass('su-spoiler-closed')
         // Close other spoilers in accordion
@@ -17,7 +29,7 @@ export default function SUOtherShortcodes () {
           .not($spoiler)
           .addClass('su-spoiler-closed')
         // Scroll in spoiler in accordion
-        if ($(window).scrollTop() > $title.offset().top) { $(window).scrollTop($title.offset().top - $title.height() - bar) }
+        scrollIn($spoiler)
         e.preventDefault()
       }
     )
@@ -29,12 +41,14 @@ export default function SUOtherShortcodes () {
         var $tab = $(this)
         var data = $tab.data()
         var index = $tab.index()
-        var is_disabled = $tab.hasClass('su-tabs-disabled')
+        var isDisabled = $tab.hasClass('su-tabs-disabled')
         var $tabs = $tab.parent('.su-tabs-nav').children('span')
         var $panes = $tab.parents('.su-tabs').find('.su-tabs-pane')
-        var $gmaps = $panes.eq(index).find('.su-gmap:not(.su-gmap-reloaded)')
+        var $gmaps = $panes
+          .eq(index)
+          .find('.su-gmap:not(.su-gmap-reloaded)')
         // Check tab is not disabled
-        if (is_disabled) return false
+        if (isDisabled) return false
         // Hide all panes, show selected pane
         $panes
           .removeClass('su-tabs-pane-open')
@@ -73,7 +87,7 @@ export default function SUOtherShortcodes () {
     })
 
     // Activate anchor nav for tabs and spoilers
-    anchor_nav()
+    anchorNav()
 
     // Lightbox
     $(document).on('click', '.su-lightbox', function (e) {
@@ -118,22 +132,28 @@ export default function SUOtherShortcodes () {
           },
           ajax: {
             tError: SUShortcodesL10n.magnificPopup.error
+          },
+          iframe: {
+            markup: '<div class="mfp-iframe-scaler">' +
+              '<div class="mfp-close"></div>' +
+              '<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>' +
+            '</div>'
           }
         })
         .magnificPopup('open')
     })
     // Frame
     $('.su-frame-align-center, .su-frame-align-none').each(function () {
-      var frame_width = $(this)
+      var frameWidth = $(this)
         .find('img')
         .width()
-      $(this).css('width', frame_width + 12)
+      $(this).css('width', frameWidth + 12)
     })
     // Tooltip
     $('.su-tooltip').each(function () {
       var $tt = $(this)
       var $content = $tt.find('.su-tooltip-content')
-      var is_advanced = $content.length > 0
+      var isAdvanced = $content.length > 0
       var data = $tt.data()
       var config = {
         style: {
@@ -150,7 +170,7 @@ export default function SUOtherShortcodes () {
         }
       }
       if (data.title !== '') config.content.title = data.title
-      if (is_advanced) config.content.text = $content
+      if (isAdvanced) config.content.text = $content
       else config.content.text = $tt.attr('title')
       if (data.close === 'yes') config.content.button = true
       if (data.behavior === 'click') {
@@ -169,7 +189,7 @@ export default function SUOtherShortcodes () {
         $(window).on('scroll resize', function () {
           $tt.qtip('reposition')
         })
-      } else if (data.behavior === 'hover' && is_advanced) {
+      } else if (data.behavior === 'hover' && isAdvanced) {
         config.hide = {
           fixed: true,
           delay: 600
@@ -197,7 +217,7 @@ export default function SUOtherShortcodes () {
       }
     )
 
-    function is_transition_supported () {
+    function isTransitionSupported () {
       var thisBody = document.body || document.documentElement
       var thisStyle = thisBody.style
       var support =
@@ -211,8 +231,8 @@ export default function SUOtherShortcodes () {
     }
 
     // Animations is supported
-    if (is_transition_supported()) {
-    // Animate
+    if (isTransitionSupported()) {
+      // Animate
       $('.su-animate').each(function () {
         $(this).one('inview', function (e) {
           var $this = $(this)
@@ -224,25 +244,23 @@ export default function SUOtherShortcodes () {
           }, data.delay * 1000)
         })
       })
-    }
-    // Animations isn't supported
-    else {
+    } else {
+      // Animations isn't supported
       $('.su-animate').css('visibility', 'visible')
     }
 
-    function anchor_nav () {
-    // Check hash
+    function anchorNav () {
+      // Check hash
       if (document.location.hash === '') return
       // Go through tabs
       $('.su-tabs-nav span[data-anchor]').each(function () {
         if ('#' + $(this).data('anchor') === document.location.hash) {
           var $tabs = $(this).parents('.su-tabs')
-          var bar = $('#wpadminbar').length > 0 ? 28 : 0
           // Activate tab
           $(this).trigger('click')
           // Scroll-in tabs container
           window.setTimeout(function () {
-            $(window).scrollTop($tabs.offset().top - bar - 10)
+            scrollIn($tabs)
           }, 100)
         }
       })
@@ -250,18 +268,19 @@ export default function SUOtherShortcodes () {
       $('.su-spoiler[data-anchor]').each(function () {
         if ('#' + $(this).data('anchor') === document.location.hash) {
           var $spoiler = $(this)
-          var bar = $('#wpadminbar').length > 0 ? 28 : 0
           // Activate tab
-          if ($spoiler.hasClass('su-spoiler-closed')) { $spoiler.find('.su-spoiler-title:first').trigger('click') }
+          if ($spoiler.hasClass('su-spoiler-closed')) {
+            $spoiler.find('.su-spoiler-title:first').trigger('click')
+          }
           // Scroll-in tabs container
           window.setTimeout(function () {
-            $(window).scrollTop($spoiler.offset().top - bar - 10)
+            scrollIn($spoiler)
           }, 100)
         }
       })
     }
 
-    if ('onhashchange' in window) $(window).on('hashchange', anchor_nav)
+    if ('onhashchange' in window) $(window).on('hashchange', anchorNav)
 
     $('body').addClass('su-other-shortcodes-loaded')
   })

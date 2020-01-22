@@ -272,7 +272,7 @@ function su_get_gallery_slides( $source, $args = array() ) {
 
 	foreach ( $query->posts as $post ) {
 
-		$attachment_id = 'media' === $source['type'] || 'attachment' === $post->post_type
+		$attachment_id = 'attachment' === $post->post_type
 			? $post->ID
 			: get_post_thumbnail_id( $post->ID );
 
@@ -280,9 +280,13 @@ function su_get_gallery_slides( $source, $args = array() ) {
 			continue;
 		}
 
+		$caption = 'attachment' === $post->post_type || 'yes' === $args['prefer_caption']
+			? wp_get_attachment_caption( $attachment_id )
+			: get_the_title( $post->ID );
+
 		$slide = array(
-			'attachment_id' => $attachment_id,
-			'caption'       => trim( wp_get_attachment_caption( $attachment_id ) ),
+			'attachment_id' => intval( $attachment_id ),
+			'caption'       => trim( $caption ),
 		);
 
 		switch ( $args['link'] ) {

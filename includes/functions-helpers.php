@@ -259,3 +259,21 @@ function su_set_file_extension( $path, $extension ) {
 	return $path;
 
 }
+
+/**
+ * Helper function to add utm-args to an URL.
+ *
+ * @since 5.6.1
+ */
+function su_get_utm_link( $url, $utm ) {
+
+	return add_query_arg(
+		array(
+			'utm_source'   => $utm[0],
+			'utm_medium'   => $utm[1],
+			'utm_campaign' => $utm[2],
+		),
+		$url
+	);
+
+}

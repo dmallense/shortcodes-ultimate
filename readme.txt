@@ -3,17 +3,17 @@ Contributors: gn_themes
 License: GPLv3
 Donate link: https://paypal.me/anovladimir
 Tags: shortcode, toggle, columns, button, slider, video, map, visual, responsive, shortcodes, youtube, vimeo, audio, mp3, tabs, jquery, box, accordion, toggle, pullquote, list, image, gallery, navigation, permalink, feed, rss, members, membership, guests, carousel, icons, rtl, multilingual
-Requires at least: 3.5
-Requires PHP: 5.2.4
+Requires at least: 4.6
+Requires PHP: 5.3
 Tested up to: 5.3
-Stable tag: trunk
+Stable tag: 5.7.0
 
 A comprehensive collection of visual components for your site
 
 
 == Description ==
 
-[Shortcodes Ultimate](https://getshortcodes.com/) is a comprehensive collection of various visual and functional elements, which you can use in the post editor, text widgets or even in template files. Using Shortcodes Ultimate you can easily create tabs, buttons, boxes, sliders and carousels, responsive videos and much, much more.
+[Shortcodes Ultimate](https://getshortcodes.com/?utm_campaign=wporg&utm_source=readme&utm_medium=description) is a comprehensive collection of various visual and functional elements, which you can use in the post editor, text widgets or even in template files. Using Shortcodes Ultimate you can easily create tabs, buttons, boxes, sliders and carousels, responsive videos and much, much more.
 
 
 = Features =
@@ -33,20 +33,20 @@ A comprehensive collection of visual components for your site
 
 = Links =
 
-* [Available shortcodes](https://getshortcodes.com/shortcodes/)
-* [Add-ons](https://getshortcodes.com/add-ons/)
-* [Documentation](https://getshortcodes.com/docs/)
+* [Available shortcodes](https://getshortcodes.com/shortcodes/?utm_campaign=wporg&utm_source=readme&utm_medium=available-shortcodes)
+* [Add-ons](https://getshortcodes.com/add-ons/?utm_campaign=wporg&utm_source=readme&utm_medium=add-ons)
+* [Documentation](https://getshortcodes.com/docs/?utm_campaign=wporg&utm_source=readme&utm_medium=docs)
 * [Support forum](https://wordpress.org/support/plugin/shortcodes-ultimate)
-* [Premium support](https://getshortcodes.com/support/)
+* [Premium support](https://getshortcodes.com/support/?utm_campaign=wporg&utm_source=readme&utm_medium=support)
 * [GitHub](https://github.com/vanokhin/shortcodes-ultimate)
 
 
 = Check out premium add-ons! =
 
-* [Extra Shortcodes](https://getshortcodes.com/add-ons/extra-shortcodes/) - 15+ additional shortcodes
-* [Additional Skins](https://getshortcodes.com/add-ons/additional-skins/) - 60+ additional skins
-* [Shortcode Creator](https://getshortcodes.com/add-ons/shortcode-creator/) - create your own custom shortcodes
-* __[Add-ons Bundle](https://getshortcodes.com/add-ons/add-ons-bundle/)__ - All-in-one!
+* [Extra Shortcodes](https://getshortcodes.com/add-ons/extra-shortcodes/?utm_campaign=wporg&utm_source=readme&utm_medium=extra-shortcodes) - 15+ additional shortcodes
+* [Additional Skins](https://getshortcodes.com/add-ons/additional-skins/?utm_campaign=wporg&utm_source=readme&utm_medium=additional-skins) - 60+ additional skins
+* [Shortcode Creator](https://getshortcodes.com/add-ons/shortcode-creator/?utm_campaign=wporg&utm_source=readme&utm_medium=shortcode-creator) - create your own custom shortcodes
+* __[Add-ons Bundle](https://getshortcodes.com/add-ons/add-ons-bundle/?utm_campaign=wporg&utm_source=readme&utm_medium=add-ons-bundle)__ - All-in-one!
 
 
 = Available Shortcodes =
@@ -150,6 +150,41 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 
 == Changelog ==
+
+= 5.7.0 =
+
+**What's new**
+
+- The `[su_quote]` shortcode now supports nesting
+
+
+**Fixes**
+
+- Fixed compatibility issue with WP 4.5 (white screen at settings screen)
+
+
+= 5.6.2 =
+
+**Fixes**
+
+- Fixed YouTube autoplay in Chrome within the `[su_lightbox]` shortcode
+- Fixed issue when hidden content (like YouTube embed) within spoiler remains clickable
+- Other minor issues
+
+
+= 5.6.1 =
+
+**What's new**
+
+- Comments in the `[su_posts]` shortcode can now be disabled from post editing screen or, using the Disable Comments plugin. Thanks to [Jörn Lund](https://github.com/vanokhin/shortcodes-ultimate/pull/98).
+- `[su_image_carousel]` will now display post titles instead of image captions, where applicable. [Details & How to disable it](https://getshortcodes.com/docs/display-image-captions-instead-of-post-titles-in-the-image-carousel-shortcode/).
+
+**Fixes**
+
+- Fixed `Warning: A non-numeric value encountered` in `[su_slider]`, `[su_carousel]`, and `[su_custom_gallery]`
+- Fixed `download` attribute of the `[su_button]` shortcode
+- Fixed issue with `[su_spoiler]` where nested `[su_youtube]` remains clickable if spoiler is closed
+
 
 = 5.6.0 =
 

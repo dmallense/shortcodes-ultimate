@@ -27,7 +27,7 @@
 							<span class="button"><?php esc_html_e( 'Learn more', 'shortcodes-ultimate' ); ?></span>
 						</div>
 					</div>
-					<a href="<?php echo esc_attr( $addon['permalink'] ); ?>" target="_blank" rel="noopener" class="su-admin-addons-item-overlay"><?php esc_html_e( 'Learn more about', 'shortcodes-ultimate' ); ?> <?php echo esc_html( $addon['title'] ); ?></a>
+					<a href="<?php echo esc_attr( $this->get_addon_permalink( $addon ) ); ?>" target="_blank" rel="noopener" class="su-admin-addons-item-overlay"><?php esc_html_e( 'Learn more about', 'shortcodes-ultimate' ); ?> <?php echo esc_html( $addon['title'] ); ?></a>
 				</div>
 
 			<?php endforeach; ?>

@@ -5,13 +5,14 @@ node_modules/
 build/
 
 # Generated assets
-/*/css/
+/*/css/*
 /*/js/*/*.js
 *.js.map
 
 # Local languages
 /languages/*.po
 /languages/*.mo
+/languages/*.pot
 
 # OS-specific files
 Thumbs.db
