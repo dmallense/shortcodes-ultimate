@@ -156,6 +156,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 **What's new**
 
 - The `[su_quote]` shortcode now supports nesting
+- Improved compatibility with PHP 7.4, thanks to [Jörn Lund](https://github.com/vanokhin/shortcodes-ultimate/issues/100)
 
 
 **Fixes**
