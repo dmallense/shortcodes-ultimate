@@ -155,12 +155,13 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 **What's new**
 
-- The `[su_quote]` shortcode now supports nesting
-- The `[su_feed]` shortcode is now based on SimplePie
-- Improved compatibility with PHP 7.4, thanks to [Jörn Lund](https://github.com/vanokhin/shortcodes-ultimate/issues/100)
-- New setting "Nested shortcodes alternative mode" which enables old-fashioned syntax for nested shortcodes. [Details](https://getshortcodes.com/docs/nested-shortcodes-shortcodes-in-attributes/#nested-shortcodes-with-the-same-tag-names)
-- New option `id` (HTML Anchor) for the `[su_spoiler]` shortcode
+- The `[su_user]` shortcode can now display user meta
+- New option `id` (HTML Anchor) for the `[su_box]` shortcode
 - New option `id` (HTML Anchor) for the `[su_note]` shortcode
+- Improved compatibility with PHP 7.4, thanks to [Jörn Lund](https://github.com/vanokhin/shortcodes-ultimate/issues/100)
+- New setting *Nested shortcodes alternative mode* which enables deprecated syntax for nested shortcodes. [Details](https://getshortcodes.com/docs/nested-shortcodes-shortcodes-in-attributes/#nested-shortcodes-with-the-same-tag-names)
+- The `[su_feed]` shortcode is now based on SimplePie
+- The `[su_quote]` shortcode now supports nesting
 
 
 **Fixes**
