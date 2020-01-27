@@ -158,12 +158,14 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 - The `[su_quote]` shortcode now supports nesting
 - The `[su_feed]` shortcode is now based on SimplePie
 - Improved compatibility with PHP 7.4, thanks to [Jörn Lund](https://github.com/vanokhin/shortcodes-ultimate/issues/100)
-- New option "Nested shortcodes alternative mode" which enables old-fashioned syntax for nested shortcodes. [Details](https://getshortcodes.com/docs/nested-shortcodes-shortcodes-in-attributes/#nested-shortcodes-with-the-same-tag-names)
+- New setting "Nested shortcodes alternative mode" which enables old-fashioned syntax for nested shortcodes. [Details](https://getshortcodes.com/docs/nested-shortcodes-shortcodes-in-attributes/#nested-shortcodes-with-the-same-tag-names)
+- New option `id` (HTML Anchor) for the `[su_spoiler]` shortcode
+- New option `id` (HTML Anchor) for the `[su_note]` shortcode
 
 
 **Fixes**
 
-- Fixed compatibility issue with WP 4.5 (white screen at settings screen)
+- Fixed compatibility issue with WordPress version 4.5 (white screen at the settings screen)
 
 
 = 5.6.2 =
