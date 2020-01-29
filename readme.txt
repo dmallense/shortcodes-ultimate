@@ -153,9 +153,10 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 = 5.7.1 =
 
-**What's new**
+**Fixes**
 
 - Updated documentation for the `[su_user]` shortcode. New fields: Nickname, First Name, Last Name, Description, & Locale
+- Fixed warning in Google Search Console when testing page with the `[su_youtube]` shortcode: `Allow attribute will take precedence over ‘allowfullscreen’.`
 
 
 = 5.7.0 =
