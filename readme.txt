@@ -6,7 +6,7 @@ Tags: shortcode, toggle, columns, button, slider
 Requires at least: 4.6
 Requires PHP: 5.3
 Tested up to: 5.3
-Stable tag: 5.7.0
+Stable tag: 5.7.1
 
 A comprehensive collection of visual components for your site
 
@@ -150,6 +150,13 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 
 == Changelog ==
+
+= 5.7.1 =
+
+**What's new**
+
+- Updated documentation for the `[su_user]` shortcode. New fields: Nickname, First Name, Last Name, Description, & Locale
+
 
 = 5.7.0 =
 
