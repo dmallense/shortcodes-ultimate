@@ -29,7 +29,7 @@ su_add_shortcode(
 				),
 				'default' => 'display_name',
 				'name'    => __( 'Field', 'shortcodes-ultimate' ),
-				'desc'    => __( 'User data field name', 'shortcodes-ultimate' ),
+				'desc'    => __( 'User data field name. Custom meta field names are also allowed.', 'shortcodes-ultimate' ),
 			),
 			'default' => array(
 				'default' => '',
