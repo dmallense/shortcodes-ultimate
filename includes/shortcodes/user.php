@@ -12,6 +12,11 @@ su_add_shortcode(
 			'field'   => array(
 				'type'    => 'select',
 				'values'  => array(
+					'first_name'          => __( 'First name', 'shortcodes-ultimate' ),
+					'last_name'           => __( 'Last name', 'shortcodes-ultimate' ),
+					'nickname'            => __( 'Nickname', 'shortcodes-ultimate' ),
+					'description'         => __( 'Description', 'shortcodes-ultimate' ),
+					'locale'              => __( 'Locale', 'shortcodes-ultimate' ),
 					'display_name'        => __( 'Display name', 'shortcodes-ultimate' ),
 					'ID'                  => __( 'ID', 'shortcodes-ultimate' ),
 					'user_login'          => __( 'Login', 'shortcodes-ultimate' ),
@@ -52,7 +57,7 @@ su_add_shortcode(
 				'desc'    => __( 'You can apply custom filter to the retrieved value. Enter here function name. Your function must accept one argument and return modified value. Name of your function must include word <b>filter</b>. Example function: ', 'shortcodes-ultimate' ) . "<br /><pre><code style='display:block;padding:5px'>function my_custom_filter( \$value ) {\n\treturn 'Value is: ' . \$value;\n}</code></pre>",
 			),
 		),
-		'desc'     => __( 'User data', 'shortcodes-ultimate' ),
+		'desc'     => __( 'This shortcode can display a user data, like login or email, including meta fields', 'shortcodes-ultimate' ),
 		'icon'     => 'info-circle',
 	)
 );
