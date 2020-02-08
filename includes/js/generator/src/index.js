@@ -971,7 +971,7 @@ window.SUG.App = (($) => {
   }
 
   self.parseSettings = function () {
-    var settingsSelector = 'on' === $('su-generator-option-skip').val()
+    var settingsSelector = $('#su-generator-option-skip').val() === 'on'
       ? '#su-generator-settings .su-generator-attr-container:not(.su-generator-skip) .su-generator-attr'
       : '#su-generator-settings .su-generator-attr-container .su-generator-attr'
     // Prepare data
