@@ -227,9 +227,15 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		'posts'
 	);
 
-	// Validate template name
-	if ( ! su_is_valid_template_name( $atts['template'] ) ) {
-		return su_error_message( 'Posts', __( 'invalid template name', 'shortcodes-ultimate' ) );
+	$atts['template'] = su_posts_locate_template( $atts['template'] );
+
+	if ( ! $atts['template'] || ! su_is_valid_template_name( $atts['template'] ) ) {
+
+		return su_error_message(
+			'Posts',
+			__( 'invalid template name', 'shortcodes-ultimate' )
+		);
+
 	}
 
 	$author              = sanitize_text_field( $atts['author'] );
@@ -378,42 +384,52 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		}
 		$args['post_parent'] = intval( $post_parent );
 	}
-	// Save original posts
-	global $posts;
-	$original_posts = $posts;
-	// Query posts
-	$posts = new WP_Query( $args );
-	// Add extension to template name
-	$atts['template'] = su_set_file_extension( $atts['template'], 'php' );
-	// Buffer output
-	ob_start();
-	// Search for template in stylesheet directory
-	if ( file_exists( get_stylesheet_directory() . '/' . $atts['template'] ) ) {
-		load_template( get_stylesheet_directory() . '/' . $atts['template'], false );
-	}
-	// Search for template in theme directory
-	elseif ( file_exists( get_template_directory() . '/' . $atts['template'] ) ) {
-		load_template( get_template_directory() . '/' . $atts['template'], false );
-	}
-	// Search for template in plugin directory
-	elseif ( file_exists( path_join( dirname( SU_PLUGIN_FILE ), $atts['template'] ) ) ) {
-		load_template(
-			path_join( dirname( SU_PLUGIN_FILE ), $atts['template'] ),
-			false
-		);
-	}
-	// Template not found
-	else {
-		echo su_error_message(
-			'Posts',
-			__( 'template not found', 'shortcodes-ultimate' )
-		);
-	}
-	$output = ob_get_clean();
-	// Return original posts
-	$posts = $original_posts;
-	// Reset the query
+
+	$su_posts = new WP_Query( $args );
+
+	$output = su_posts_include_template( $atts, $su_posts );
+
 	wp_reset_postdata();
+
 	su_query_asset( 'css', 'su-shortcodes' );
+
 	return $output;
+
+}
+
+function su_posts_include_template( $atts, $su_posts ) {
+
+	ob_start();
+
+	include $atts['template'];
+
+	return ob_get_clean();
+
+}
+
+function su_posts_locate_template( $template ) {
+
+	$template = su_set_file_extension( $template, 'php' );
+	$template = ltrim( $template, '\\/' );
+
+	$paths = array(
+		get_stylesheet_directory(),
+		get_template_directory(),
+		plugin_dir_path( dirname( dirname( __FILE__ ) ) ),
+	);
+
+	foreach ( $paths as $path ) {
+
+		$path = untrailingslashit( $path );
+		$path = path_join( $path, $template );
+		$path = realpath( $path );
+
+		if ( $path ) {
+			return $path;
+		}
+
+	}
+
+	return false;
+
 }
