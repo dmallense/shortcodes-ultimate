@@ -153,6 +153,11 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 = 5.7.1 =
 
+**What's new**
+
+- The `[su_user]` shortcode now support nested shortcodes in the `user_id` attribute
+
+
 **Fixes**
 
 - Updated documentation for the `[su_user]` shortcode. New fields: Nickname, First Name, Last Name, Description, & Locale
