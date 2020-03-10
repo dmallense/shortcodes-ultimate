@@ -5,7 +5,7 @@ Donate link: https://paypal.me/anovladimir
 Tags: shortcode, toggle, columns, button, slider
 Requires at least: 4.6
 Requires PHP: 5.3
-Tested up to: 5.3
+Tested up to: 5.4
 Stable tag: 5.7.1
 
 A comprehensive collection of visual components for your site
