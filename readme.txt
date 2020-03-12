@@ -6,7 +6,7 @@ Tags: shortcode, toggle, columns, button, slider
 Requires at least: 4.6
 Requires PHP: 5.3
 Tested up to: 5.4
-Stable tag: 5.7.1
+Stable tag: 5.8.0
 
 A comprehensive collection of visual components for your site
 
@@ -151,7 +151,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 == Changelog ==
 
-= 5.7.1 =
+= 5.8.0 =
 
 **What's new**
 
