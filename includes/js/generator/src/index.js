@@ -971,10 +971,13 @@ window.SUG.App = (($) => {
   }
 
   self.parseSettings = function () {
+    var settingsSelector = $('#su-generator-option-skip').val() === 'on'
+      ? '#su-generator-settings .su-generator-attr-container:not(.su-generator-skip) .su-generator-attr'
+      : '#su-generator-settings .su-generator-attr-container .su-generator-attr'
     // Prepare data
     var query = $selected.val()
     var prefix = $prefix.val()
-    var $settings = $('#su-generator-settings .su-generator-attr-container:not(.su-generator-skip) .su-generator-attr')
+    var $settings = $(settingsSelector)
     var $content = $('textarea#su-generator-content')
     var content = $content.length ? $content.val() : 'false'
     var result = new String('')
