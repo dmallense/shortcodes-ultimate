@@ -156,6 +156,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 **What's new**
 
 - The `[su_user]` shortcode now support nested shortcodes in the `user_id` attribute
+- The `[su_feed]` now has the `target` attribute, which allow opening feed links in a new tab
 
 
 **Fixes**
