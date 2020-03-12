@@ -62,9 +62,10 @@ function su_shortcode_feed( $atts = null, $content = null ) {
 	foreach ( $items as $item ) {
 
 		$output .= sprintf(
-			'<li><a href="%s">%s</a></li>',
-			$item->get_permalink(),
-			$item->get_title()
+			'<li><a href="%s" title="%s">%s</a></li>',
+			esc_attr( $item->get_permalink() ),
+			esc_attr( $item->get_description() ),
+			wp_kses_post( $item->get_title() )
 		);
 
 	}
