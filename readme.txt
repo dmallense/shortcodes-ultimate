@@ -164,6 +164,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 - Fixed warning in Google Search Console when testing page with the `[su_youtube]` shortcode: `Allow attribute will take precedence over ‘allowfullscreen’.`
 - Fixed issue when some attributes weren't inserted by the Insert shortcode button
 - Improved compatibility with PHP 7.4, thanks to [Jörn Lund](https://github.com/mcguffin)
+- `[su_feed]` links now have title attribute with descriptions
 
 
 = 5.7.0 =
