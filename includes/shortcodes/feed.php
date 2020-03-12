@@ -9,13 +9,13 @@ su_add_shortcode(
 		'type'     => 'single',
 		'group'    => 'content other',
 		'atts'     => array(
-			'url'   => array(
+			'url'    => array(
 				'values'  => array(),
 				'default' => '',
 				'name'    => __( 'URL', 'shortcodes-ultimate' ),
 				'desc'    => __( 'RSS feed URL', 'shortcodes-ultimate' ),
 			),
-			'limit' => array(
+			'limit'  => array(
 				'type'    => 'slider',
 				'min'     => 1,
 				'max'     => 20,
@@ -24,7 +24,17 @@ su_add_shortcode(
 				'name'    => __( 'Limit', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Number of items to show', 'shortcodes-ultimate' ),
 			),
-			'class' => array(
+			'target' => array(
+				'type'    => 'select',
+				'values'  => array(
+					'self'  => __( 'Open in same tab', 'shortcodes-ultimate' ),
+					'blank' => __( 'Open in new tab', 'shortcodes-ultimate' ),
+				),
+				'default' => 'self',
+				'name'    => __( 'Links target', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Feed links target', 'shortcodes-ultimate' ),
+			),
+			'class'  => array(
 				'type'    => 'extra_css_class',
 				'name'    => __( 'Extra CSS class', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Additional CSS class name(s) separated by space(s)', 'shortcodes-ultimate' ),
@@ -62,8 +72,9 @@ function su_shortcode_feed( $atts = null, $content = null ) {
 	foreach ( $items as $item ) {
 
 		$output .= sprintf(
-			'<li><a href="%s" title="%s">%s</a></li>',
+			'<li><a href="%s" target="_%s" title="%s">%s</a></li>',
 			esc_attr( $item->get_permalink() ),
+			sanitize_key( $atts['target'] ),
 			esc_attr( $item->get_description() ),
 			wp_kses_post( $item->get_title() )
 		);
