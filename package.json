@@ -9,8 +9,8 @@
 	},
 	"private": true,
 	"devDependencies": {
-		"@babel/core": "^7.8.3",
-		"@babel/preset-env": "^7.8.3",
+		"@babel/core": "^7.8.7",
+		"@babel/preset-env": "^7.8.7",
 		"@babel/preset-react": "^7.8.3",
 		"babelify": "^10.0.0",
 		"browserify": "^16.5.0",
@@ -30,7 +30,7 @@
 		"gulp-uglify": "^3.0.2",
 		"gulp-wp-pot": "^2.3.6",
 		"node-sass": "^4.13.1",
-		"yargs": "^14.2.2"
+		"yargs": "^14.2.3"
 	},
 	"dependencies": {}
 }
