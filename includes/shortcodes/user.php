@@ -75,6 +75,8 @@ function su_shortcode_user( $atts = null, $content = null ) {
 
 	}
 
+	$atts['user_id'] = su_do_attribute( $atts['user_id'] );
+
 	if ( ! $atts['user_id'] ) {
 		$atts['user_id'] = get_current_user_id();
 	}

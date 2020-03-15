@@ -5,8 +5,8 @@ Donate link: https://paypal.me/anovladimir
 Tags: shortcode, toggle, columns, button, slider
 Requires at least: 4.6
 Requires PHP: 5.3
-Tested up to: 5.3
-Stable tag: 5.7.1
+Tested up to: 5.4
+Stable tag: 5.8.0
 
 A comprehensive collection of visual components for your site
 
@@ -151,12 +151,21 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 == Changelog ==
 
-= 5.7.1 =
+= 5.8.0 =
+
+**What's new**
+
+- The `[su_user]` shortcode now support nested shortcodes in the `user_id` attribute
+- The `[su_feed]` now has the `target` attribute, which allow opening feed links in a new tab
+
 
 **Fixes**
 
 - Updated documentation for the `[su_user]` shortcode. New fields: Nickname, First Name, Last Name, Description, & Locale
 - Fixed warning in Google Search Console when testing page with the `[su_youtube]` shortcode: `Allow attribute will take precedence over ‘allowfullscreen’.`
+- Fixed issue when some attributes weren't inserted by the Insert shortcode button
+- Improved compatibility with PHP 7.4, thanks to [Jörn Lund](https://github.com/mcguffin)
+- `[su_feed]` links now have title attribute with descriptions
 
 
 = 5.7.0 =
