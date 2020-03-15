@@ -1,3 +1,17 @@
+<?php defined( ABSPATH ) || exit; ?>
+
+<?php
+/**
+ * READ BEFORE EDITING!
+ *
+ * Do not edit templates in the plugin folder, since all your changes will be
+ * lost after the plugin update. Read the following article to learn how to
+ * change this template or create a custom one:
+ *
+ * https://getshortcodes.com/docs/posts/#built-in-templates
+ */
+?>
+
 <div class="su-posts su-posts-teaser-loop">
 	<?php if ( $su_posts->have_posts() ) : ?>
 		<?php while ( $su_posts->have_posts() ) : ?>
@@ -12,6 +26,6 @@
 
 		<?php endwhile; ?>
 	<?php else : ?>
-		<h4><?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?></h4>
+		<p class="su-posts-not-found"><?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?></p>
 	<?php endif; ?>
 </div>
