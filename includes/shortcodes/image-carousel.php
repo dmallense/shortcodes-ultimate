@@ -132,7 +132,7 @@ su_add_shortcode(
 					'lightbox'   => __( 'Lightbox', 'shortcodes-ultimate' ),
 					'custom'     => __( 'Custom link (added in media editor)', 'shortcodes-ultimate' ),
 					'attachment' => __( 'Attachment page', 'shortcodes-ultimate' ),
-					'post'       => __( 'Post', 'shortcodes-ultimate' ),
+					'post'       => __( 'Post permalink', 'shortcodes-ultimate' ),
 				),
 				'default' => 'none',
 				'name'    => __( 'Link to', 'shortcodes-ultimate' ),
