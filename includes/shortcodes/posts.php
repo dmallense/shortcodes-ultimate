@@ -22,7 +22,7 @@ su_add_shortcode(
 				'default' => '',
 				'name'    => __( 'Post IDs', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Enter comma separated IDs of the posts that you want to show',
+					'Comma separated list of IDs of the posts that must be shown',
 					'shortcodes-ultimate'
 				),
 			),
@@ -34,7 +34,7 @@ su_add_shortcode(
 				'default' => get_option( 'posts_per_page' ),
 				'name'    => __( 'Posts per page', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Specify number of posts that you want to show. Enter -1 to get all posts',
+					'Number of posts that will be shown. Use -1 to display all posts',
 					'shortcodes-ultimate'
 				),
 			),
@@ -45,7 +45,7 @@ su_add_shortcode(
 				'default'  => 'post',
 				'name'     => __( 'Post types', 'shortcodes-ultimate' ),
 				'desc'     => __(
-					'Select post types. Hold Ctrl key to select multiple post types',
+					'Post types of the posts to show',
 					'shortcodes-ultimate'
 				),
 			),
@@ -55,7 +55,7 @@ su_add_shortcode(
 				'default' => 'category',
 				'name'    => __( 'Taxonomy', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Select taxonomy to show posts from',
+					'Taxonomy to show posts from',
 					'shortcodes-ultimate'
 				),
 			),
@@ -65,21 +65,21 @@ su_add_shortcode(
 				'values'   => array(),
 				'default'  => '',
 				'name'     => __( 'Terms', 'shortcodes-ultimate' ),
-				'desc'     => __( 'Select terms to show posts from', 'shortcodes-ultimate' ),
+				'desc'     => __( 'The terms to show posts from', 'shortcodes-ultimate' ),
 			),
 			'tax_operator'        => array(
 				'type'    => 'select',
 				'values'  => array(
 					'IN'     => __(
-						'IN - posts that have any of selected categories terms',
+						'IN - posts that have any of the selected terms',
 						'shortcodes-ultimate'
 					),
 					'NOT IN' => __(
-						'NOT IN - posts that is does not have any of selected terms',
+						'NOT IN - posts that do not have any of the selected terms',
 						'shortcodes-ultimate'
 					),
 					'AND'    => __(
-						'AND - posts that have all selected terms',
+						'AND - posts that have all of the selected terms',
 						'shortcodes-ultimate'
 					),
 				),
@@ -91,7 +91,7 @@ su_add_shortcode(
 				'default' => '',
 				'name'    => __( 'Authors', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Enter here comma-separated list of author\'s IDs. Example: 1,7,18',
+					'Comma separated list of author IDs. Example: 1,7,18',
 					'shortcodes-ultimate'
 				),
 			),
@@ -99,7 +99,7 @@ su_add_shortcode(
 				'default' => '',
 				'name'    => __( 'Meta key', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Enter meta key name to show posts that have this key',
+					'Meta key name to show posts that have the specified meta field',
 					'shortcodes-ultimate'
 				),
 			),
@@ -111,7 +111,7 @@ su_add_shortcode(
 				'default' => 0,
 				'name'    => __( 'Offset', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Specify offset to start posts loop not from first post',
+					'Number of post to displace or pass over. The offset parameter is ignored when posts_per_page=-1 (show all posts) is used.',
 					'shortcodes-ultimate'
 				),
 			),
@@ -121,7 +121,7 @@ su_add_shortcode(
 					'desc' => __( 'Descending', 'shortcodes-ultimate' ),
 					'asc'  => __( 'Ascending', 'shortcodes-ultimate' ),
 				),
-				'default' => 'DESC',
+				'default' => 'desc',
 				'name'    => __( 'Order', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Posts order', 'shortcodes-ultimate' ),
 			),
@@ -179,7 +179,7 @@ su_add_shortcode(
 				'default' => 'no',
 				'name'    => __( 'Ignore sticky', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Select Yes to ignore posts that is sticked',
+					'Select Yes to ignore sticky posts',
 					'shortcodes-ultimate'
 				),
 			),
@@ -195,10 +195,33 @@ su_add_shortcode(
 function su_shortcode_posts( $atts = null, $content = null ) {
 	$original_atts = $atts;
 
-	// Parse attributes
+	// ‼️
+	// replace :208 with su_parse_shortcode_atts()
+	$atts = su_parse_shortcode_atts(
+		'posts',
+		$atts,
+		array(
+			'taxonomy_2'     => null,
+			'taxonomy_3'     => null,
+			'taxonomy_4'     => null,
+			'taxonomy_5'     => null,
+			'tax_2_term'     => null,
+			'tax_3_term'     => null,
+			'tax_4_term'     => null,
+			'tax_5_term'     => null,
+			'tax_2_operator' => null,
+			'tax_3_operator' => null,
+			'tax_4_operator' => null,
+			'tax_5_operator' => null,
+		)
+	);
+
 	$atts = shortcode_atts(
 		array(
-			'template'            => 'templates/default-loop.php',
+			// 'template'            => 'templates/default-loop.php',
+
+			// ‼️
+			// id attribute isn't equal to the default '' / false
 			'id'                  => false,
 			'posts_per_page'      => get_option( 'posts_per_page' ),
 			'post_type'           => 'post',
@@ -219,10 +242,7 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		'posts'
 	);
 
-	$args = array(
-		'category_name' => '',
-		'post_type'     => explode( ',', $post_type ),
-	);
+	$args = array();
 
 	$args['author']              = sanitize_text_field( $atts['author'] );
 	$args['ignore_sticky_posts'] = 'yes' === $atts['ignore_sticky_posts'];
@@ -261,7 +281,9 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		: $atts['post_type'];
 
 
-
+	// --------------------------------------------------------------------------
+	//
+	// --------------------------------------------------------------------------
 
 
 	$tax_operator = $atts['tax_operator'];
@@ -338,6 +360,9 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 	}
 
 
+	// --------------------------------------------------------------------------
+	//
+	// --------------------------------------------------------------------------
 
 
 	$atts['template'] = su_posts_locate_template( $atts['template'] );
