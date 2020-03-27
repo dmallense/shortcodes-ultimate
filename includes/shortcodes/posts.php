@@ -220,23 +220,19 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 	);
 
 	$args = array(
-		'category_name'  => '',
-		'post_type'      => explode( ',', $post_type ),
-		'posts_per_page' => $posts_per_page,
-		'tag'            => $tag,
+		'category_name' => '',
+		'post_type'     => explode( ',', $post_type ),
 	);
 
-	$args['author'] = sanitize_text_field( $atts['author'] );
-
+	$args['author']              = sanitize_text_field( $atts['author'] );
 	$args['ignore_sticky_posts'] = 'yes' === $atts['ignore_sticky_posts'];
-
-	$args['offset'] = intval( $atts['offset'] );
-
-	$args['order'] = sanitize_key( $atts['order'] );
-
-	$args['orderby'] = sanitize_key( $atts['orderby'] );
-
-	$args['meta_key'] = sanitize_text_field( $atts['meta_key'] );
+	$args['offset']              = intval( $atts['offset'] );
+	$args['order']               = sanitize_key( $atts['order'] );
+	$args['orderby']             = sanitize_key( $atts['orderby'] );
+	$args['meta_key']            = sanitize_text_field( $atts['meta_key'] );
+	$args['post_status']         = sanitize_key( $atts['post_status'] );
+	$args['posts_per_page']      = intval( $atts['posts_per_page'] );
+	$args['tag']                 = sanitize_text_field( $atts['tag'] );
 
 	if ( 'current' === $atts['post_parent'] ) {
 		$atts['post_parent'] = get_the_ID();
@@ -255,38 +251,23 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		$args['post__in'] = $atts['id'];
 	}
 
-
-
-	$post_status    = $atts['post_status'];
-	$post_type      = sanitize_text_field( $atts['post_type'] );
-	$posts_per_page = intval( $atts['posts_per_page'] );
-	$tag            = sanitize_text_field( $atts['tag'] );
-	$tax_operator   = $atts['tax_operator'];
-	$tax_term       = sanitize_text_field( $atts['tax_term'] );
-	$taxonomy       = sanitize_key( $atts['taxonomy'] );
-
-	// Post Status
-	$post_status = explode( ', ', $post_status );
-	$validated   = array();
-	$available   = array(
-		'publish',
-		'pending',
-		'draft',
-		'auto-draft',
-		'future',
-		'private',
-		'inherit',
-		'trash',
-		'any',
+	$atts['post_type'] = array_map(
+		'sanitize_text_field',
+		explode( ',', $atts['post_type'] )
 	);
-	foreach ( $post_status as $unvalidated ) {
-		if ( in_array( $unvalidated, $available, true ) ) {
-			$validated[] = $unvalidated;
-		}
-	}
-	if ( ! empty( $validated ) ) {
-		$args['post_status'] = $validated;
-	}
+
+	$args['post_type'] = 1 === count( $atts['post_type'] )
+		? $atts['post_type'][0]
+		: $atts['post_type'];
+
+
+
+
+
+	$tax_operator = $atts['tax_operator'];
+	$tax_term     = sanitize_text_field( $atts['tax_term'] );
+	$taxonomy     = sanitize_key( $atts['taxonomy'] );
+
 	// If taxonomy attributes, create a taxonomy query
 	if ( ! empty( $taxonomy ) && ! empty( $tax_term ) ) {
 		// Term string to array
@@ -355,6 +336,7 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 
 		$args = array_merge( $args, $tax_args );
 	}
+
 
 
 
