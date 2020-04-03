@@ -281,9 +281,6 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		: $atts['post_type'];
 
 
-	// --------------------------------------------------------------------------
-	//
-	// --------------------------------------------------------------------------
 
 
 	$tax_operator = $atts['tax_operator'];
@@ -359,11 +356,9 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		$args = array_merge( $args, $tax_args );
 	}
 
-
 	// --------------------------------------------------------------------------
 	//
 	// --------------------------------------------------------------------------
-
 
 	$atts['template'] = su_posts_locate_template( $atts['template'] );
 
