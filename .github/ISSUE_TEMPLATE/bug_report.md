@@ -30,6 +30,7 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. iOS8.1]
  - Browser [e.g. stock browser, safari]
  - Plugin version [e.g. 5.0.5]
+ - PHP version [e.g. 5.3.0]
 
 **Additional context**
 Add any other context about the problem here.
