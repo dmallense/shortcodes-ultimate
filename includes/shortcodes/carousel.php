@@ -193,6 +193,11 @@ function su_shortcode_carousel( $atts = null, $content = null ) {
 		foreach ( (array) $slides as $slide ) {
 			// Crop the image
 			$image = su_image_resize( $slide['image'], ( round( $atts['width'] / $atts['items'] ) - 18 ), $atts['height'] );
+
+			if ( is_wp_error( $image ) ) {
+				continue;
+			}
+
 			// Prepare slide title
 			$title = ( $atts['title'] === 'yes' && $slide['title'] ) ? '<span class="su-carousel-slide-title">' . stripslashes( $slide['title'] ) . '</span>' : '';
 			// Open slide
