@@ -102,7 +102,7 @@ function su_get_slides( $args ) {
 				? $post->ID
 				: get_post_thumbnail_id( $post->ID );
 
-			if ( ! intval( $thumb ) ) {
+			if ( ! su_is_positive_number( $thumb ) ) {
 				continue;
 			}
 
