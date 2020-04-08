@@ -277,3 +277,25 @@ function su_get_utm_link( $url, $utm ) {
 	);
 
 }
+
+/**
+ * Helper function to check if a passed value is a positive number.
+ *
+ * Returns true for positive numbers, allows integers and strings.
+ *
+ * @param  mixed  $value Value to test
+ * @return bool          True if passed value is a positive number (integer or string), False otherwise
+ */
+function su_is_positive_number( $value ) {
+
+	if ( ! is_string( $value ) && ! is_int( $value ) ) {
+		return false;
+	}
+
+	if ( ! ctype_digit( (string) $value ) ) {
+		return false;
+	}
+
+	return (int) $value > 0;
+
+}
