@@ -155,6 +155,7 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 **Fixes**
 
+- Fixed fatal error on WP 5.4 in Gallery, SLider, and Carousel shortcodes. Thanks to [Jörn Lund](https://github.com/mcguffin)
 - Translation fixes
 
 
