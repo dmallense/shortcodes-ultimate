@@ -53,19 +53,12 @@ function su_filter_custom_formatting( $content ) {
 }
 
 /**
- * Simple filter to parse shortcodes and blocks in a string with raw post
- * content.
+ * Simple filter to apply the_content filters.
  *
  * @since 5.8.0
  * @param  string $content Raw content
  * @return string          Parsed content
  */
-function su_filter_post_content( $content ) {
-
-	$content = do_shortcode( $content );
-	$content = parse_blocks( $content );
-	$content = wpautop( $content );
-
-	return $content;
-
+function su_filter_the_content( $content ) {
+	return apply_filters( 'the_content', $content );
 }
