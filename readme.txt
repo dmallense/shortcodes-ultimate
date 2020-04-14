@@ -158,6 +158,11 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 - New option `anchor` for `[su_divider]` shortcode
 
 
+**Changes**
+
+- `[su_document]` shortcode is now *deprecated*. It will continue to work, but will be removed from the Insert shortcode window and from documentation
+
+
 **Fixes**
 
 - Fixed fatal error on WP 5.4 in Gallery, Slider, and Carousel shortcodes. Thanks to [Jörn Lund](https://github.com/mcguffin)
