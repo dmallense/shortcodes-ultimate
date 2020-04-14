@@ -153,9 +153,14 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 = 5.8.1 =
 
+**What's new**
+
+- New option `anchor` for `[su_divider]` shortcode
+
+
 **Fixes**
 
-- Fixed fatal error on WP 5.4 in Gallery, SLider, and Carousel shortcodes. Thanks to [Jörn Lund](https://github.com/mcguffin)
+- Fixed fatal error on WP 5.4 in Gallery, Slider, and Carousel shortcodes. Thanks to [Jörn Lund](https://github.com/mcguffin)
 - Translation fixes
 
 
