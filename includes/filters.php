@@ -55,7 +55,7 @@ function su_filter_custom_formatting( $content ) {
 /**
  * Simple filter to apply the_content filters.
  *
- * @since 5.8.0
+ * @since 5.8.1
  * @param  string $content Raw content
  * @return string          Parsed content
  */
