@@ -53,6 +53,8 @@ function su_shortcode_feed( $atts = null, $content = null ) {
 	$items  = array();
 	$output = '';
 
+	$atts['url'] = wp_specialchars_decode( $atts['url'] );
+
 	if ( ! filter_var( $atts['url'], FILTER_VALIDATE_URL ) ) {
 		return su_error_message( 'Feed', __( 'invalid feed URL', 'shortcodes-ultimate' ) );
 	}
