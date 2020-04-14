@@ -161,6 +161,8 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 **Fixes**
 
 - Fixed fatal error on WP 5.4 in Gallery, Slider, and Carousel shortcodes. Thanks to [Jörn Lund](https://github.com/mcguffin)
+- The `[su_feed]` can now work with URLs containing `&amp;`, converted by the block editor
+- Fixed PHP notices in the admin part
 - Translation fixes
 
 
