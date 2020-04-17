@@ -153,9 +153,15 @@ For help with premium add-ons, please [open new support ticket](https://getshort
 
 = 5.8.2 =
 
+**What's new**
+
+- `[su_lightbox_content]` shortcode now has a couple of new options: `min_width` and `max_width`
+
+
 **Fixes**
 
 - Fixed PHP notice `undefined variable` in `[su_post]` shortcode
+- Minor UI improvements
 
 
 = 5.8.1 =
