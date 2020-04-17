@@ -137,16 +137,11 @@ Yes! [How to use shortcodes in template files](https://getshortcodes.com/docs/us
 = Will this plugin work with my theme? =
 Yes! Shortcodes Ultimate is designed to work with any theme, but your theme must include very basic things: 'wp_head' and 'wp_footer' template tags. Sometimes, the plugin may not work properly because of javascript errors caused by third-party plugins/themes.
 
-= Where can I report a bug? =
-You should [create an issue at GitHub](https://github.com/gndev/shortcodes-ultimate/) or [open new support ticket](https://getshortcodes.com/contact/) (for premium add-ons only).
+= Where can I report a bug or suggest a feature? =
+[Create an issue at GitHub](https://github.com/vanokhin/shortcodes-ultimate/).
 
-= Where to find additional information? =
-Plugin has comprehensive [documentation](http://getshortcodes.com/docs/).
-Also, you can find more answers at [support page](https://getshortcodes.com/support/).
-
-= Where can I get support or talk to other users? =
-If you get stuck, you can ask for help in [official plugin forum](https://wordpress.org/support/plugin/shortcodes-ultimate).
-For help with premium add-ons, please [open new support ticket](https://getshortcodes.com/contact/).
+= Where can I get help? =
+First, visit [Shortcodes Ultimate Help Center](https://getshortcodes.com/support/). If you get stuck, ask for help at the [official support forum](https://wordpress.org/support/plugin/shortcodes-ultimate). Also, you can get premium support from the developer by purchasing any of the [premium add-ons](https://getshortcodes.com/add-ons/).
 
 
 == Changelog ==
