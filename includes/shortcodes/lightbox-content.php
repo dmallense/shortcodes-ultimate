@@ -14,12 +14,42 @@ su_add_shortcode(
 			'id'         => array(
 				'default' => '',
 				'name'    => __( 'ID', 'shortcodes-ultimate' ),
-				'desc'    => sprintf( __( 'Enter here the ID from Content source field. %1$s Example value: %2$s', 'shortcodes-ultimate' ), '<br>', '<b%value>my-custom-popup</b>' ),
+				'desc'    => sprintf(
+					'%1$s %2$s: %3$s',
+					__( 'The ID of the element. Use the value from the Content source field of the lightbox shortcode.', 'shortcodes-ultimate' ),
+					__( 'Example', 'shortcodes-ultimate' ),
+					'<b%value>my-custom-popup</b>'
+				),
 			),
-			'width'      => array(
-				'default' => '50%',
+			'width'      => array( // TODO: change default values (1)
+				'default' => '96vw',
 				'name'    => __( 'Width', 'shortcodes-ultimate' ),
-				'desc'    => sprintf( __( 'Adjust the width for inline content (in pixels or percents). %1$s Example values: %2$s, %3$s, %4$s', 'shortcodes-ultimate' ), '<br>', '<b%value>300px</b>', '<b%value>600px</b>', '<b%value>90%</b>' ),
+				'desc'    => sprintf(
+					'%1$s<br>%2$s: %3$s',
+					__( 'The width of the element. CSS units are allowed.', 'shortcodes-ultimate' ),
+					__( 'Examples', 'shortcodes-ultimate' ),
+					'<b%value>auto</b>, <b%value>300px</b>, <b%value>40em</b>, <b%value>90%</b>, <b%value>90vw</b>'
+				),
+			),
+			'min_width'  => array( // TODO: change default values (1)
+				'default' => 'none',
+				'name'    => __( 'Min. Width', 'shortcodes-ultimate' ),
+				'desc'    => sprintf(
+					'%1$s<br>%2$s: %3$s',
+					__( 'The minimum width of the element. CSS units are allowed.', 'shortcodes-ultimate' ),
+					__( 'Examples', 'shortcodes-ultimate' ),
+					'<b%value>none</b>, <b%value>300px</b>, <b%value>40em</b>, <b%value>90%</b>, <b%value>90vw</b>'
+				),
+			),
+			'max_width'  => array( // TODO: change default values (1)
+				'default' => '600px',
+				'name'    => __( 'Max. Width', 'shortcodes-ultimate' ),
+				'desc'    => sprintf(
+					'%1$s<br>%2$s: %3$s',
+					__( 'The maximum width of the element. CSS units are allowed.', 'shortcodes-ultimate' ),
+					__( 'Examples', 'shortcodes-ultimate' ),
+					'<b%value>none</b>, <b%value>300px</b>, <b%value>40em</b>, <b%value>90%</b>, <b%value>90vw</b>'
+				),
 			),
 			'margin'     => array(
 				'type'    => 'slider',
@@ -28,7 +58,7 @@ su_add_shortcode(
 				'step'    => 5,
 				'default' => 40,
 				'name'    => __( 'Margin', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Adjust the margin for inline content (in pixels)', 'shortcodes-ultimate' ),
+				'desc'    => __( 'The outer spacing of the element (in pixels)', 'shortcodes-ultimate' ),
 			),
 			'padding'    => array(
 				'type'    => 'slider',
@@ -37,7 +67,7 @@ su_add_shortcode(
 				'step'    => 5,
 				'default' => 40,
 				'name'    => __( 'Padding', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Adjust the padding for inline content (in pixels)', 'shortcodes-ultimate' ),
+				'desc'    => __( 'The inner spacing of the element (in pixels)', 'shortcodes-ultimate' ),
 			),
 			'text_align' => array(
 				'type'    => 'select',
@@ -89,32 +119,71 @@ su_add_shortcode(
 
 function su_shortcode_lightbox_content( $atts = null, $content = null ) {
 
-	$atts = shortcode_atts(
-		array(
-			'id'         => '',
-			'width'      => '50%',
-			'margin'     => '40',
-			'padding'    => '40',
-			'text_align' => 'center',
-			'background' => '#FFFFFF',
-			'color'      => '#333333',
-			'shadow'     => '0px 0px 15px #333333',
-			'class'      => '',
-		),
-		$atts,
-		'lightbox_content'
+	$atts = su_parse_shortcode_atts( 'lightbox_content', $atts );
+
+	// $atts = shortcode_atts(
+	// 	array(
+	// 		'id'         => '',
+	// 		'width'      => '50%',
+	// 		'margin'     => '40',
+	// 		'padding'    => '40',
+	// 		'text_align' => 'center',
+	// 		'background' => '#FFFFFF',
+	// 		'color'      => '#333333',
+	// 		'shadow'     => '0px 0px 15px #333333',
+	// 		'class'      => '',
+	// 	),
+	// 	$atts,
+	// 	'lightbox_content'
+	// );
+
+	if ( ! $atts['id'] ) {
+
+		return su_error_message(
+			'Lightbox content',
+			__( 'please specify correct ID for this block. You should use same ID as in the Content source field (when inserting lightbox shortcode)', 'shortcodes-ultimate' )
+		);
+
+	}
+
+	if ( is_numeric( $atts['margin'] ) ) {
+		$atts['margin'] = "{$atts['margin']}px";
+	}
+
+	if ( is_numeric( $atts['padding'] ) ) {
+		$atts['padding'] = "{$atts['padding']}px";
+	}
+
+	$style = array(
+		'display:none',
+		'width:' . sanitize_text_field( $atts['width'] ),
+		'margin:' . sanitize_text_field( $atts['margin'] ),
+		'padding:' . sanitize_text_field( $atts['padding'] ),
+		'background:' . sanitize_text_field( $atts['background'] ),
+		'color:' . sanitize_text_field( $atts['color'] ),
+		'box-shadow:' . sanitize_text_field( $atts['shadow'] ),
+		'text-align:' . sanitize_key( $atts['text_align'] ),
 	);
+
+	$output = sprintf(
+		'<div class="su-lightbox-content su-u-trim %1$s" id="%2$s"%3$s>%4$s</div>',
+		su_get_css_class( $atts ),
+		sanitize_html_class( $atts['id'] ),
+		su_html_style( $style ),
+		do_shortcode( $content )
+	);
+
+	if ( did_action( 'su/generator/preview/before' ) ) {
+
+		$output = sprintf(
+			'<div class="su-lightbox-content-preview">%s</div>',
+			$output
+		);
+
+	}
 
 	su_query_asset( 'css', 'su-shortcodes' );
 
-	if ( ! $atts['id'] ) {
-		return su_error_message( 'Lightbox content', __( 'please specify correct ID for this block. You should use same ID as in the Content source field (when inserting lightbox shortcode)', 'shortcodes-ultimate' ) );
-	}
-
-	$return = '<div class="su-lightbox-content su-u-trim ' . su_get_css_class( $atts ) . '" id="' . trim( $atts['id'], '#' ) . '" style="display:none;width:' . $atts['width'] . ';margin-top:' . $atts['margin'] . 'px;margin-bottom:' . $atts['margin'] . 'px;padding:' . $atts['padding'] . 'px;background-color:' . $atts['background'] . ';color:' . $atts['color'] . ';box-shadow:' . $atts['shadow'] . ';text-align:' . $atts['text_align'] . '">' . do_shortcode( $content ) . '</div>';
-
-	return did_action( 'su/generator/preview/before' )
-		? '<div class="su-lightbox-content-preview">' . $return . '</div>'
-		: $return;
+	return $output;
 
 }
