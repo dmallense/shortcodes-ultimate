@@ -99,7 +99,7 @@ QR code         Scheduler
 
 1. Download the plugin as a .zip file;
 2. Unzip downloaded archive and upload `shortcodes-ultimate` folder under your `/wp-content/plugins/` directory (resulted plugin path should be `/wp-content/plugins/shortcodes-ultimate/**`);
-1. Navigate to `Dashboard` ▸ `Plugins` and activate the plugin.
+3. Navigate to `Dashboard` ▸ `Plugins` and activate the plugin.
 
 [Detailed installation guide](https://getshortcodes.com/docs/plugin-installation/).
 
@@ -141,7 +141,7 @@ Yes! Shortcodes Ultimate is designed to work with any theme, but your theme must
 [Create an issue at GitHub](https://github.com/vanokhin/shortcodes-ultimate/).
 
 = Where can I get help? =
-First, visit [Shortcodes Ultimate Help Center](https://getshortcodes.com/support/). If you get stuck, ask for help at the [official support forum](https://wordpress.org/support/plugin/shortcodes-ultimate). Also, you can get premium support from the developer by purchasing any of the [premium add-ons](https://getshortcodes.com/add-ons/).
+First, visit the [Help Center](https://getshortcodes.com/support/). If you get stuck, ask for help at the [official support forum](https://wordpress.org/support/plugin/shortcodes-ultimate). Also, you can get premium support from the developer by purchasing any of the [premium add-ons](https://getshortcodes.com/add-ons/).
 
 
 == Changelog ==
