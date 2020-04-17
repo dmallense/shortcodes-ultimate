@@ -107,7 +107,7 @@ function su_shortcode_post( $atts = null, $content = null ) {
 		$data = $post->{$atts['field']};
 	}
 
-	if ( $filter_content ) {
+	if ( isset( $filter_content ) ) {
 		$data = su_filter_the_content( $data );
 	}
 
