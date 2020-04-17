@@ -359,10 +359,13 @@
 	display: inline-block;
 	width: 22%;
 	padding-right: 3%;
+	vertical-align: top;
 }
 .su-generator-shadow-picker-field small {
 	display: block;
 	color: #ccc;
+	line-height: 1.35;
+	margin-top: 0.75em;
 }
 .su-generator-shadow-picker-field input {
 	text-align: right;
