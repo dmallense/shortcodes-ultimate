@@ -21,8 +21,8 @@ su_add_shortcode(
 					'<b%value>my-custom-popup</b>'
 				),
 			),
-			'width'      => array( // TODO: change default values (1)
-				'default' => '96vw',
+			'width'      => array(
+				'default' => 'auto',
 				'name'    => __( 'Width', 'shortcodes-ultimate' ),
 				'desc'    => sprintf(
 					'%1$s<br>%2$s: %3$s',
@@ -31,7 +31,7 @@ su_add_shortcode(
 					'<b%value>auto</b>, <b%value>300px</b>, <b%value>40em</b>, <b%value>90%</b>, <b%value>90vw</b>'
 				),
 			),
-			'min_width'  => array( // TODO: change default values (1)
+			'min_width'  => array(
 				'default' => 'none',
 				'name'    => __( 'Min. Width', 'shortcodes-ultimate' ),
 				'desc'    => sprintf(
@@ -41,7 +41,7 @@ su_add_shortcode(
 					'<b%value>none</b>, <b%value>300px</b>, <b%value>40em</b>, <b%value>90%</b>, <b%value>90vw</b>'
 				),
 			),
-			'max_width'  => array( // TODO: change default values (1)
+			'max_width'  => array(
 				'default' => '600px',
 				'name'    => __( 'Max. Width', 'shortcodes-ultimate' ),
 				'desc'    => sprintf(
@@ -141,7 +141,7 @@ function su_shortcode_lightbox_content( $atts = null, $content = null ) {
 
 		return su_error_message(
 			'Lightbox content',
-			__( 'please specify correct ID for this block. You should use same ID as in the Content source field (when inserting lightbox shortcode)', 'shortcodes-ultimate' )
+			__( 'invalid ID. Use the value from the Content source field of the lightbox shortcode.', 'shortcodes-ultimate' )
 		);
 
 	}
@@ -157,7 +157,10 @@ function su_shortcode_lightbox_content( $atts = null, $content = null ) {
 	$style = array(
 		'display:none',
 		'width:' . sanitize_text_field( $atts['width'] ),
-		'margin:' . sanitize_text_field( $atts['margin'] ),
+		'min-width:' . sanitize_text_field( $atts['min_width'] ),
+		'max-width:' . sanitize_text_field( $atts['max_width'] ),
+		'margin-top:' . sanitize_text_field( $atts['margin'] ),
+		'margin-bottom:' . sanitize_text_field( $atts['margin'] ),
 		'padding:' . sanitize_text_field( $atts['padding'] ),
 		'background:' . sanitize_text_field( $atts['background'] ),
 		'color:' . sanitize_text_field( $atts['color'] ),
