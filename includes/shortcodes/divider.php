@@ -91,6 +91,7 @@ function su_shortcode_divider( $atts = null, $content = null ) {
 	$atts['link_color']    = sanitize_text_field( $atts['link_color'] );
 	$atts['anchor']        = sanitize_html_class( $atts['anchor'] );
 
+	$top_link  = '';
 	$div_style = array(
 		"margin:{$atts['margin']}px 0",
 		"border-width:{$atts['size']}px",
