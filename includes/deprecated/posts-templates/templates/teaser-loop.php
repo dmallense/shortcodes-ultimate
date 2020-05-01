@@ -1,4 +1,4 @@
-<?php defined( ABSPATH ) || exit; ?>
+<?php defined( 'ABSPATH' ) || exit; ?>
 
 <?php
 /**
@@ -13,9 +13,9 @@
 ?>
 
 <div class="su-posts su-posts-teaser-loop">
-	<?php if ( $su_posts->have_posts() ) : ?>
-		<?php while ( $su_posts->have_posts() ) : ?>
-			<?php $su_posts->the_post(); ?>
+	<?php if ( $posts->have_posts() ) : ?>
+		<?php while ( $posts->have_posts() ) : ?>
+			<?php $posts->the_post(); ?>
 
 			<div id="su-post-<?php the_ID(); ?>" class="su-post">
 				<?php if ( has_post_thumbnail() ) : ?>

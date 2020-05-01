@@ -277,3 +277,29 @@ function su_get_utm_link( $url, $utm ) {
 	);
 
 }
+
+/**
+ * Helper function to join multiple path pieces into one.
+ *
+ * @return string Merged path pieces
+ */
+function su_join_paths() {
+
+	$is_absolute = func_get_arg( 0 ) !== ltrim( func_get_arg( 0 ), '\\/' );
+
+	$pieces = array_map(
+		function( $piece ) {
+			return trim( $piece, '\\/' );
+		},
+		func_get_args()
+	);
+
+	$path = implode( DIRECTORY_SEPARATOR, $pieces );
+
+	if ( $is_absolute ) {
+		$path = DIRECTORY_SEPARATOR . $path;
+	}
+
+	return $path;
+
+}

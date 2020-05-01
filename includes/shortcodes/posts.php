@@ -5,7 +5,8 @@ su_add_shortcode(
 		'id'       => 'posts',
 		'callback' => 'su_shortcode_posts',
 		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/posts.svg',
-		'name'     => __( 'Posts', 'shortcodes-ultimate' ),
+		// Translators: Dep. — Deprecated
+		'name'     => __( 'Posts (Dep.)', 'shortcodes-ultimate' ),
 		'type'     => 'single',
 		'group'    => 'other',
 		'article'  => 'https://getshortcodes.com/docs/posts/',
@@ -20,9 +21,9 @@ su_add_shortcode(
 			),
 			'id'                  => array(
 				'default' => '',
-				'name'    => __( 'Post IDs', 'shortcodes-ultimate' ),
+				'name'    => __( 'Post ID\'s', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Comma separated list of IDs of the posts that must be shown',
+					'Enter comma separated ID\'s of the posts that you want to show',
 					'shortcodes-ultimate'
 				),
 			),
@@ -34,7 +35,7 @@ su_add_shortcode(
 				'default' => get_option( 'posts_per_page' ),
 				'name'    => __( 'Posts per page', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Number of posts that will be shown. Use -1 to display all posts',
+					'Specify number of posts that you want to show. Enter -1 to get all posts',
 					'shortcodes-ultimate'
 				),
 			),
@@ -45,7 +46,7 @@ su_add_shortcode(
 				'default'  => 'post',
 				'name'     => __( 'Post types', 'shortcodes-ultimate' ),
 				'desc'     => __(
-					'Post types of the posts to show',
+					'Select post types. Hold Ctrl key to select multiple post types',
 					'shortcodes-ultimate'
 				),
 			),
@@ -55,7 +56,7 @@ su_add_shortcode(
 				'default' => 'category',
 				'name'    => __( 'Taxonomy', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Taxonomy to show posts from',
+					'Select taxonomy to show posts from',
 					'shortcodes-ultimate'
 				),
 			),
@@ -65,21 +66,21 @@ su_add_shortcode(
 				'values'   => array(),
 				'default'  => '',
 				'name'     => __( 'Terms', 'shortcodes-ultimate' ),
-				'desc'     => __( 'The terms to show posts from', 'shortcodes-ultimate' ),
+				'desc'     => __( 'Select terms to show posts from', 'shortcodes-ultimate' ),
 			),
 			'tax_operator'        => array(
 				'type'    => 'select',
 				'values'  => array(
 					'IN'     => __(
-						'IN - posts that have any of the selected terms',
+						'IN - posts that have any of selected categories terms',
 						'shortcodes-ultimate'
 					),
 					'NOT IN' => __(
-						'NOT IN - posts that do not have any of the selected terms',
+						'NOT IN - posts that is does not have any of selected terms',
 						'shortcodes-ultimate'
 					),
 					'AND'    => __(
-						'AND - posts that have all of the selected terms',
+						'AND - posts that have all selected terms',
 						'shortcodes-ultimate'
 					),
 				),
@@ -87,11 +88,19 @@ su_add_shortcode(
 				'name'    => __( 'Taxonomy term operator', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Operator to test', 'shortcodes-ultimate' ),
 			),
+			// 'author' => array(
+			//  'type' => 'select',
+			//  'multiple' => true,
+			//  'values' => Su_Tools::get_users(),
+			//  'default' => 'default',
+			//  'name' => __( 'Authors', 'shortcodes-ultimate' ),
+			//  'desc' => __( 'Choose the authors whose posts you want to show. Enter here comma-separated list of users (IDs). Example: 1,7,18', 'shortcodes-ultimate' )
+			// ),
 			'author'              => array(
 				'default' => '',
 				'name'    => __( 'Authors', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Comma separated list of author IDs. Example: 1,7,18',
+					'Enter here comma-separated list of author\'s IDs. Example: 1,7,18',
 					'shortcodes-ultimate'
 				),
 			),
@@ -99,7 +108,7 @@ su_add_shortcode(
 				'default' => '',
 				'name'    => __( 'Meta key', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Meta key name to show posts that have the specified meta field',
+					'Enter meta key name to show posts that have this key',
 					'shortcodes-ultimate'
 				),
 			),
@@ -111,7 +120,7 @@ su_add_shortcode(
 				'default' => 0,
 				'name'    => __( 'Offset', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Number of post to displace or pass over. The offset parameter is ignored when posts_per_page=-1 (show all posts) is used.',
+					'Specify offset to start posts loop not from first post',
 					'shortcodes-ultimate'
 				),
 			),
@@ -121,7 +130,7 @@ su_add_shortcode(
 					'desc' => __( 'Descending', 'shortcodes-ultimate' ),
 					'asc'  => __( 'Ascending', 'shortcodes-ultimate' ),
 				),
-				'default' => 'desc',
+				'default' => 'DESC',
 				'name'    => __( 'Order', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Posts order', 'shortcodes-ultimate' ),
 			),
@@ -179,7 +188,7 @@ su_add_shortcode(
 				'default' => 'no',
 				'name'    => __( 'Ignore sticky', 'shortcodes-ultimate' ),
 				'desc'    => __(
-					'Select Yes to ignore sticky posts',
+					'Select Yes to ignore posts that is sticked',
 					'shortcodes-ultimate'
 				),
 			),
@@ -195,33 +204,10 @@ su_add_shortcode(
 function su_shortcode_posts( $atts = null, $content = null ) {
 	$original_atts = $atts;
 
-	// ‼️
-	// replace :208 with su_parse_shortcode_atts()
-	$atts = su_parse_shortcode_atts(
-		'posts',
-		$atts,
-		array(
-			'taxonomy_2'     => null,
-			'taxonomy_3'     => null,
-			'taxonomy_4'     => null,
-			'taxonomy_5'     => null,
-			'tax_2_term'     => null,
-			'tax_3_term'     => null,
-			'tax_4_term'     => null,
-			'tax_5_term'     => null,
-			'tax_2_operator' => null,
-			'tax_3_operator' => null,
-			'tax_4_operator' => null,
-			'tax_5_operator' => null,
-		)
-	);
-
+	// Parse attributes
 	$atts = shortcode_atts(
 		array(
-			// 'template'            => 'templates/default-loop.php',
-
-			// ‼️
-			// id attribute isn't equal to the default '' / false
+			'template'            => 'templates/default-loop.php',
 			'id'                  => false,
 			'posts_per_page'      => get_option( 'posts_per_page' ),
 			'post_type'           => 'post',
@@ -242,51 +228,75 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		'posts'
 	);
 
-	$args = array();
-
-	$args['author']              = sanitize_text_field( $atts['author'] );
-	$args['ignore_sticky_posts'] = 'yes' === $atts['ignore_sticky_posts'];
-	$args['offset']              = intval( $atts['offset'] );
-	$args['order']               = sanitize_key( $atts['order'] );
-	$args['orderby']             = sanitize_key( $atts['orderby'] );
-	$args['meta_key']            = sanitize_text_field( $atts['meta_key'] );
-	$args['post_status']         = sanitize_key( $atts['post_status'] );
-	$args['posts_per_page']      = intval( $atts['posts_per_page'] );
-	$args['tag']                 = sanitize_text_field( $atts['tag'] );
-
-	if ( 'current' === $atts['post_parent'] ) {
-		$atts['post_parent'] = get_the_ID();
-	}
-
-	if ( is_numeric( $atts['post_parent'] ) ) {
-		$args['post_parent'] = intval( $atts['post_parent'] );
-	}
-
-	$atts['id'] = array_map(
-		'intval',
-		array_filter( explode( ',', $atts['id'] ), 'is_numeric' )
+	$author              = sanitize_text_field( $atts['author'] );
+	$id                  = $atts['id']; // Sanitized later as an array of integers
+	$ignore_sticky_posts = (bool) ( 'yes' === $atts['ignore_sticky_posts'] )
+		? true
+		: false;
+	$meta_key            = sanitize_text_field( $atts['meta_key'] );
+	$offset              = intval( $atts['offset'] );
+	$order               = sanitize_key( $atts['order'] );
+	$orderby             = sanitize_key( $atts['orderby'] );
+	$post_parent         = $atts['post_parent'];
+	$post_status         = $atts['post_status'];
+	$post_type           = sanitize_text_field( $atts['post_type'] );
+	$posts_per_page      = intval( $atts['posts_per_page'] );
+	$tag                 = sanitize_text_field( $atts['tag'] );
+	$tax_operator        = $atts['tax_operator'];
+	$tax_term            = sanitize_text_field( $atts['tax_term'] );
+	$taxonomy            = sanitize_key( $atts['taxonomy'] );
+	// Set up initial query for post
+	$args = array(
+		'category_name'  => '',
+		'order'          => $order,
+		'orderby'        => $orderby,
+		'post_type'      => explode( ',', $post_type ),
+		'posts_per_page' => $posts_per_page,
+		'tag'            => $tag,
 	);
-
-	if ( ! empty( $atts['id'] ) ) {
-		$args['post__in'] = $atts['id'];
+	// Ignore Sticky Posts
+	if ( $ignore_sticky_posts ) {
+		$args['ignore_sticky_posts'] = true;
 	}
-
-	$atts['post_type'] = array_map(
-		'sanitize_text_field',
-		explode( ',', $atts['post_type'] )
+	// Meta key (for ordering)
+	if ( ! empty( $meta_key ) ) {
+		$args['meta_key'] = $meta_key;
+	}
+	// If Post IDs
+	if ( $id ) {
+		$posts_in         = array_map( 'intval', explode( ',', $id ) );
+		$args['post__in'] = $posts_in;
+	}
+	// Post Author
+	if ( ! empty( $author ) ) {
+		$args['author'] = $author;
+	}
+	// Offset
+	if ( ! empty( $offset ) ) {
+		$args['offset'] = $offset;
+	}
+	// Post Status
+	$post_status = explode( ', ', $post_status );
+	$validated   = array();
+	$available   = array(
+		'publish',
+		'pending',
+		'draft',
+		'auto-draft',
+		'future',
+		'private',
+		'inherit',
+		'trash',
+		'any',
 	);
-
-	$args['post_type'] = 1 === count( $atts['post_type'] )
-		? $atts['post_type'][0]
-		: $atts['post_type'];
-
-
-
-
-	$tax_operator = $atts['tax_operator'];
-	$tax_term     = sanitize_text_field( $atts['tax_term'] );
-	$taxonomy     = sanitize_key( $atts['taxonomy'] );
-
+	foreach ( $post_status as $unvalidated ) {
+		if ( in_array( $unvalidated, $available ) ) {
+			$validated[] = $unvalidated;
+		}
+	}
+	if ( ! empty( $validated ) ) {
+		$args['post_status'] = $validated;
+	}
 	// If taxonomy attributes, create a taxonomy query
 	if ( ! empty( $taxonomy ) && ! empty( $tax_term ) ) {
 		// Term string to array
@@ -297,7 +307,7 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 			array( 'IN', 'NOT IN', 'AND' ),
 			$tax_operator
 		);
-		if ( ! in_array( $tax_operator, array( 'IN', 'NOT IN', 'AND' ), true ) ) {
+		if ( ! in_array( $tax_operator, array( 'IN', 'NOT IN', 'AND' ) ) ) {
 			$tax_operator = 'IN';
 		}
 		$tax_args = array(
@@ -329,7 +339,7 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 			$tax_operator            = isset( $original_atts[ 'tax_' . $count . '_operator' ] )
 				? $original_atts[ 'tax_' . $count . '_operator' ]
 				: 'IN';
-			$tax_operator            = in_array( $tax_operator, array( 'IN', 'NOT IN', 'AND' ), true )
+			$tax_operator            = in_array( $tax_operator, array( 'IN', 'NOT IN', 'AND' ) )
 				? $tax_operator
 				: 'IN';
 			$tax_args['tax_query'][] = array(
@@ -345,7 +355,7 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 
 			if (
 				isset( $original_atts['tax_relation'] ) &&
-				in_array( $original_atts['tax_relation'], array( 'AND', 'OR' ), true )
+				in_array( $original_atts['tax_relation'], array( 'AND', 'OR' ) )
 			) {
 				$tax_relation = $original_atts['tax_relation'];
 			}
@@ -356,13 +366,18 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 		$args = array_merge( $args, $tax_args );
 	}
 
-	// --------------------------------------------------------------------------
-	//
-	// --------------------------------------------------------------------------
+	// If post parent attribute, set up parent
+	if ( $post_parent ) {
+		if ( 'current' == $post_parent ) {
+			global $post;
+			$post_parent = $post->ID;
+		}
+		$args['post_parent'] = intval( $post_parent );
+	}
 
-	$atts['template'] = su_posts_locate_template( $atts['template'] );
+	$atts['template'] = su_shortcode_posts_locate_template( $atts['template'] );
 
-	if ( ! $atts['template'] || ! su_is_valid_template_name( $atts['template'] ) ) {
+	if ( ! $atts['template'] ) {
 
 		return su_error_message(
 			'Posts',
@@ -371,46 +386,53 @@ function su_shortcode_posts( $atts = null, $content = null ) {
 
 	}
 
-	$su_posts = new WP_Query( $args );
-
-	$output = su_posts_include_template( $atts['template'], $su_posts, $atts );
-
+	// Save original posts
+	global $posts;
+	$original_posts = $posts;
+	// Query posts
+	$posts = new WP_Query( $args );
+	// Load the template
+	$output = su_shortcode_posts_include_template( $atts, $posts );
+	// Return original posts
+	$posts = $original_posts;
+	// Reset the query
 	wp_reset_postdata();
-
 	su_query_asset( 'css', 'su-shortcodes' );
-
 	return $output;
-
 }
 
-function su_posts_include_template( $template, $su_posts, $atts ) {
+function su_shortcode_posts_include_template( $atts, $posts ) {
 
 	ob_start();
 
-	include $template;
+	include $atts['template'];
 
 	return ob_get_clean();
 
 }
 
-function su_posts_locate_template( $template ) {
+function su_shortcode_posts_locate_template( $template ) {
 
 	$template = su_set_file_extension( $template, 'php' );
 	$template = ltrim( $template, '\\/' );
 
-	$paths = array(
+	$locations = array(
 		get_stylesheet_directory(),
 		get_template_directory(),
-		plugin_dir_path( dirname( dirname( __FILE__ ) ) ),
+		path_join(
+			su_get_plugin_path(),
+			'includes/deprecated/posts-templates'
+		),
 	);
 
-	foreach ( $paths as $path ) {
+	foreach ( $locations as $base ) {
 
-		$path = untrailingslashit( $path );
-		$path = path_join( $path, $template );
+		$base = untrailingslashit( $base );
+
+		$path = path_join( $base, $template );
 		$path = realpath( $path );
 
-		if ( $path ) {
+		if ( strpos( $path, $base ) === 0 ) {
 			return $path;
 		}
 
