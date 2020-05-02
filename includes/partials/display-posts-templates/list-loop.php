@@ -12,24 +12,28 @@
  */
 ?>
 
-<ul class="su-posts su-posts-template-list-loop">
+<div class="su-display-posts su-display-posts-template-list-loop<?php echo esc_attr( su_get_css_class( $atts ) ); ?>" id="<?php echo esc_attr( $atts['id'] ); ?>">
 
-	<?php if ( $su_posts->have_posts() ) : ?>
+	<ul>
 
-		<?php while ( $su_posts->have_posts() ) : ?>
+		<?php if ( $su_posts->have_posts() ) : ?>
 
-			<?php $su_posts->the_post(); ?>
+			<?php while ( $su_posts->have_posts() ) : ?>
 
-			<li id="su-post-<?php the_ID(); ?>" class="su-post">
-				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-			</li>
+				<?php $su_posts->the_post(); ?>
 
-		<?php endwhile; ?>
+				<li id="su-post-<?php the_ID(); ?>" class="su-post">
+					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+				</li>
 
-	<?php else : ?>
+			<?php endwhile; ?>
 
-		<li><?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?></li>
+		<?php else : ?>
 
-	<?php endif; ?>
+			<li><?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?></li>
 
-</ul>
+		<?php endif; ?>
+
+	</ul>
+
+</div>
