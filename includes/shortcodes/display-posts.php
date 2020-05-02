@@ -154,6 +154,17 @@ su_add_shortcode(
 				'name'    => __( 'Ignore sticky', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Select Yes to ignore sticky posts', 'shortcodes-ultimate' ),
 			),
+			'id'     => array(
+				'name'    => __( 'HTML Anchor (ID)', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Anchors lets you link directly to an element on a page.', 'shortcodes-ultimate' ),
+				'default' => '',
+			),
+			'class'  => array(
+				'type'    => 'extra_css_class',
+				'name'    => __( 'Extra CSS class', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Additional CSS class name(s) separated by space(s)', 'shortcodes-ultimate' ),
+				'default' => '',
+			),
 		),
 		'desc'     => __( 'Custom posts query with customizable template', 'shortcodes-ultimate' ),
 	)
@@ -163,12 +174,15 @@ function su_shortcode_display_posts( $atts = null, $content = null ) {
 
 	$raw      = (array) $atts;
 	$defaults = su_get_shortcode_defaults( 'display_posts' );
-	$atts     = su_parse_shortcode_atts( 'display_posts', $atts );
-	$query    = array();
+	$atts     = su_parse_shortcode_atts(
+		'display_posts',
+		$atts,
+		array( 'tax_relation' => 'AND' )
+	);
 
 	// $atts = shortcode_atts(
 	// 	array(
-	//# 		// 'template'            => 'default-loop.php',
+	// 		'template'            => 'default-loop.php',
 	// 		'id'                  => '',
 	// 		'posts_per_page'      => get_option( 'posts_per_page' ),
 	// 		'post_type'           => 'post',
@@ -188,6 +202,85 @@ function su_shortcode_display_posts( $atts = null, $content = null ) {
 	// 	$atts,
 	// 	'posts'
 	// );
+
+	$atts['id'] = sanitize_html_class( $atts['id'] );
+
+	if ( empty( $atts['id'] ) ) {
+
+		$atts['id'] = sprintf(
+			'su-display-posts-%s',
+			md5( json_encode( $raw ) )
+		);
+
+	}
+
+	$atts['template'] = su_shortcode_display_posts_locate_template( $atts['template'] );
+
+	if ( ! $atts['template'] ) {
+
+		return su_error_message(
+			'Posts',
+			__( 'invalid template name', 'shortcodes-ultimate' )
+		);
+
+	}
+
+	$query    = su_shortcode_display_posts_build_query( $raw, $atts, $defaults );
+	$su_posts = new WP_Query( $query );
+	$output   = su_shortcode_display_posts_include_template( $atts, $su_posts );
+
+	wp_reset_postdata();
+
+	su_query_asset( 'css', 'su-shortcodes' );
+
+	return $output;
+
+}
+
+function su_shortcode_display_posts_include_template( $atts, $su_posts ) {
+
+	ob_start();
+
+	include $atts['template'];
+
+	return ob_get_clean();
+
+}
+
+function su_shortcode_display_posts_locate_template( $template ) {
+
+	$template = su_set_file_extension( $template, 'php' );
+	$template = ltrim( $template, '\\/' );
+
+	$locations = array(
+		get_stylesheet_directory(),
+		get_template_directory(),
+		path_join(
+			su_get_plugin_path(),
+			'includes/partials/display-posts-templates'
+		),
+	);
+
+	foreach ( $locations as $base ) {
+
+		$base = untrailingslashit( $base );
+
+		$path = path_join( $base, $template );
+		$path = realpath( $path );
+
+		if ( strpos( $path, $base ) === 0 ) {
+			return $path;
+		}
+
+	}
+
+	return false;
+
+}
+
+function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
+
+	$query = array();
 
 	if ( $atts['author'] ) {
 		$query['author'] = sanitize_text_field( $atts['author'] );
@@ -248,11 +341,9 @@ function su_shortcode_display_posts( $atts = null, $content = null ) {
 
 	for ( $i = 1; true; $i++ ) {
 
-		if ( ! isset( $raw[ "taxonomy_{$i}" ] ) ) {
-			$raw[ "taxonomy_{$i}" ] = 'category';
-		}
-
-		$raw[ "taxonomy_{$i}" ] = sanitize_text_field( $raw[ "taxonomy_{$i}" ] );
+		$raw[ "taxonomy_{$i}" ] = isset( $raw[ "taxonomy_{$i}" ] )
+			? sanitize_text_field( $raw[ "taxonomy_{$i}" ] )
+			: 'category';
 
 		if ( ! isset( $raw[ "tax_terms_{$i}" ] ) ) {
 			break;
@@ -298,85 +389,19 @@ function su_shortcode_display_posts( $atts = null, $content = null ) {
 
 	}
 
-	if ( ! isset( $raw['tax_relation'] ) ) {
-		$raw['tax_relation'] = 'AND';
-	}
-
 	if (
 		isset( $query['tax_query'] ) &&
 		count( $query['tax_query'] ) > 1
 	) {
 
 		$query['tax_query']['relation'] = strtoupper(
-			sanitize_key( $raw['tax_relation'] )
-		);
-
-	}
-
-	$atts['template'] = su_shortcode_display_posts_locate_template( $atts['template'] );
-
-	if ( ! $atts['template'] ) {
-
-		return su_error_message(
-			'Posts',
-			__( 'invalid template name', 'shortcodes-ultimate' )
+			sanitize_key( $atts['tax_relation'] )
 		);
 
 	}
 
 	$query = apply_filters( 'su/shortcode/display_posts/query', $query, $atts );
 
-	var_dump( $query ); // TODO: remove (0)
-
-	$su_posts = new WP_Query( $query );
-
-	$output = su_shortcode_display_posts_include_template( $atts, $su_posts );
-
-	wp_reset_postdata();
-
-	su_query_asset( 'css', 'su-shortcodes' );
-
-	return $output;
-
-}
-
-function su_shortcode_display_posts_include_template( $atts, $su_posts ) {
-
-	ob_start();
-
-	include $atts['template'];
-
-	return ob_get_clean();
-
-}
-
-function su_shortcode_display_posts_locate_template( $template ) {
-
-	$template = su_set_file_extension( $template, 'php' );
-	$template = ltrim( $template, '\\/' );
-
-	$locations = array(
-		get_stylesheet_directory(),
-		get_template_directory(),
-		path_join(
-			su_get_plugin_path(),
-			'includes/partials/display-posts-templates'
-		),
-	);
-
-	foreach ( $locations as $base ) {
-
-		$base = untrailingslashit( $base );
-
-		$path = path_join( $base, $template );
-		$path = realpath( $path );
-
-		if ( strpos( $path, $base ) === 0 ) {
-			return $path;
-		}
-
-	}
-
-	return false;
+	return $query;
 
 }
