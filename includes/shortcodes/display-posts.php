@@ -12,7 +12,7 @@ su_add_shortcode(
 		'article'  => 'https://getshortcodes.com/docs/display-posts/',
 		'atts'     => array(
 			'template'            => array(
-				'default' => 'default-loop.php',
+				'default' => 'default',
 				'name'    => __( 'Template', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Relative path to the template file. Default templates placed in the plugin directory (templates folder). You can copy them under your theme directory and modify as you want. You can use following default templates that already available in the plugin directory:<br/><b%value>default-loop.php</b> - posts loop<br/><b%value>teaser-loop.php</b> - posts loop with thumbnail and title<br/><b%value>single-post.php</b> - single post template<br/><b%value>list-loop.php</b> - unordered list with posts titles', 'shortcodes-ultimate' ),
 			),
