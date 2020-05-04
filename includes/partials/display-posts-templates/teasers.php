@@ -12,7 +12,7 @@
  */
 ?>
 
-<div class="su-display-posts su-display-posts-template-teaser-loop<?php echo esc_attr( su_get_css_class( $atts ) ); ?>" id="<?php echo esc_attr( $atts['id'] ); ?>">
+<div class="su-display-posts su-display-posts-template-teasers<?php echo esc_attr( su_get_css_class( $atts ) ); ?>" id="<?php echo esc_attr( $atts['id'] ); ?>">
 
 	<?php if ( $su_posts->have_posts() ) : ?>
 
