@@ -22,20 +22,24 @@
 
 			<div id="su-post-<?php the_ID(); ?>" class="su-post">
 
-				<h1 class="su-post-title"><?php the_title(); ?></h1>
+				<h2 class="su-post-title"><?php the_title(); ?></h2>
 
 				<div class="su-post-meta">
+					<span><?php esc_html_e( 'Posted', 'shortcodes-ultimate' ); ?>: <?php the_time( get_option( 'date_format' ) ); ?></span>
 
-					<?php esc_html_e( 'Posted', 'shortcodes-ultimate' ); ?>:
-					<?php the_time( get_option( 'date_format' ) ); ?>
+					<?php if ( get_the_category() ) : ?>
+						<span class="su-post-meta-separator">|</span>
+						<span><?php esc_html_e( 'Category' ); ?>: <?php the_category( ', ' ); ?></span>
+					<?php endif; ?>
 
 					<?php if ( have_comments() || comments_open() ) : ?>
-
-					<span>|</span>
-					<a href="<?php comments_link(); ?>" class="su-post-comments-link">
-						<?php comments_number( __( '0 comments', 'shortcodes-ultimate' ), __( '1 comment', 'shortcodes-ultimate' ), __( '% comments', 'shortcodes-ultimate' ) ); ?>
-					</a>
-
+						<span class="su-post-meta-separator">|</span>
+						<span>
+							<a href="<?php comments_link(); ?>">
+								<?php // translators: % will be replaced with number of comments, greater than 1 ?>
+								<?php comments_number( __( 'Comments', 'shortcodes-ultimate' ), __( '1 comment', 'shortcodes-ultimate' ), __( 'Comments (%)', 'shortcodes-ultimate' ) ); ?>
+							</a>
+						</span>
 					<?php endif; ?>
 
 				</div>
@@ -49,9 +53,7 @@
 		<?php break; ?><?php endwhile; ?>
 
 	<?php else : ?>
-
-		<p><?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?></p>
-
+		<h4><?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?></h4>
 	<?php endif; ?>
 
 </div>

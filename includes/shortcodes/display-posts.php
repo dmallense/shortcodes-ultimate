@@ -12,9 +12,25 @@ su_add_shortcode(
 		'article'  => 'https://getshortcodes.com/docs/display-posts/',
 		'atts'     => array(
 			'template'            => array(
-				'default' => 'default',
+				'default' => 'su-display-posts-default',
 				'name'    => __( 'Template', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Relative path to the template file. Default templates placed in the plugin directory (templates folder). You can copy them under your theme directory and modify as you want. You can use following default templates that already available in the plugin directory:<br/><b%value>default-loop.php</b> - posts loop<br/><b%value>teaser-loop.php</b> - posts loop with thumbnail and title<br/><b%value>single-post.php</b> - single post template<br/><b%value>list-loop.php</b> - unordered list with posts titles', 'shortcodes-ultimate' ),
+				'desc'    => sprintf(
+					'<p>%s.</p><p>%s:</p><table><tr><td>%s</td><td>%s</td><tr><td>%s</td><td>%s</td><tr><td>%s</td><td>%s</td><tr><td>%s</td><td>%s</td><tr><td>%s</td><td>%s</td></table><p><a href="%s" target="_blank">%s</a></p>',
+					__( 'Template name', 'shortcodes-ultimate' ),
+					__( 'Available templates', 'shortcodes-ultimate' ),
+					'<b%value>su-display-posts-default</b>',
+					__( 'default template with thumbnail, title, and excerpt', 'shortcodes-ultimate' ),
+					'<b%value>su-display-posts-meta</b>',
+					__( 'default template with various meta data', 'shortcodes-ultimate' ),
+					'<b%value>su-display-posts-list</b>',
+					__( 'unordered list with post titles', 'shortcodes-ultimate' ),
+					'<b%value>su-display-posts-teasers</b>',
+					__( 'small teasers containing post thumbnails and titles', 'shortcodes-ultimate' ),
+					'<b%value>su-display-posts-single</b>',
+					__( 'single post template', 'shortcodes-ultimate' ),
+					'https://getshortcodes.com/docs/posts/',
+					__( 'How to create/edit a template', 'shortcodes-ultimate' )
+				),
 			),
 			'ids'                 => array(
 				'default' => '',
@@ -28,7 +44,7 @@ su_add_shortcode(
 				'step'    => 1,
 				'default' => '',
 				'name'    => __( 'Posts per page', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Number of posts that will be shown. Use -1 to display all posts', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Number of posts that will be shown. Use -1 to display all posts. Leave empty to use site\'s default value (Settings – Reading).', 'shortcodes-ultimate' ),
 			),
 			'post_type'           => array(
 				'type'     => 'post_type',
@@ -36,14 +52,14 @@ su_add_shortcode(
 				'values'   => array(),
 				'default'  => 'post',
 				'name'     => __( 'Post types', 'shortcodes-ultimate' ),
-				'desc'     => __( 'Post types of the posts to show', 'shortcodes-ultimate' ),
+				'desc'     => __( 'Filter posts by post type', 'shortcodes-ultimate' ),
 			),
 			'taxonomy_1'          => array(
 				'type'    => 'taxonomy',
 				'values'  => array(),
 				'default' => 'category',
 				'name'    => __( 'Taxonomy', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Taxonomy to show posts from', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Show posts associated with certain taxonomy', 'shortcodes-ultimate' ),
 			),
 			'tax_terms_1'         => array(
 				'type'     => 'term',
@@ -51,7 +67,7 @@ su_add_shortcode(
 				'values'   => array(),
 				'default'  => '',
 				'name'     => __( 'Terms', 'shortcodes-ultimate' ),
-				'desc'     => __( 'The terms to show posts from', 'shortcodes-ultimate' ),
+				'desc'     => __( 'Show posts associated with specified taxonomy terms.', 'shortcodes-ultimate' ),
 			),
 			'tax_operator_1'      => array(
 				'type'    => 'select',
@@ -71,7 +87,7 @@ su_add_shortcode(
 				),
 				'default' => 'IN',
 				'name'    => __( 'Taxonomy term operator', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Operator to test', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Taxonomy terms operator', 'shortcodes-ultimate' ),
 			),
 			'author'              => array(
 				'default' => '',
@@ -81,7 +97,7 @@ su_add_shortcode(
 			'meta_key'            => array(
 				'default' => '',
 				'name'    => __( 'Meta key', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Meta key name to show posts that have the specified meta field', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Show posts associated with a certain custom field', 'shortcodes-ultimate' ),
 			),
 			'offset'              => array(
 				'type'    => 'number',
@@ -91,16 +107,6 @@ su_add_shortcode(
 				'default' => 0,
 				'name'    => __( 'Offset', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Number of post to displace or pass over. The offset parameter is ignored when posts_per_page=-1 (show all posts) is used.', 'shortcodes-ultimate' ),
-			),
-			'order'               => array(
-				'type'    => 'select',
-				'values'  => array(
-					'desc' => __( 'Descending', 'shortcodes-ultimate' ),
-					'asc'  => __( 'Ascending', 'shortcodes-ultimate' ),
-				),
-				'default' => 'desc',
-				'name'    => __( 'Order', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Posts order', 'shortcodes-ultimate' ),
 			),
 			'orderby'             => array(
 				'type'    => 'select',
@@ -121,12 +127,22 @@ su_add_shortcode(
 				),
 				'default' => 'date',
 				'name'    => __( 'Order by', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Order posts by', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Sort retrieved posts by parameter', 'shortcodes-ultimate' ),
+			),
+			'order'               => array(
+				'type'    => 'select',
+				'values'  => array(
+					'desc' => __( 'Descending', 'shortcodes-ultimate' ),
+					'asc'  => __( 'Ascending', 'shortcodes-ultimate' ),
+				),
+				'default' => 'desc',
+				'name'    => __( 'Order', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Designates the ascending or descending order of the orderby parameter', 'shortcodes-ultimate' ),
 			),
 			'post_parent'         => array(
 				'default' => '',
 				'name'    => __( 'Post parent', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Show childrens of entered post (enter post ID)', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Filter posts by post parent (use parent post ID)', 'shortcodes-ultimate' ),
 			),
 			'post_status'         => array(
 				'type'    => 'select',
@@ -143,23 +159,25 @@ su_add_shortcode(
 				),
 				'default' => 'publish',
 				'name'    => __( 'Post status', 'shortcodes-ultimate' ),
-				'desc'    => __(
-					'Show only posts with selected status',
-					'shortcodes-ultimate'
-				),
+				'desc'    => __( 'Filter posts by status', 'shortcodes-ultimate' ),
 			),
 			'ignore_sticky_posts' => array(
 				'type'    => 'bool',
 				'default' => 'no',
 				'name'    => __( 'Ignore sticky', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Select Yes to ignore sticky posts', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Set this option to yes to ignore sticky posts', 'shortcodes-ultimate' ),
 			),
-			'id'     => array(
+			'exclude'             => array(
+				'default' => '',
+				'name'    => __( 'Exclude Posts', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Comma-separated list of post IDs that should be excluded. Use "current" keyword to exclude the current post.', 'shortcodes-ultimate' ),
+			),
+			'id'                  => array(
 				'name'    => __( 'HTML Anchor (ID)', 'shortcodes-ultimate' ),
-				'desc'    => __( 'Anchors lets you link directly to an element on a page.', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Anchors lets you link directly to an element on a page', 'shortcodes-ultimate' ),
 				'default' => '',
 			),
-			'class'  => array(
+			'class'               => array(
 				'type'    => 'extra_css_class',
 				'name'    => __( 'Extra CSS class', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Additional CSS class name(s) separated by space(s)', 'shortcodes-ultimate' ),
@@ -209,7 +227,7 @@ function su_shortcode_display_posts( $atts = null, $content = null ) {
 
 		$atts['id'] = sprintf(
 			'su-display-posts-%s',
-			md5( json_encode( $raw ) )
+			md5( wp_json_encode( $raw ) )
 		);
 
 	}
@@ -338,6 +356,21 @@ function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
 		'sanitize_text_field',
 		explode( ',', $atts['post_type'] )
 	);
+
+	if ( $atts['exclude'] ) {
+
+		$atts['exclude'] = str_replace(
+			'current',
+			get_the_ID(),
+			$atts['exclude']
+		);
+
+		$query['post__not_in'] = array_map(
+			'intval',
+			explode( ',', $atts['exclude'] )
+		);
+
+	}
 
 	for ( $i = 1; true; $i++ ) {
 

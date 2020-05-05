@@ -24,15 +24,19 @@
 
 				<?php if ( has_post_thumbnail() ) : ?>
 
-					<a class="su-post-thumbnail" href="<?php the_permalink(); ?>">
-						<?php the_post_thumbnail(); ?>
-					</a>
+					<div class="su-post-thumbnail">
+						<a href="<?php the_permalink(); ?>">
+							<?php the_post_thumbnail( 'thumbnail' ); ?>
+						</a>
+					</div>
 
 				<?php endif; ?>
 
-				<h2 class="su-post-title">
-					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-				</h2>
+				<div class="su-post-body">
+					<h2 class="su-post-title">
+						<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+					</h2>
+				</div>
 
 			</div>
 

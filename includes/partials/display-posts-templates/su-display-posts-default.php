@@ -23,25 +23,19 @@
 			<div id="su-post-<?php the_ID(); ?>" class="su-post">
 
 				<?php if ( has_post_thumbnail( get_the_ID() ) ) : ?>
-					<a class="su-post-thumbnail" href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+					<div class="su-post-thumbnail">
+						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'thumbnail' ); ?></a>
+					</div>
 				<?php endif; ?>
 
-				<h2 class="su-post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-
-				<div class="su-post-meta">
-					<?php esc_html_e( 'Posted', 'shortcodes-ultimate' ); ?>: <?php the_time( get_option( 'date_format' ) ); ?>
+				<div class="su-post-body">
+					<h2 class="su-post-title">
+						<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+					</h2>
+					<div class="su-post-excerpt">
+						<?php the_excerpt(); ?>
+					</div>
 				</div>
-
-				<div class="su-post-excerpt">
-					<?php the_excerpt(); ?>
-				</div>
-
-				<?php if ( have_comments() || comments_open() ) : ?>
-					<a href="<?php comments_link(); ?>" class="su-post-comments-link">
-						<?php // translators: % will be replaced with number of comments, greater than 1 ?>
-						<?php comments_number( __( '0 comments', 'shortcodes-ultimate' ), __( '1 comment', 'shortcodes-ultimate' ), __( '% comments', 'shortcodes-ultimate' ) ); ?>
-					</a>
-				<?php endif; ?>
 
 			</div>
 
