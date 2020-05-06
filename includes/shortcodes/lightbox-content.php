@@ -121,22 +121,6 @@ function su_shortcode_lightbox_content( $atts = null, $content = null ) {
 
 	$atts = su_parse_shortcode_atts( 'lightbox_content', $atts );
 
-	// $atts = shortcode_atts(
-	// 	array(
-	// 		'id'         => '',
-	// 		'width'      => '50%',
-	// 		'margin'     => '40',
-	// 		'padding'    => '40',
-	// 		'text_align' => 'center',
-	// 		'background' => '#FFFFFF',
-	// 		'color'      => '#333333',
-	// 		'shadow'     => '0px 0px 15px #333333',
-	// 		'class'      => '',
-	// 	),
-	// 	$atts,
-	// 	'lightbox_content'
-	// );
-
 	if ( ! $atts['id'] ) {
 
 		return su_error_message(
