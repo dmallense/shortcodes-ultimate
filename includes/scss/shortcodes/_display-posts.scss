@@ -43,6 +43,9 @@
 .su-display-posts-template-default .su-post-excerpt p {
 	margin: 1em 0;
 }
+.su-display-posts-template-default .su-post-excerpt > :last-child {
+	margin-bottom: 0 !important;
+}
 .su-display-posts-template-default .su-post-comments-link {
 	margin: 1em 0 0;
 }

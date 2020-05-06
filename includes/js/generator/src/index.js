@@ -600,12 +600,12 @@ window.SUG.App = (($) => {
                 }
               )
               // Init tax_term selects
-              $('select#su-generator-attr-taxonomy').on(
+              $('select#su-generator-attr-taxonomy_1').on(
                 'change',
                 function () {
                   var $taxonomy = $(this)
                   var tax = $taxonomy.val()
-                  var $terms = $('select#su-generator-attr-tax_term')
+                  var $terms = $('select#su-generator-attr-tax_terms_1')
                   // Load new options
                   window.su_generator_get_terms = $.ajax(
                     {
