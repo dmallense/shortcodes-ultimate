@@ -72,9 +72,9 @@ QR code         Scheduler
 
 ### From within dashboard (recommended)
 
-1. Navigate to *Dashboard – Plugins – Add New*;
-2. Search for *Shortcodes Ultimate*;
-3. Click *Install*, then *Activate*.
+1. Navigate to _Dashboard – Plugins – Add New_;
+2. Search for _Shortcodes Ultimate_;
+3. Click _Install_, then _Activate_.
 
 [Video Tutorial](https://www.youtube.com/watch?v=6xhplrZJD9c).
 
