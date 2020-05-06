@@ -8,7 +8,7 @@
  * lost after the plugin update. Read the following article to learn how to
  * change this template or create a custom one:
  *
- * https://getshortcodes.com/docs/posts/#built-in-templates
+ * https://getshortcodes.com/docs/posts/
  */
 ?>
 
@@ -29,12 +29,35 @@
 				<?php endif; ?>
 
 				<div class="su-post-body">
+
 					<h2 class="su-post-title">
 						<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 					</h2>
+
+					<div class="su-post-meta">
+						<span><?php esc_html_e( 'Posted', 'shortcodes-ultimate' ); ?>: <?php the_time( get_option( 'date_format' ) ); ?></span>
+
+						<?php if ( get_the_category() ) : ?>
+							<span class="su-post-meta-separator">|</span>
+							<span><?php esc_html_e( 'Category' ); ?>: <?php the_category( ', ' ); ?></span>
+						<?php endif; ?>
+
+						<?php if ( have_comments() || comments_open() ) : ?>
+							<span class="su-post-meta-separator">|</span>
+							<span>
+								<a href="<?php comments_link(); ?>">
+									<?php // translators: % will be replaced with number of comments, greater than 1 ?>
+									<?php comments_number( __( 'Comments', 'shortcodes-ultimate' ), __( '1 comment', 'shortcodes-ultimate' ), __( 'Comments (%)', 'shortcodes-ultimate' ) ); ?>
+								</a>
+							</span>
+						<?php endif; ?>
+
+					</div>
+
 					<div class="su-post-excerpt">
 						<?php the_excerpt(); ?>
 					</div>
+
 				</div>
 
 			</div>

@@ -8,11 +8,11 @@
  * lost after the plugin update. Read the following article to learn how to
  * change this template or create a custom one:
  *
- * https://getshortcodes.com/docs/posts/#built-in-templates
+ * https://getshortcodes.com/docs/posts/
  */
 ?>
 
-<div class="su-display-posts su-display-posts-template-teasers<?php echo esc_attr( su_get_css_class( $atts ) ); ?>" id="<?php echo esc_attr( $atts['id'] ); ?>">
+<div class="su-display-posts su-display-posts-template-default<?php echo esc_attr( su_get_css_class( $atts ) ); ?>" id="<?php echo esc_attr( $atts['id'] ); ?>">
 
 	<?php if ( $su_posts->have_posts() ) : ?>
 
@@ -22,20 +22,19 @@
 
 			<div id="su-post-<?php the_ID(); ?>" class="su-post">
 
-				<?php if ( has_post_thumbnail() ) : ?>
-
+				<?php if ( has_post_thumbnail( get_the_ID() ) ) : ?>
 					<div class="su-post-thumbnail">
-						<a href="<?php the_permalink(); ?>">
-							<?php the_post_thumbnail( 'thumbnail' ); ?>
-						</a>
+						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'thumbnail' ); ?></a>
 					</div>
-
 				<?php endif; ?>
 
 				<div class="su-post-body">
 					<h2 class="su-post-title">
 						<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 					</h2>
+					<div class="su-post-excerpt">
+						<?php the_excerpt(); ?>
+					</div>
 				</div>
 
 			</div>
@@ -43,11 +42,7 @@
 		<?php endwhile; ?>
 
 	<?php else : ?>
-
-		<p class="su-posts-not-found">
-			<?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?>
-		</p>
-
+		<h4><?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?></h4>
 	<?php endif; ?>
 
 </div>
