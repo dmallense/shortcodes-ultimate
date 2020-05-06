@@ -18,13 +18,13 @@ su_add_shortcode(
 					'<p>%s.</p><p>%s:</p><table><tr><td>%s</td><td>%s</td><tr><td>%s</td><td>%s</td><tr><td>%s</td><td>%s</td><tr><td>%s</td><td>%s</td><tr><td>%s</td><td>%s</td></table><p><a href="%s" target="_blank">%s</a></p>',
 					__( 'Template name', 'shortcodes-ultimate' ),
 					__( 'Available templates', 'shortcodes-ultimate' ),
-					'<b%value>su-display-posts-default</b>',
+					'<b%value>default</b>',
 					__( 'default template with thumbnail, title, and excerpt', 'shortcodes-ultimate' ),
-					'<b%value>su-display-posts-meta</b>',
+					'<b%value>default-meta</b>',
 					__( 'default template with various meta data', 'shortcodes-ultimate' ),
-					'<b%value>su-display-posts-list</b>',
+					'<b%value>list</b>',
 					__( 'unordered list with post titles', 'shortcodes-ultimate' ),
-					'<b%value>su-display-posts-teasers</b>',
+					'<b%value>teasers</b>',
 					__( 'small teasers containing post thumbnails and titles', 'shortcodes-ultimate' ),
 					'<b%value>su-display-posts-single</b>',
 					__( 'single post template', 'shortcodes-ultimate' ),
@@ -271,22 +271,17 @@ function su_shortcode_display_posts_locate_template( $template ) {
 	$template = ltrim( $template, '\\/' );
 
 	$locations = array(
-		get_stylesheet_directory(),
-		get_template_directory(),
-		path_join(
-			su_get_plugin_path(),
-			'includes/partials/display-posts-templates'
-		),
+		path_join( get_stylesheet_directory(), 'su-display-posts' ),
+		path_join( get_template_directory(), 'su-display-posts' ),
+		path_join( su_get_plugin_path(), 'includes/partials/shortcodes/display-posts' ),
 	);
 
-	foreach ( $locations as $base ) {
+	foreach ( $locations as $location ) {
 
-		$base = untrailingslashit( $base );
-
-		$path = path_join( $base, $template );
+		$path = path_join( $location, $template );
 		$path = realpath( $path );
 
-		if ( strpos( $path, $base ) === 0 ) {
+		if ( strpos( $path, $location ) === 0 && file_exists( $path ) ) {
 			return $path;
 		}
 
