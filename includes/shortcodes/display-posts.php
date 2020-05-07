@@ -11,7 +11,7 @@ su_add_shortcode(
 		'group'    => 'other',
 		'article'  => 'https://getshortcodes.com/docs/display-posts/',
 		'atts'     => array(
-			'template'       => array(
+			'template'          => array(
 				'default' => 'default',
 				'name'    => __( 'Template', 'shortcodes-ultimate' ),
 				'desc'    => sprintf(
@@ -32,12 +32,12 @@ su_add_shortcode(
 					__( 'How to create/edit a template', 'shortcodes-ultimate' )
 				),
 			),
-			'post_ids'       => array(
+			'post_ids'          => array(
 				'default' => '',
 				'name'    => __( 'Post IDs', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Comma separated list of post IDs to include', 'shortcodes-ultimate' ),
 			),
-			'posts_per_page' => array(
+			'posts_per_page'    => array(
 				'type'    => 'number',
 				'min'     => -1,
 				'max'     => 100,
@@ -46,7 +46,7 @@ su_add_shortcode(
 				'name'    => __( 'Posts per page', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Number of posts that will be shown. Use -1 to display all posts.', 'shortcodes-ultimate' ),
 			),
-			'post_type'      => array(
+			'post_type'         => array(
 				'type'     => 'post_type',
 				'multiple' => true,
 				'values'   => array(),
@@ -54,14 +54,14 @@ su_add_shortcode(
 				'name'     => __( 'Post types', 'shortcodes-ultimate' ),
 				'desc'     => __( 'Filter posts by post type', 'shortcodes-ultimate' ),
 			),
-			'taxonomy_1'     => array(
+			'taxonomy_1'        => array(
 				'type'    => 'taxonomy',
 				'values'  => array(),
 				'default' => 'category',
 				'name'    => __( 'Taxonomy', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Show posts associated with certain taxonomy', 'shortcodes-ultimate' ),
 			),
-			'tax_terms_1'    => array(
+			'tax_terms_1'       => array(
 				'type'     => 'term',
 				'multiple' => true,
 				'values'   => array(),
@@ -69,7 +69,7 @@ su_add_shortcode(
 				'name'     => __( 'Terms', 'shortcodes-ultimate' ),
 				'desc'     => __( 'Show posts associated with specified taxonomy terms.', 'shortcodes-ultimate' ),
 			),
-			'tax_operator_1' => array(
+			'tax_operator_1'    => array(
 				'type'    => 'select',
 				'values'  => array(
 					'IN'     => __(
@@ -89,17 +89,17 @@ su_add_shortcode(
 				'name'    => __( 'Taxonomy term operator', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Taxonomy terms operator', 'shortcodes-ultimate' ),
 			),
-			'author'         => array(
+			'author'            => array(
 				'default' => '',
 				'name'    => __( 'Authors', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Comma separated list of author IDs', 'shortcodes-ultimate' ),
 			),
-			'meta_key'       => array(
+			'meta_key'          => array(
 				'default' => '',
 				'name'    => __( 'Meta key', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Show posts associated with a certain custom field', 'shortcodes-ultimate' ),
 			),
-			'offset'         => array(
+			'offset'            => array(
 				'type'    => 'number',
 				'min'     => 0,
 				'max'     => 10000,
@@ -108,7 +108,7 @@ su_add_shortcode(
 				'name'    => __( 'Offset', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Number of posts to displace or pass over. The offset parameter is ignored when posts_per_page=-1 (show all posts) is used.', 'shortcodes-ultimate' ),
 			),
-			'orderby'        => array(
+			'orderby'           => array(
 				'type'    => 'select',
 				'values'  => array(
 					'none'           => __( 'None', 'shortcodes-ultimate' ),
@@ -129,7 +129,7 @@ su_add_shortcode(
 				'name'    => __( 'Order by', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Sort retrieved posts by parameter', 'shortcodes-ultimate' ),
 			),
-			'order'          => array(
+			'order'             => array(
 				'type'    => 'select',
 				'values'  => array(
 					'desc' => __( 'Descending', 'shortcodes-ultimate' ),
@@ -139,7 +139,7 @@ su_add_shortcode(
 				'name'    => __( 'Order', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Designates the ascending or descending order of the orderby parameter', 'shortcodes-ultimate' ),
 			),
-			'post_parent'    => array(
+			'post_parent'       => array(
 				'default' => '',
 				'name'    => __( 'Post parent', 'shortcodes-ultimate' ),
 				'desc'    => sprintf(
@@ -148,7 +148,7 @@ su_add_shortcode(
 					'<b%value>current</b>'
 				),
 			),
-			'post_status'    => array(
+			'post_status'       => array(
 				'type'    => 'select',
 				'values'  => array(
 					'publish'    => __( 'Published', 'shortcodes-ultimate' ),
@@ -165,13 +165,13 @@ su_add_shortcode(
 				'name'    => __( 'Post status', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Filter posts by status', 'shortcodes-ultimate' ),
 			),
-			'ignore_sticky'  => array(
+			'ignore_sticky'     => array(
 				'type'    => 'bool',
 				'default' => 'no',
 				'name'    => __( 'Ignore sticky', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Set this option to yes to ignore sticky posts', 'shortcodes-ultimate' ),
 			),
-			'exclude'        => array(
+			'exclude'           => array(
 				'default' => '',
 				'name'    => __( 'Exclude Posts', 'shortcodes-ultimate' ),
 				'desc'    => sprintf(
@@ -180,12 +180,38 @@ su_add_shortcode(
 					'<b%value>current</b>'
 				),
 			),
-			'id'             => array(
+			'pagination'        => array(
+				'type'    => 'select',
+				'values'  => array(
+					'no'        => __( 'Disabled', 'shortcodes-ultimate' ),
+					'prev-next' => __( 'Previous/Next', 'shortcodes-ultimate' ),
+				),
+				'default' => 'no',
+				'name'    => __( 'Pagination', 'shortcodes-ultimate' ),
+				'desc'    => __( 'This option controls pagination', 'shortcodes-ultimate' ),
+			),
+			'pagination_prev'   => array(
+				'default' => __( 'Previous page', 'shortcodes-ultimate' ),
+				'name'    => __( 'Previous page link label', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Use this option to set a custom label for the previous page link.', 'shortcodes-ultimate' ),
+			),
+			'pagination_next'   => array(
+				'default' => __( 'Next page', 'shortcodes-ultimate' ),
+				'name'    => __( 'Next page link label', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Use this option to set a custom label for the next page link.', 'shortcodes-ultimate' ),
+			),
+			'pagination_anchor' => array(
+				'type'    => 'bool',
+				'default' => 'no',
+				'name'    => __( 'Achors in Pagination', 'shortcodes-ultimate' ),
+				'desc'    => __( 'Use this option to enable anchors in pagination links. As a result, after navigating to a new page, browser will scroll in the posts element.', 'shortcodes-ultimate' ),
+			),
+			'id'                => array(
 				'name'    => __( 'HTML Anchor (ID)', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Anchors lets you link directly to an element on a page', 'shortcodes-ultimate' ),
 				'default' => '',
 			),
-			'class'          => array(
+			'class'             => array(
 				'type'    => 'extra_css_class',
 				'name'    => __( 'Extra CSS class', 'shortcodes-ultimate' ),
 				'desc'    => __( 'Additional CSS class name(s) separated by space(s)', 'shortcodes-ultimate' ),
@@ -226,24 +252,18 @@ function su_shortcode_display_posts( $atts = null, $content = null ) {
 	}
 
 	$query    = su_shortcode_display_posts_build_query( $raw, $atts, $defaults );
-	$su_posts = new WP_Query( $query );
-	$output   = su_shortcode_display_posts_include_template( $atts, $su_posts );
+	$su_query = new WP_Query( $query );
+
+	su_shortcode_display_posts_store( 'set', 'su_query', $su_query );
+	su_shortcode_display_posts_store( 'set', 'atts', $atts );
+
+	$output = su_shortcode_display_posts_include_template( $su_query, $atts );
 
 	wp_reset_postdata();
 
 	su_query_asset( 'css', 'su-shortcodes' );
 
 	return $output;
-
-}
-
-function su_shortcode_display_posts_include_template( $atts, $su_posts ) {
-
-	ob_start();
-
-	include $atts['template'];
-
-	return ob_get_clean();
 
 }
 
@@ -273,17 +293,27 @@ function su_shortcode_display_posts_locate_template( $template ) {
 
 }
 
+function su_shortcode_display_posts_include_template( $su_query, $atts ) {
+
+	ob_start();
+
+	include $atts['template'];
+
+	return ob_get_clean();
+
+}
+
 function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
 
 	$query = array();
+
+	$query['paged'] = su_shortcode_display_posts_get_current_page( $atts['id'] );
 
 	if ( $atts['author'] ) {
 		$query['author'] = sanitize_text_field( $atts['author'] );
 	}
 
-	if ( 'yes' === $atts['ignore_sticky'] ) {
-		$query['ignore_sticky_posts'] = true;
-	}
+	$query['ignore_sticky_posts'] = 'yes' === $atts['ignore_sticky'];
 
 	if ( intval( $atts['offset'] ) ) {
 		$query['offset'] = intval( $atts['offset'] );
@@ -298,9 +328,11 @@ function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
 	$query['post_status']    = sanitize_key( $atts['post_status'] );
 	$query['posts_per_page'] = intval( $atts['posts_per_page'] );
 
-	if ( 'current' === $atts['post_parent'] ) {
-		$atts['post_parent'] = get_the_ID();
-	}
+	$atts['post_parent'] = str_replace(
+		'current',
+		get_the_ID(),
+		$atts['post_parent']
+	);
 
 	if ( is_numeric( $atts['post_parent'] ) ) {
 		$query['post_parent'] = intval( $atts['post_parent'] );
@@ -342,6 +374,26 @@ function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
 
 	}
 
+	$query['tax_query'] = su_shortcode_display_posts_build_tax_query( $raw );
+
+	if ( count( $query['tax_query'] ) > 1 ) {
+
+		$query['tax_query']['relation'] = strtoupper(
+			sanitize_key( $atts['tax_relation'] )
+		);
+
+	}
+
+	$query = apply_filters( 'su/shortcode/display_posts/query', $query, $atts, $raw );
+
+	return $query;
+
+}
+
+function su_shortcode_display_posts_build_tax_query( $raw ) {
+
+	$tax_query = array();
+
 	for ( $i = 1; true; $i++ ) {
 
 		$raw[ "taxonomy_{$i}" ] = isset( $raw[ "taxonomy_{$i}" ] )
@@ -379,11 +431,7 @@ function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
 			break;
 		}
 
-		if ( ! isset( $query['tax_query'] ) ) {
-			$query['tax_query'] = array();
-		}
-
-		$query['tax_query'][] = array(
+		$tax_query[] = array(
 			'taxonomy' => $raw[ "taxonomy_{$i}" ],
 			'field'    => is_numeric( $raw[ "tax_terms_{$i}" ][0] ) ? 'id' : 'slug',
 			'terms'    => $raw[ "tax_terms_{$i}" ],
@@ -392,19 +440,120 @@ function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
 
 	}
 
-	if (
-		isset( $query['tax_query'] ) &&
-		count( $query['tax_query'] ) > 1
-	) {
+	return $tax_query;
 
-		$query['tax_query']['relation'] = strtoupper(
-			sanitize_key( $atts['tax_relation'] )
-		);
+}
 
+function su_shortcode_display_posts_pagination() {
+
+	$atts = su_shortcode_display_posts_store( 'get', 'atts' );
+
+	if ( 'prev-next' === $atts['pagination'] ) {
+		return su_shortcode_display_posts_prevnext_pagination();
 	}
 
-	$query = apply_filters( 'su/shortcode/display_posts/query', $query, $atts, $raw );
+}
 
-	return $query;
+function su_shortcode_display_posts_prevnext_pagination() {
+
+	$prev = su_shortcode_display_posts_prevnext_pagination_link( 'prev' );
+	$next = su_shortcode_display_posts_prevnext_pagination_link( 'next' );
+
+	if ( ! $next && ! $prev ) {
+		return;
+	}
+
+	// phpcs:disable
+	printf( '<div class="su-display-posts-pagination">%s%s</div>', $prev, $next );
+	// phpcs:enable
+
+}
+
+function su_shortcode_display_posts_prevnext_pagination_link( $direction = 'next' ) {
+
+	$su_query  = su_shortcode_display_posts_store( 'get', 'su_query' );
+	$atts      = su_shortcode_display_posts_store( 'get', 'atts' );
+	$direction = sanitize_key( $direction );
+	$label     = $atts[ 'pagination_' . $direction ];
+	$class     = 'su-display-posts-pagination-' . $direction;
+	$key       = su_shortcode_display_posts_get_pagination_key( $atts['id'] );
+	$current   = su_shortcode_display_posts_get_current_page( $atts['id'] );
+	$total     = $su_query->max_num_pages;
+	$template  = apply_filters(
+		'su/shortcode/display_posts/prevnext_pagination_link_template',
+		'<a href="%1$s" class="%2$s">%3$s</a>',
+		$atts,
+		$direction
+	);
+
+	if ( $current > $total ) {
+		return;
+	}
+
+	if ( 'next' === $direction && $current < $total ) {
+		$goto = $current + 1;
+	}
+
+	if ( 'prev' === $direction && $current > 1 ) {
+		$goto = $current - 1;
+	}
+
+	if ( ! isset( $goto ) ) {
+		return;
+	}
+
+	$url = 1 === $goto
+		? remove_query_arg( $key )
+		: add_query_arg( $key, $goto );
+
+	if ( 'yes' === $atts['pagination_anchor'] ) {
+		$url .= '#' . $atts['id'];
+	}
+
+	return sprintf(
+		$template,
+		esc_attr( $url ),
+		sanitize_html_class( $class ),
+		esc_html( $label )
+	);
+
+}
+
+function su_shortcode_display_posts_get_pagination_key( $id ) {
+
+	return sprintf(
+		apply_filters( 'su/shortcode/display_posts/pagination_key', '%s-page' ),
+		$id
+	);
+
+}
+
+function su_shortcode_display_posts_get_current_page( $id ) {
+
+	$key = su_shortcode_display_posts_get_pagination_key( $id );
+
+	// phpcs:disable
+	return isset( $_GET[ $key ] ) && is_numeric( $_GET[ $key ] ) && $_GET[ $key ] > 0
+		? intval( $_GET[ $key ] )
+		: 1;
+	// phpcs:enable
+
+}
+
+function su_shortcode_display_posts_store( $action = 'get', $key = '', $value = '' ) {
+
+	static $store;
+
+	if ( ! is_array( $store ) ) {
+		$store = array();
+	}
+
+	if ( 'get' === $action && ! empty( $key ) && isset( $store[ $key ] ) ) {
+		return $store[ $key ];
+	}
+
+	if ( 'set' === $action ) {
+		$store[ $key ] = $value;
+	}
 
 }
