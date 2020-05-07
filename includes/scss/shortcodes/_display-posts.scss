@@ -116,3 +116,16 @@
 	font-size: 0.85em;
 	opacity: 0.85;
 }
+
+
+// =============================================================================
+// Pagination
+// =============================================================================
+
+.su-display-posts-pagination {
+	display: flex;
+	justify-content: space-between;
+}
+.su-display-posts-pagination-next {
+	margin-left: auto;
+}
