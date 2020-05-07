@@ -14,11 +14,11 @@
 
 <div class="su-display-posts su-display-posts-template-default<?php echo esc_attr( su_get_css_class( $atts ) ); ?>" id="<?php echo esc_attr( $atts['id'] ); ?>">
 
-	<?php if ( $su_posts->have_posts() ) : ?>
+	<?php if ( $su_query->have_posts() ) : ?>
 
-		<?php while ( $su_posts->have_posts() ) : ?>
+		<?php while ( $su_query->have_posts() ) : ?>
 
-			<?php $su_posts->the_post(); ?>
+			<?php $su_query->the_post(); ?>
 
 			<div id="su-post-<?php the_ID(); ?>" class="su-post">
 
@@ -63,6 +63,8 @@
 			</div>
 
 		<?php endwhile; ?>
+
+		<?php su_shortcode_display_posts_pagination(); ?>
 
 	<?php else : ?>
 		<p><?php esc_html_e( 'Posts not found', 'shortcodes-ultimate' ); ?></p>
