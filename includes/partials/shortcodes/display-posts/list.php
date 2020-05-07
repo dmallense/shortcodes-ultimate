@@ -16,11 +16,11 @@
 
 	<ul>
 
-		<?php if ( $su_posts->have_posts() ) : ?>
+		<?php if ( $su_query->have_posts() ) : ?>
 
-			<?php while ( $su_posts->have_posts() ) : ?>
+			<?php while ( $su_query->have_posts() ) : ?>
 
-				<?php $su_posts->the_post(); ?>
+				<?php $su_query->the_post(); ?>
 
 				<li id="su-post-<?php the_ID(); ?>" class="su-post">
 					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -35,5 +35,7 @@
 		<?php endif; ?>
 
 	</ul>
+
+	<?php su_shortcode_display_posts_pagination(); ?>
 
 </div>
