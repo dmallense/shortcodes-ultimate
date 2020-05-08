@@ -374,7 +374,7 @@ function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
 
 	}
 
-	$query['tax_query'] = su_shortcode_display_posts_build_tax_query( $raw );
+	$query['tax_query'] = su_shortcode_display_posts_build_tax_query( $raw, $defaults );
 
 	if ( count( $query['tax_query'] ) > 1 ) {
 
@@ -390,7 +390,7 @@ function su_shortcode_display_posts_build_query( $raw, $atts, $defaults ) {
 
 }
 
-function su_shortcode_display_posts_build_tax_query( $raw ) {
+function su_shortcode_display_posts_build_tax_query( $raw, $defaults ) {
 
 	$tax_query = array();
 
@@ -398,7 +398,7 @@ function su_shortcode_display_posts_build_tax_query( $raw ) {
 
 		$raw[ "taxonomy_{$i}" ] = isset( $raw[ "taxonomy_{$i}" ] )
 			? sanitize_text_field( $raw[ "taxonomy_{$i}" ] )
-			: 'category';
+			: $defaults['taxonomy_1'];
 
 		if ( ! isset( $raw[ "tax_terms_{$i}" ] ) ) {
 			break;
@@ -417,7 +417,7 @@ function su_shortcode_display_posts_build_tax_query( $raw ) {
 		);
 
 		if ( ! isset( $raw[ "tax_operator_{$i}" ] ) ) {
-			$raw[ "tax_operator_{$i}" ] = 'IN';
+			$raw[ "tax_operator_{$i}" ] = $defaults['tax_operator_1'];
 		}
 
 		$raw[ "tax_operator_{$i}" ] = sanitize_text_field( $raw[ "tax_operator_{$i}" ] );
