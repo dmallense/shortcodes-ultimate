@@ -2,15 +2,16 @@
 
 su_add_shortcode(
 	array(
-		'id'       => 'posts',
-		'callback' => 'su_shortcode_posts',
-		'image'    => su_get_plugin_url() . 'admin/images/shortcodes/posts.svg',
+		'deprecated' => true,
+		'id'         => 'posts',
+		'callback'   => 'su_shortcode_posts',
+		'image'      => su_get_plugin_url() . 'admin/images/shortcodes/posts.svg',
 		// Translators: Dep. — Deprecated
-		'name'     => __( 'Posts (Dep.)', 'shortcodes-ultimate' ),
-		'type'     => 'single',
-		'group'    => 'other',
-		'article'  => 'https://getshortcodes.com/docs/posts/',
-		'atts'     => array(
+		'name'       => __( 'Posts (Dep.)', 'shortcodes-ultimate' ),
+		'type'       => 'single',
+		'group'      => 'other',
+		'article'    => 'https://getshortcodes.com/docs/posts/',
+		'atts'       => array(
 			'template'            => array(
 				'default' => 'templates/default-loop.php',
 				'name'    => __( 'Template', 'shortcodes-ultimate' ),
@@ -193,11 +194,11 @@ su_add_shortcode(
 				),
 			),
 		),
-		'desc'     => __(
+		'desc'       => __(
 			'Custom posts query with customizable template',
 			'shortcodes-ultimate'
 		),
-		'icon'     => 'th-list',
+		'icon'       => 'th-list',
 	)
 );
 
