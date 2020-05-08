@@ -28,7 +28,7 @@ su_add_shortcode(
 					__( 'small teasers containing post thumbnails and titles', 'shortcodes-ultimate' ),
 					'<b%value>single</b>',
 					__( 'single post template', 'shortcodes-ultimate' ),
-					'https://getshortcodes.com/docs/posts/',
+					'https://getshortcodes.com/docs/display-posts/',
 					__( 'How to create/edit a template', 'shortcodes-ultimate' )
 				),
 			),
