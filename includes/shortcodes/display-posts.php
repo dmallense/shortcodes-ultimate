@@ -247,6 +247,8 @@ function su_shortcode_display_posts( $atts = null, $content = null ) {
 		)
 	);
 
+	// TODO: sanitize everything if possible (0) [!]
+
 	$atts['quality'] = sanitize_key( $atts['quality'] );
 
 	$atts['template'] = su_shortcode_display_posts_locate_template( $atts['template'] );
