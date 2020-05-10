@@ -24,7 +24,7 @@
 
 				<?php if ( has_post_thumbnail( get_the_ID() ) ) : ?>
 					<div class="su-post-thumbnail">
-						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'thumbnail' ); ?></a>
+						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( $atts['quality'] ); ?></a>
 					</div>
 				<?php endif; ?>
 
