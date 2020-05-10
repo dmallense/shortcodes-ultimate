@@ -180,6 +180,13 @@ su_add_shortcode(
 					'<b%value>current</b>'
 				),
 			),
+			'quality'           => array(
+				'type'    => 'select',
+				'values'  => su_get_image_sizes(),
+				'default' => 'thubmnail',
+				'name'    => __( 'Thumbnails quality (if applicable)', 'shortcodes-ultimate' ),
+				'desc'    => __( 'This option controls the size of thumbnail images. This option only affects image quality, not the actual thumbnail size.', 'shortcodes-ultimate' ),
+			),
 			'pagination'        => array(
 				'type'    => 'select',
 				'values'  => array(
@@ -239,6 +246,8 @@ function su_shortcode_display_posts( $atts = null, $content = null ) {
 			md5( wp_json_encode( $raw ) )
 		)
 	);
+
+	$atts['quality'] = sanitize_key( $atts['quality'] );
 
 	$atts['template'] = su_shortcode_display_posts_locate_template( $atts['template'] );
 
