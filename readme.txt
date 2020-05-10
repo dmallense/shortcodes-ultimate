@@ -6,7 +6,7 @@ Tags: shortcode, toggle, columns, button, slider
 Requires at least: 4.6
 Tested up to: 5.4
 Requires PHP: 5.3
-Stable tag: 5.8.2
+Stable tag: 5.9.0
 
 A comprehensive collection of visual components for your site
 
@@ -146,12 +146,18 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 ## Changelog
 
 
-### 5.8.2
+### 5.9.0
+
+**Important changes**
+
+`[su_slider]` and `[su_carousel]` shortcodes are marked as deprecated. These shortcodes will disappaer from the *Available shortcodes* page and from the *Insert shortcode* window. Deprecated shortcodes will continue to work, but you'll not be able to insert them. You can enable deprecated shortcodes under *Dashboard → Shortcodes → Settings → Advanced settings*, but that's not recommended.
+
+Use [su_image_carousel](https://getshortcodes.com/docs/image-carousel/) instead, it has more options, and much more reliable.
 
 **What's new**
 
-- New options `min_width` and `max_width` for `[su_lightbox_content]` shortcode
 - `[su_image_carousel]` now supports media taxonomies
+- New options `min_width` and `max_width` for `[su_lightbox_content]` shortcode
 
 **Fixes**
 
