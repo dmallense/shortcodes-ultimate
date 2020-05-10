@@ -425,7 +425,7 @@ function su_get_slides( $args ) {
 			if ( 'image' === $args['link'] || 'lightbox' === $args['link'] ) {
 				$slide['link'] = $slide['image'];
 			} elseif ( 'custom' === $args['link'] ) {
-				$slide['link'] = get_post_meta( $thumb, 'su_slide_link', true );
+				$slide['link'] = get_post_meta( $post->ID, 'su_slide_link', true );
 			} elseif ( 'post' === $args['link'] ) {
 				$slide['link'] = get_permalink( $post->ID );
 			} elseif ( 'attachment' === $args['link'] ) {
