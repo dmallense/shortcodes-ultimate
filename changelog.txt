@@ -1,17 +1,3 @@
-### 5.8.2
-
-**What's new**
-
-- New options `min_width` and `max_width` for `[su_lightbox_content]` shortcode
-
-**Fixes**
-
-- Fixed PHP notice `undefined variable` in `[su_post]` shortcode
-- Fixed PHP notice `top_link` in `[su_divider]` shortcode
-- Fixed `related` option in `[su_dailymotion]` shortcode
-- Minor UI improvements
-
-
 ### 5.8.1
 
 **What's new**
