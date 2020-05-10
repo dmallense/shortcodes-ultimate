@@ -151,10 +151,13 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 **What's new**
 
 - New options `min_width` and `max_width` for `[su_lightbox_content]` shortcode
+- `[su_image_carousel]` now supports media taxonomies
 
 **Fixes**
 
+- Fixed fatal errors `WP_Error` in `[su_slider]` and `[su_custom_gallery]`
 - Fixed PHP notice `undefined variable` in `[su_post]` shortcode
 - Fixed PHP notice `top_link` in `[su_divider]` shortcode
 - Fixed `related` option in `[su_dailymotion]` shortcode
+- Minor improvement to `[su_image_carousel]`
 - Minor UI improvements
