@@ -164,6 +164,7 @@ Use [su_image_carousel](https://getshortcodes.com/docs/image-carousel/) instead,
 - Fixed fatal errors `WP_Error` in `[su_slider]` and `[su_custom_gallery]`
 - Fixed PHP notice `undefined variable` in `[su_post]` shortcode
 - Fixed PHP notice `top_link` in `[su_divider]` shortcode
+- Fixed PHP notice `filter_content` in `[su_post]` shortcode
 - Fixed `related` option in `[su_dailymotion]` shortcode
 - Fixed non-working *Slide Link* issue with `[su_custom_gallery]`
 - Minor improvement to `[su_image_carousel]`
