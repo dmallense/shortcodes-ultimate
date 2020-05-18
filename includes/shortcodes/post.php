@@ -76,7 +76,11 @@ su_add_shortcode(
 
 function su_shortcode_post( $atts = null, $content = null ) {
 
-	$atts = su_parse_shortcode_atts( 'post', $atts );
+	$atts = su_parse_shortcode_atts(
+		'post',
+		$atts,
+		array( 'filter_content' => 'no' )
+	);
 
 	if ( ! $atts['post_id'] ) {
 		$atts['post_id'] = get_the_ID();
@@ -93,8 +97,8 @@ function su_shortcode_post( $atts = null, $content = null ) {
 
 	if ( 'the_content' === $atts['field'] ) {
 
-		$atts['field']  = 'post_content';
-		$filter_content = true;
+		$atts['field']          = 'post_content';
+		$atts['filter_content'] = 'yes';
 
 	}
 
@@ -107,7 +111,7 @@ function su_shortcode_post( $atts = null, $content = null ) {
 		$data = $post->{$atts['field']};
 	}
 
-	if ( isset( $filter_content ) ) {
+	if ( 'yes' === $atts['filter_content'] ) {
 		$data = su_filter_the_content( $data );
 	}
 
