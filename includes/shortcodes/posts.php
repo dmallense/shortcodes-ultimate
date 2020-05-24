@@ -420,7 +420,7 @@ function su_shortcode_posts_locate_template( $template ) {
 		get_template_directory(),
 		path_join(
 			su_get_plugin_path(),
-			'includes/deprecated/posts-templates'
+			'includes/partials/shortcodes/posts'
 		),
 	);
 
@@ -431,7 +431,7 @@ function su_shortcode_posts_locate_template( $template ) {
 		$path = path_join( $base, $template );
 		$path = realpath( $path );
 
-		if ( strpos( $path, $base ) === 0 ) {
+		if ( file_exists( $path ) && strpos( $path, $base ) === 0 ) {
 			return $path;
 		}
 
