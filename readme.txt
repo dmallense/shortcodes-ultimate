@@ -146,11 +146,20 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 ## Changelog
 
 
+### 5.9.1
+
+**Fixes**
+
+- Fixed issue in the Insert Shortcode tool with Taxonomy and Tax terms fields
+
+
 ### 5.9.0
 
 **Important changes**
 
-`[su_slider]` and `[su_carousel]` shortcodes are marked as deprecated. These shortcodes will disappaer from the *Available shortcodes* page and from the *Insert shortcode* window. Deprecated shortcodes will continue to work, but you'll not be able to insert them. You can enable deprecated shortcodes under *Dashboard → Shortcodes → Settings → Advanced settings*, but that's not recommended.
+Slider and Carousel shortcodes are marked as deprecated. These shortcodes will disappaer from the *Available shortcodes* page and from the *Insert shortcode* window. Deprecated shortcodes will continue to work, but you'll not be able to insert them.
+
+You can enable deprecated shortcodes from *Dashboard → Shortcodes → Settings → Advanced settings* screen, but that's not recommended.
 
 Use [su_image_carousel](https://getshortcodes.com/docs/image-carousel/) instead, it has more options, and much more reliable.
 
