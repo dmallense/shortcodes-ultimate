@@ -151,6 +151,7 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 **Fixes**
 
 - Fixed issue in the Insert Shortcode tool with Taxonomy and Tax terms fields
+- Fixed error `Posts: invalid template name` on some installations
 
 
 ### 5.9.0
