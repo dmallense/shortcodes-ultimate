@@ -18,6 +18,7 @@ var livereload = require('gulp-livereload')
 var wpPot = require('gulp-wp-pot')
 var groupMQ = require('gulp-group-css-media-queries')
 var cleanCSS = require('gulp-clean-css')
+var replace = require('gulp-replace')
 
 function compileSASS () {
   sass.compiler = nodeSass
@@ -127,6 +128,17 @@ function getBuildDir () {
   return './build'
 }
 
+function setVersion (done) {
+  var version = fs
+    .readFileSync('.version', 'utf8')
+    .split(/\r\n|\n|\r/)[0]
+
+  return gulp
+    .src('./build/**/*.{php,txt}')
+    .pipe(replace(/999-version/g, version))
+    .pipe(gulp.dest('./build/'))
+}
+
 exports.sass = compileSASS
 exports.js = compileJS
 exports.watch = watchFiles
@@ -134,5 +146,6 @@ exports.compile = gulp.parallel(compileSASS, compileJS, createShortcodesFull)
 exports.build = gulp.series(
   gulp.parallel(compileSASS, compileJS, createShortcodesFull),
   makePot,
-  createBuild
+  createBuild,
+  setVersion
 )
