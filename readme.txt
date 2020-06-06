@@ -148,6 +148,10 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 
 ### 5.9.1
 
+**What's new**
+
+- `[su_qrcode]` now supports nested shortcodes in the `data` attribute
+
 **Fixes**
 
 - Fixed issue in the Insert Shortcode tool with Taxonomy and Tax terms fields
