@@ -151,6 +151,7 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 **What's new**
 
 - `[su_qrcode]` now supports nested shortcodes in the `data` attribute
+- Improved performance by reducing the number of DB queries
 
 **Fixes**
 
