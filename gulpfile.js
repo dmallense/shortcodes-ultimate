@@ -96,8 +96,15 @@ function createBuild () {
   del.sync([getBuildDir()])
 
   return gulp
-    .src(['./**/*', `!${getBuildDir()}/**`, ...getBuildIgnore()])
-    .pipe(gulp.dest(getBuildDir()))
+    .src(['./**/*', `!${getBuildDir()}/**/*`, ...getBuildIgnore()])
+    .pipe(gulp.dest(getBuildDirVersioned()))
+}
+
+function updateVersion () {
+  return gulp
+    .src(getBuildDirVersioned() + '/**/*.{php,txt}')
+    .pipe(replace(/999-version/g, getVersion()))
+    .pipe(gulp.dest(getBuildDirVersioned()))
 }
 
 function createShortcodesFull () {
@@ -128,15 +135,14 @@ function getBuildDir () {
   return './build'
 }
 
-function setVersion (done) {
-  var version = fs
+function getBuildDirVersioned () {
+  return './build/' + getVersion()
+}
+
+function getVersion () {
+  return fs
     .readFileSync('.version', 'utf8')
     .split(/\r\n|\n|\r/)[0]
-
-  return gulp
-    .src('./build/**/*.{php,txt}')
-    .pipe(replace(/999-version/g, version))
-    .pipe(gulp.dest('./build/'))
 }
 
 exports.sass = compileSASS
@@ -147,5 +153,5 @@ exports.build = gulp.series(
   gulp.parallel(compileSASS, compileJS, createShortcodesFull),
   makePot,
   createBuild,
-  setVersion
+  updateVersion
 )
