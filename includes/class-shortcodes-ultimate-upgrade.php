@@ -67,6 +67,7 @@ final class Shortcodes_Ultimate_Upgrade {
 		$this->maybe_upgrade_to( '5.2.0' );
 		$this->maybe_upgrade_to( '5.4.0' );
 		$this->maybe_upgrade_to( '5.6.0' );
+		$this->maybe_upgrade_to( '5.9.1' );
 
 		$this->update_saved_version();
 
