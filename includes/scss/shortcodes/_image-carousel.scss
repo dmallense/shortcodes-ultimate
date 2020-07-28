@@ -288,7 +288,7 @@
 	right: 20px;
 }
 
-.su-image-carousel ol.flickity-page-dots {
+.su-image-carousel > ol.flickity-page-dots {
 	position: absolute;
 	top: 50%;
 	bottom: auto;
@@ -302,11 +302,11 @@
 	transform: translate(-50%, -50%);
 	pointer-events: none;
 }
-.su-image-carousel:hover ol.flickity-page-dots {
+.su-image-carousel:hover > ol.flickity-page-dots {
 	opacity: 1;
 }
 
-.su-image-carousel ol.flickity-page-dots li.dot {
+.su-image-carousel > ol.flickity-page-dots > li.dot {
 	position: relative;
 	display: inline-block;
 	margin: 5px;
@@ -319,10 +319,10 @@
 	transition: opacity 0.2s ease;
 	pointer-events: all;
 }
-.su-image-carousel ol.flickity-page-dots li.dot:hover {
+.su-image-carousel > ol.flickity-page-dots > li.dot:hover {
 	opacity: 1;
 }
-.su-image-carousel ol.flickity-page-dots li.dot::before {
+.su-image-carousel > ol.flickity-page-dots > li.dot::before {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -335,7 +335,7 @@
 	content: '';
 	transform: translate(-50%, -50%);
 }
-.su-image-carousel ol.flickity-page-dots li.dot.is-selected::before {
+.su-image-carousel > ol.flickity-page-dots > li.dot.is-selected::before {
 	display: block;
 }
 
