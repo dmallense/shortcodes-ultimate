@@ -146,19 +146,12 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 ## Changelog
 
 
-### 5.9.2
-
-**What's new**
-
-- `[su_qrcode]` now supports nested shortcodes in the `data` attribute
-- Improved performance by reducing the number of DB queries
+### 5.9.3
 
 **Fixes**
 
-- Fixed issue in the Insert Shortcode tool with Taxonomy and Tax terms fields
-- Fixed error `Posts: invalid template name` on some installations
-- This update also fixes the plugin options issue present in 5.9.1
+- Fixed issue in `[su_image_carousel]` where images were hidden on some themes
 
 
 ---
-[Older changelog entries](https://plugins.trac.wordpress.org/browser/shortcodes-ultimate/trunk/changelog.txt).
+[Version history →](https://plugins.trac.wordpress.org/browser/shortcodes-ultimate/trunk/changelog.txt)
