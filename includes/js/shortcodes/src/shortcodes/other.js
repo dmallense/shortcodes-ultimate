@@ -14,6 +14,18 @@ export default function SUOtherShortcodes () {
         )
       }
     }
+    function addAnchor (anchor = '') {
+      if (typeof anchor !== 'string') {
+        return
+      }
+      anchor = anchor
+        .replace(/[^a-z0-9_-]/gim, '')
+        .trim()
+      if (anchor === '') {
+        return
+      }
+      window.location.hash = '#' + anchor
+    }
     // Spoiler
     $('body:not(.su-other-shortcodes-loaded)').on(
       'click keypress',
@@ -22,6 +34,10 @@ export default function SUOtherShortcodes () {
         var $spoiler = $(this).parent()
         // Open/close spoiler
         $spoiler.toggleClass('su-spoiler-closed')
+        // Add anchor to URL
+        if (!$spoiler.hasClass('su-spoiler-closed') && $spoiler.data('anchor-in-url') === 'yes') {
+          addAnchor($spoiler.data('anchor'))
+        }
         // Close other spoilers in accordion
         $spoiler
           .parent('.su-accordion')
@@ -33,39 +49,50 @@ export default function SUOtherShortcodes () {
         e.preventDefault()
       }
     )
+
+    function revealTab ($tab) {
+      var index = $tab.index()
+      var isDisabled = $tab.hasClass('su-tabs-disabled')
+      var $container = $tab.parents('.su-tabs')
+      var $tabs = $container.find('.su-tabs-nav span')
+      var $panes = $container.find('.su-tabs-pane')
+      var $gmaps = $panes
+        .eq(index)
+        .find('.su-gmap:not(.su-gmap-reloaded)')
+        // Check tab is not disabled
+      if (isDisabled) return false
+      // Hide all panes, show selected pane
+      $panes
+        .removeClass('su-tabs-pane-open')
+        .eq(index)
+        .addClass('su-tabs-pane-open')
+        // Disable all tabs, enable selected tab
+      $tabs
+        .removeClass('su-tabs-current')
+        .eq(index)
+        .addClass('su-tabs-current')
+        // Reload gmaps
+      if ($gmaps.length > 0) {
+        $gmaps.each(function () {
+          var $iframe = $(this).find('iframe:first')
+          $(this).addClass('su-gmap-reloaded')
+          $iframe.attr('src', $iframe.attr('src'))
+        })
+      }
+    }
+
     // Tabs
     $('body:not(.su-other-shortcodes-loaded)').on(
       'click keypress',
       '.su-tabs-nav span',
       function (e) {
         var $tab = $(this)
+        var $container = $tab.parents('.su-tabs')
         var data = $tab.data()
-        var index = $tab.index()
-        var isDisabled = $tab.hasClass('su-tabs-disabled')
-        var $tabs = $tab.parent('.su-tabs-nav').children('span')
-        var $panes = $tab.parents('.su-tabs').find('.su-tabs-pane')
-        var $gmaps = $panes
-          .eq(index)
-          .find('.su-gmap:not(.su-gmap-reloaded)')
-        // Check tab is not disabled
-        if (isDisabled) return false
-        // Hide all panes, show selected pane
-        $panes
-          .removeClass('su-tabs-pane-open')
-          .eq(index)
-          .addClass('su-tabs-pane-open')
-        // Disable all tabs, enable selected tab
-        $tabs
-          .removeClass('su-tabs-current')
-          .eq(index)
-          .addClass('su-tabs-current')
-        // Reload gmaps
-        if ($gmaps.length > 0) {
-          $gmaps.each(function () {
-            var $iframe = $(this).find('iframe:first')
-            $(this).addClass('su-gmap-reloaded')
-            $iframe.attr('src', $iframe.attr('src'))
-          })
+        revealTab($tab)
+        // Add anchor to URL
+        if ($container.data('anchor-in-url') === 'yes') {
+          addAnchor($tab.data('anchor'))
         }
         // Open specified url
         if (data.url !== '') {
@@ -79,11 +106,13 @@ export default function SUOtherShortcodes () {
     // Activate tabs
     $('.su-tabs').each(function () {
       var active = parseInt($(this).data('active')) - 1
-      $(this)
+
+      var $tab = $(this)
         .children('.su-tabs-nav')
         .children('span')
         .eq(active)
-        .trigger('click')
+
+      revealTab($tab)
     })
 
     // Activate anchor nav for tabs and spoilers

@@ -4,7 +4,7 @@ License: GPLv3
 Donate link: https://paypal.me/anovladimir
 Tags: shortcode, toggle, columns, button, slider
 Requires at least: 4.6
-Tested up to: 5.5
+Tested up to: 5.6
 Requires PHP: 5.3
 Stable tag: 999-version
 
@@ -147,6 +147,10 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 
 
 ### 5.9.3
+
+**What's new**
+
+- New option `anchor_in_url` for `[su_tabs]` and `[su_spoiler]`. This option specifies whether an anchor will be added to page URL after clicking a tab or a spoiler.
 
 **Fixes**
 
