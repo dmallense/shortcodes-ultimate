@@ -171,6 +171,10 @@ function su_get_gallery_slides_posts( $atts ) {
 
 	}
 
+	if ( 'yes' === $atts['random'] ) {
+		$query['orderby'] = 'rand';
+	}
+
 	$query = apply_filters( 'su/get_gallery_slides_query', $query, $source, $atts );
 	$query = new WP_Query( $query );
 

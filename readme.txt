@@ -151,6 +151,7 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 **What's new**
 
 - New option `anchor_in_url` for `[su_tabs]` and `[su_spoiler]`. This option specifies whether an anchor will be added to page URL after clicking a tab or a spoiler.
+- New option `random` for `[su_image_carousel]` which allows to shuffle carousel images
 
 **Fixes**
 
