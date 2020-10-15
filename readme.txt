@@ -146,17 +146,12 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 ## Changelog
 
 
-### 5.9.3
-
-**What's new**
-
-- New option `anchor_in_url` for `[su_tabs]` and `[su_spoiler]`. This option specifies whether an anchor will be added to page URL after clicking a tab or a spoiler.
-- New option `random` for `[su_image_carousel]` which allows to shuffle carousel images
+### 5.9.4
 
 **Fixes**
 
-- Fixed issue in `[su_image_carousel]` where images were hidden on some themes
-
+- Fixed PHP notice `A non-numeric value encountered` in `[su_dropcap]`
+- Fixed PHP notice `A non-numeric value encountered` in `[su_service]`
 
 ---
 [Version history →](https://plugins.trac.wordpress.org/browser/shortcodes-ultimate/trunk/changelog.txt)
