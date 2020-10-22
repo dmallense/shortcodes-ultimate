@@ -152,6 +152,7 @@ First, visit the [Help Center](https://getshortcodes.com/support/). If you get s
 
 - Fixed PHP notice `A non-numeric value encountered` in `[su_dropcap]`
 - Fixed PHP notice `A non-numeric value encountered` in `[su_service]`
+- Updated in-plugin links
 
 ---
 [Version history →](https://plugins.trac.wordpress.org/browser/shortcodes-ultimate/trunk/changelog.txt)
